@@ -106,4 +106,29 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+	public function actionEvent()
+	{
+		$this->render('event');
+	}
+
+	public function actionVideo()
+	{
+		$this->render('video');
+	}
+
+	public function actionDownloads()
+	{
+		$this->render('downloads');
+	}
+
+	public function actionFavourites()
+	{
+		$this->render('favourites');
+	}
+
+	public function actionContactfaq()
+	{
+		$this->render('contactfaq');
+	}
 }
