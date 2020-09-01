@@ -29,7 +29,11 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$this->render('index', array(
+                'introText' => 'Welcome',
+                'introSubText' => 'Please select your organization',
+            )
+        );
 	}
 
 	/**
@@ -109,26 +113,70 @@ class SiteController extends Controller
 
 	public function actionEvent()
 	{
-		$this->render('event');
+
+		$model=new LoginForm;
+
+		// if it is ajax validation request
+		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+
+		// collect user input data
+		if(isset($_POST['LoginForm']))
+		{
+			$model->attributes=$_POST['LoginForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->login())
+				// $this->redirect(Yii::app()->user->returnUrl);
+				$this->redirect(Yii::app()->baseUrl . '/video');
+		}
+		
+		// display the login form
+		//$this->render('login',array('model'=>$model));
+
+		$this->render('event', array(
+                'introText' => 'Events',
+                'introSubText' => 'Please select your show',
+                'model'=>$model,
+            )
+        );
 	}
 
 	public function actionVideo()
 	{
-		$this->render('video');
+		$this->render('video', array(
+                'introText' => 'Watch Video',
+                'introSubText' => '',
+            )
+        );
 	}
 
 	public function actionDownloads()
 	{
-		$this->render('downloads');
+		$this->render('downloads', array(
+                'introText' => 'Download',
+                'introSubText' => 'Download videos to share',
+            )
+        );
 	}
 
 	public function actionFavourites()
 	{
-		$this->render('favourites');
+		$this->render('favourites', array(
+                'introText' => 'Favourites',
+                'introSubText' => '',
+            )
+        );
 	}
 
 	public function actionContactfaq()
 	{
-		$this->render('contactfaq');
+		$this->render('contactfaq', array(
+                'introText' => 'Contact/Faq',
+                'introSubText' => '',
+            )
+        );
 	}
 }

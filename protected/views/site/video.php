@@ -1,20 +1,63 @@
-<?php
-/* @var $this SiteController */
+<style type="text/css">
+        .menu-top { display: block; }
+</style>
 
-$this->pageTitle=Yii::app()->name;
-?>
+<div class="page-name">
+    <?php echo $introText; ?>
+</div>
+<div class="main-content">
+    <h3><?php echo $introSubText; ?></h3>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<div id="makingof"> 
+<script type="text/javascript">
+//Sprungzeit ausrechnen
+var d = new Date(); //Datum erzeugen
+var curr_hour = d.getHours();
+var curr_hour_sec = curr_hour * 3600;
+var curr_min = d.getMinutes();
+var curr_min_sec = curr_min * 60;
+var curr_sec = d.getSeconds();
+var curr_sec_all = curr_hour_sec + curr_min_sec + curr_sec ; //Wie viele Sekunden sind seit 0:00 vergangen
+var curr_prozent = curr_sec_all / 19855; //Wie viel Prozent sind an Sekunden im Vergleich zu 19855s (=Videol�nge 5:30:55) vergangen (19855s = 100% ; 86400 (24h) = 435%)
+//Wenn die vergangenen Sekunden gr��er sind als 100%, wird spraktisch vorne die Hunderterstelle weggenommen; aus 180% wird 80% bzw. aus 1,80 wird 0,80
+if (curr_prozent>1)
+    {
+    var curr_prozent_final = curr_prozent - 1;
+    }
+if (curr_prozent>2)
+    {
+    var curr_prozent_final = curr_prozent - 2;
+    }
+if (curr_prozent>3)
+    {
+    var curr_prozent_final = curr_prozent - 3;
+    }
+if (curr_prozent>4)
+    {
+    var curr_prozent_final = curr_prozent - 4;
+    }   
+ 
+var sprungzeit = 19855 * curr_prozent_final; //finale Sprungzeit ausrechnen.
+    
+document.write(curr_hour + ":" + curr_min + ":" 
++ curr_sec + ":" + curr_msec + " hahaha " + curr_sec_all + " " + curr_prozent + " " + curr_prozent_final);
+</script>
+    
+      <video onload="video.currentTime=sprungzeit" width="320" height="240" src="<?php echo Yii::app()->request->baseUrl; ?>/vid/Charles1.mp4" Xautobuffer Xautoplay controls id="myVideo">
+ 
+               <div class="video-fallback">
+ 
+                    <br>Sie benoetigen einen Browser, der HTML5 unterstuetzt.
+             </div>
+ 
+      </video>
+        
+        </div>
+        <script type="text/javascript">
+//var video2 = document.getElementsById("makingof").innerHTML[0];
+//var video = document.getElementsByTagName("video")[0];
+var video = document.getElementById("myVideo");
+</script>
+    
+</div>
