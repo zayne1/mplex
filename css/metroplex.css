@@ -1,0 +1,166 @@
+
+body
+{
+    color: #fff;
+    background-color: #464547;
+}
+.header 
+{
+    background: #fff;
+    height:60px;
+
+}
+.header hr
+{
+    padding-top: 10px;
+    margin-top: 2px;
+    float: left;
+    width: 100%;
+    border-top: 1px solid #e0e0e0;
+
+}
+.header a 
+{
+    text-decoration: none;
+}
+.header .home-icon
+{
+    float: left;
+        display: block;
+top: 12px;
+position: absolute;
+}
+.header .logo-txt
+{
+    float: right;
+    position: absolute;
+    top: 13px;
+    right: 11px;
+}
+
+.menu-top 
+{
+    background: #004576;
+    xfloat:left;
+    height:60px;
+    border-top: 5px solid #eebb79;
+
+}
+.menu-top .menu-top-container 
+{
+    margin: 0px auto;
+    /* background: red; */
+    width: 60%;
+    /*height: 100px;*/
+    text-align: center;
+
+}
+.menu-top .menu-top-container .menu-btn
+{
+    border-bottom: 3px solid #004576;
+    float: left;
+    height:57px;
+    width: 25%;
+    cursor: pointer;
+}
+.menu-top .menu-top-container .menu-btn:hover,
+.menu-top .menu-top-container .menu-btn:active
+{
+    border-bottom: 3px solid #9e9e9e;
+    background: #0073c3;
+}
+.menu-top .menu-top-container .menu-btn.watch
+{
+    background-image: url(../images/btn-watch.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.menu-top .menu-top-container .menu-btn.downloads
+{
+    background-image: url(../images/btn-downloads.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.menu-top .menu-top-container .menu-btn.fav
+{
+    background-image: url(../images/btn-fav.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.menu-top .menu-top-container .menu-btn.information
+{
+    background-image: url(../images/btn-info.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.page-name
+{
+    height:42px;
+    background: #2d2d2d;
+    text-align: center;
+    line-height: 37px;
+    font-weight: bold;
+
+}
+.main-content
+{
+    background: #464547;
+    height:100px;
+    /*float: left;*/
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+h3 {
+    color: #fff;
+}
+a .organization 
+{
+    width: 200px;
+}
+.event-container
+{
+    width: 200px;
+    float: left;
+    margin-right: 30px;
+    text-align: center;
+}
+.event-container a {
+    color: #fff;
+    font-size: 20px;
+}
+/*a .event
+{
+    width: 200px;
+    margin-bottom: 10px;
+}*/
+.event-container img {
+    width: 200px;
+    margin-bottom: 10px;
+}
+.modal
+{
+    background: #2d2d2d;
+}
+.modal .modal-footer {
+    background: #2d2d2d;
+    border-bottom: 0px;
+    border-top: 0px;
+    border: none;
+    box-shadow: none;
+    /*background: red;    */
+}
+footer 
+{
+    background: #004576;
+    height:46px;
+    position: absolute;
+    bottom: 1px;
+    width: 100%;
+    text-align: center;
+    line-height: 42px;
+    font-weight: bold;
+
+}
+
