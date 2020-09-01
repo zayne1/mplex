@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/metroplex.css" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/animate.min.css"/>
 
 
 	<style type="text/css">

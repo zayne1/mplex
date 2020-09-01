@@ -9,7 +9,6 @@
     <h3><?php echo $introSubText; ?></h3>
 
 
-<div id="makingof"> 
 <script type="text/javascript">
 //Sprungzeit ausrechnen
 var d = new Date(); //Datum erzeugen
@@ -44,7 +43,7 @@ document.write(curr_hour + ":" + curr_min + ":"
 + curr_sec + ":" + curr_msec + " hahaha " + curr_sec_all + " " + curr_prozent + " " + curr_prozent_final);
 </script>
     
-      <video onload="video.currentTime=sprungzeit" width="320" height="240" src="<?php echo Yii::app()->request->baseUrl; ?>/vid/Charles1.mp4" Xautobuffer Xautoplay controls id="myVideo">
+      <video onload="video.currentTime=sprungzeit" width="320" height="240" src="<?php echo Yii::app()->request->baseUrl; ?>/vid/Charles1.mp4" Xautobuffer Xautoplay controls class="myVideo animate__animated animate__slideInLeft animate__fast" style="float: left;margin-right: 10px;">
  
                <div class="video-fallback">
  
@@ -53,11 +52,10 @@ document.write(curr_hour + ":" + curr_min + ":"
  
       </video>
         
-        </div>
         <script type="text/javascript">
 //var video2 = document.getElementsById("makingof").innerHTML[0];
 //var video = document.getElementsByTagName("video")[0];
-var video = document.getElementById("myVideo");
+var video = document.getElementsByClassName("myVideo");
 </script>
     
 </div>

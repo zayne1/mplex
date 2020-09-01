@@ -8,7 +8,7 @@
 
 	<div class="event-container">
 	    <a href="#myModal" data-toggle="modal">
-	        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/event.png" class="event">
+	        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/event.png" class="event animate__animated animate__slideInLeft animate__fast" style="display:block;float: left;margin-right: 10px;">
 	        Recital 2017 Wednesday
 	    </a>
 	</div>
