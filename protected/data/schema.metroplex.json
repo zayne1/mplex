@@ -1,0 +1,47 @@
+db.org.insert({
+	"_id":ObjectId(),
+	"name":"org1",
+	"event": [
+				{
+					"_id":ObjectId(),
+					"name": "eva1",
+					"pass": "passa1",
+					"video": [
+								{
+								"_id":ObjectId(),
+								"path": "/patha1",
+								"fav":0
+								},
+								{
+								"_id":ObjectId(),
+								"path": "/patha2",
+								"fav":0
+								},
+					]
+				}
+	]
+})
+
+db.org.insert({
+	"_id":ObjectId(),
+	"name":"org2",
+	"event": [
+				{
+					"_id":ObjectId(),
+					"name": "evb1",
+					"pass": "passb1",
+					"video": [
+								{
+								"_id":ObjectId(),
+								"path": "/pathb1",
+								"fav":0
+								},
+								{
+								"_id":ObjectId(),
+								"path": "/pathb2",
+								"fav":0
+								},
+					]
+				}
+	]
+})

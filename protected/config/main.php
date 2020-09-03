@@ -16,6 +16,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'ext.mongo.*',
 	),
 
 	'modules'=>array(
@@ -25,7 +26,10 @@ return array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'1234',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
+			'ipFilters'=>array('127.0.0.1','::1','192.168.1.*','192.168.56.*','192.168.8.*'),
+			'generatorPaths'=>array(
+	            'ext.mongo.gii'
+	        ),
 		),
 		'admin',
 		'backend',
@@ -38,6 +42,15 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+		'mongodb' => array(
+	        'class'             => 'EMongoDB',
+	        // 'connectionString'  => 'mongodb://localhost',
+	        'connectionString'  => 'mongodb://192.168.56.101',
+	        'dbName'            => 'test',
+	        'fsyncFlag'         => false,
+	        'safeFlag'          => false,
+	        'useCursor'         => false,
+	    ),
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
