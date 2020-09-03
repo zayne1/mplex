@@ -43,7 +43,8 @@ document.write(curr_hour + ":" + curr_min + ":"
 + curr_sec + ":" + curr_msec + " hahaha " + curr_sec_all + " " + curr_prozent + " " + curr_prozent_final);
 </script>
     
-      <video onload="video.currentTime=sprungzeit" width="320" height="240" src="<?php echo Yii::app()->request->baseUrl; ?>/vid/Charles1.mp4" Xautobuffer Xautoplay controls class="myVideo animate__animated animate__slideInLeft animate__fast" style="float: left;margin-right: 10px;">
+    <?php if($username=='admin') { ?>
+      <video onload="video.currentTime=sprungzeit" width="320" height="240" src="<?php echo Yii::app()->request->baseUrl; ?>/vid/Charles1.mp4" Xautobuffer Xautoplay controls class="myVideo" style="float: left;margin-right: 10px;">
  
                <div class="video-fallback">
  
@@ -51,6 +52,18 @@ document.write(curr_hour + ":" + curr_min + ":"
              </div>
  
       </video>
+	<?php } ?>
+
+	<?php if($username=='demo') { ?>
+      <video onload="video.currentTime=sprungzeit" width="320" height="240" src="<?php echo Yii::app()->request->baseUrl; ?>/vid/Charles2.mp4" Xautobuffer Xautoplay controls class="myVideo" style="float: left;margin-right: 10px;>
+ 
+               <div class="video-fallback">
+ 
+                    <br>Sie benoetigen einen Browser, der HTML5 unterstuetzt.
+             </div>
+ 
+      </video>
+  	<?php } ?>
         
         <script type="text/javascript">
 //var video2 = document.getElementsById("makingof").innerHTML[0];

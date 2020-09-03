@@ -115,6 +115,7 @@ class SiteController extends Controller
 	{
 
 		$model=new LoginForm;
+		$u=Yii::app()->request->getParam('u', null);
 
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
@@ -130,7 +131,7 @@ class SiteController extends Controller
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
 				// $this->redirect(Yii::app()->user->returnUrl);
-				$this->redirect(Yii::app()->baseUrl . '/video');
+				$this->redirect(Yii::app()->baseUrl . '/video?u='.$u);
 		}
 		
 		// display the login form
@@ -140,6 +141,7 @@ class SiteController extends Controller
                 'introText' => 'Events',
                 'introSubText' => 'Please select your show',
                 'model'=>$model,
+                'u'=>$u,
             )
         );
 	}
@@ -149,6 +151,7 @@ class SiteController extends Controller
 		$this->render('video', array(
                 'introText' => 'Watch Video',
                 'introSubText' => '',
+                'username' => Yii::app()->user->username,
             )
         );
 	}
@@ -158,6 +161,7 @@ class SiteController extends Controller
 		$this->render('downloads', array(
                 'introText' => 'Download',
                 'introSubText' => 'Download videos to share',
+                'username' => Yii::app()->user->username,
             )
         );
 	}
@@ -167,6 +171,7 @@ class SiteController extends Controller
 		$this->render('favourites', array(
                 'introText' => 'Favourites',
                 'introSubText' => '',
+                'username' => Yii::app()->user->username,
             )
         );
 	}
