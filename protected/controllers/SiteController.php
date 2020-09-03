@@ -2,6 +2,9 @@
 
 class SiteController extends Controller
 {
+	public function init() {
+        parent::init();
+    }
 	/**
 	 * Declares class-based actions.
 	 */
