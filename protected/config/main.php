@@ -44,8 +44,8 @@ return array(
 		),
 		'mongodb' => array(
 	        'class'             => 'EMongoDB',
-	        // 'connectionString'  => 'mongodb://localhost',
-	        'connectionString'  => 'mongodb://192.168.56.101',
+	        'connectionString'  => 'mongodb://localhost',
+	        // 'connectionString'  => 'mongodb://192.168.56.101',
 	        'dbName'            => 'test',
 	        'fsyncFlag'         => false,
 	        'safeFlag'          => false,
@@ -106,7 +106,7 @@ return array(
 			'routes'=>array(
 				array(
 					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
+					'levels'=>'error, warning, info',
 				),
 				// uncomment the following to show log messages on web pages
 				/*
