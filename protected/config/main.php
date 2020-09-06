@@ -72,6 +72,14 @@ return array(
                 '<module:backend>/index'    =>'backend/default/index',
                 '<module:backend>/<action>'=>'backend/default/<action>',
 
+                '<module:backend>/organization/<action>'=>'backend/organization/<action>',
+                '<module:backend>/organization/id/'=>'backend/organization/view', // id as word, eg uuid
+                '<module:backend>/event/<action>'=>'backend/event/<action>',
+                '<module:backend>/event/id/'=>'backend/event/view', // id as word, eg uuid
+                '<module:backend>/video/<action>'=>'backend/video/<action>',
+                '<module:backend>/video/id/'=>'backend/video/view', // id as word, eg uuid
+                    
+
 
                 '/'=>'site/index',
                 '<action>'=>'site/<action>',
