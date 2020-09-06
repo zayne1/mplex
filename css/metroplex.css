@@ -198,3 +198,46 @@ footer
     float: right;
     margin-right: 20px;
 }
+.layout-col-2
+{
+    /*margin-left: 20px;*/
+    width: 90%;
+    margin: 0px auto;
+}
+.layout-col-2 #content {
+    width: 40%;
+    float: left;
+}
+.layout-col-2 #content h1{
+    font-size: 31px;
+    background: #000;    
+    color: white;
+    padding: 5px;
+}
+.layout-col-2 #content .items .view {
+    background: #585858;
+    margin-bottom: 5px;
+    padding: 7px;
+}
+.layout-col-2 #content form .row {
+    margin-left: 10px;
+}
+.layout-col-2 #content table.detail-view tr.even {
+    background: #585858;
+}
+.layout-col-2 #content table.detail-view tr.odd {
+    background: #6f6f6f;
+}
+#sidebar {
+    margin-top: 90px;
+    border: 1px solid gray;
+    background: #575658;
+    /*padding: 10px;*/
+}
+#sidebar .portlet-decoration {
+    background: #454447;
+    padding: 2px;
+}
+#sidebar .portlet-content {
+    padding: 10px;
+}
