@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Organization', 'url'=>array('index')),
-	array('label'=>'Manage Organization', 'url'=>array('admin')),
+	// array('label'=>'Manage Organization', 'url'=>array('admin')),
 );
 ?>
 

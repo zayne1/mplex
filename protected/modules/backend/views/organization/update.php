@@ -7,9 +7,9 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Organization', 'url'=>array('index')),
-	array('label'=>'Create Organization', 'url'=>array('create')),
+	// array('label'=>'Create Organization', 'url'=>array('create')),
 	array('label'=>'View Organization', 'url'=>array('view', 'id'=>$model->_id)),
-	array('label'=>'Manage Organization', 'url'=>array('admin')),
+	// array('label'=>'Manage Organization', 'url'=>array('admin')),
 );
 ?>
 

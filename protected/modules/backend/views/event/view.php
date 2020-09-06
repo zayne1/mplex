@@ -6,10 +6,10 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Event', 'url'=>array('index')),
-	array('label'=>'Create Event', 'url'=>array('create')),
+	// array('label'=>'Create Event', 'url'=>array('create')),
 	array('label'=>'Update Event', 'url'=>array('update', 'id'=>$model->_id)),
-	array('label'=>'Delete Event', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Event', 'url'=>array('admin')),
+	// array('label'=>'Delete Event', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->_id),'confirm'=>'Are you sure you want to delete this item?')),
+	// array('label'=>'Manage Event', 'url'=>array('admin')),
 );
 ?>
 

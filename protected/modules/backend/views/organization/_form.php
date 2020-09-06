@@ -15,7 +15,7 @@
 			<?php echo $form->error($model,'name'); ?>
 		</div>
 
-				<div class="row">
+				<div class="row" style="display: none;">
 			<?php echo $form->labelEx($model,'logo'); ?>
 			<?php echo $form->textField($model,'logo'); ?>
 			<?php echo $form->error($model,'logo'); ?>
