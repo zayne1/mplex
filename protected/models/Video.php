@@ -6,6 +6,7 @@ class Video extends EMongoDocument
     public $file;
     public $eventId;
     public $fav;
+    public $downloaded;
 
     public function init()
     {
@@ -47,6 +48,7 @@ class Video extends EMongoDocument
             'path' => 'Path',
             'file' => 'File',
             'fav' => 'Favorite',
+            'downloaded' => 'Downloaded',
         );
     }
 
@@ -60,6 +62,7 @@ class Video extends EMongoDocument
             'path',
             'file',
             'fav',
+            'downloaded',
         );
     }
 
@@ -120,4 +123,38 @@ class Video extends EMongoDocument
             return 1;
     }
 
+    public function addDownloads($downloadArray)
+    {
+        // prepare modifiers
+        $modifier = new EMongoModifier();
+
+        // replace field1 value with 'new value'
+        $modifier->addModifier('downloaded', 'set', 1);
+        // $modifier->addModifier('Dept', 'set', 'IT');
+
+        // prepare search to find documents
+        $criteria = new EMongoCriteria();
+        
+        // $criteria->addCond('_id','==', new MongoID('5f516e038d285816bfba1da6'));
+
+        // update all matched documents using the modifiers
+        // $status = Video::model()->updateAll($modifier, $criteria);
+        // die(print_r($status));
+
+
+        //Array ( [VidDownloadForm] => Array ( [video] => video1 ) ) 
+        // print_r($downloadArray);die;
+        $status = 0;
+        foreach ($downloadArray as $vidId) {
+            $criteria->addCond('_id','==', new MongoID($vidId));
+            $status=Video::model()->updateAll($modifier, $criteria);
+
+            if (!$status) {
+                Yii::log('error saving mongo add download field in Video.php');
+                die('failed to save download statusto database');
+            }
+        }
+        return $status;
+       
+    }
 }

@@ -164,3 +164,32 @@ footer
 
 }
 
+.vid-dl-container {
+    width: 100%;
+}
+
+@media (min-width: 720px) {
+    .vid-dl-container {
+        width:50%;
+        margin: 0px auto;
+    }
+}
+.vid-dl-container .vid-dl-item {
+    border: 1px solid gray;
+    padding: 5px;
+    float: left;
+    width: 100%;
+    margin-top: 5px;
+}
+.vid-dl-container .vid-dl-item img {
+    float: left;
+    width: 140px;
+}
+.vid-dl-container .vid-dl-item .vid-dl-item-checkbox {
+    float: right;
+    margin-top: 35px;
+}
+.vid-info-footer {
+    float: right;
+    margin-right: 20px;
+}

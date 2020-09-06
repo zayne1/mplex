@@ -204,11 +204,37 @@ class SiteController extends Controller
 	public function actionDownloads()
 	{
 		$eventId = Yii::app()->user->getState('userEvent');
+		// $newAddDownloadVidId = Yii::app()->request->getParam('addDownload', null);
+
+		$vidList = Video::model()->getVidsForEvent($eventId);
+
+		// if(isset($newAddDownloadVidId)) {
+		// 	if (Video::model()->addDownload($newAddDownloadVidId)){
+		// 		$this->redirect(Yii::app()->baseUrl . '/download');
+		// 	}
+		// }
+
+		// if it is ajax validation request
+		if(isset($_POST['ajax']))
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+
+		// collect user input data
+		if(isset($_POST['VidDownloadForm']))
+		{
+			$vidArray = $_POST['VidDownloadForm'];
+
+			if (Video::model()->addDownloads($vidArray)) {
+				$this->redirect(Yii::app()->baseUrl . '/multidownloadtest');	// will download vids
+			}
+		}
 
 		$this->render('downloads', array(
                 'introText' => 'Download',
                 'introSubText' => 'Download videos to share',
-                // 'username' => Yii::app()->user->username,
+                'vidList' => $vidList,
             )
         );
 	}
