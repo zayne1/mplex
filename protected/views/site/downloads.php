@@ -17,6 +17,7 @@
 
                 <div class="vid-dl-item">
                     <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/videothumb.png">
+                    <div class="vid-info-block"><?php echo $vid->file; ?></div>
                     <input class="vid-dl-item-checkbox" type="checkbox" name="<?php echo "VidDownloadForm[video" .$count. "]"; ?>" value="<?php echo $vid->_id;?>">
                 </div>
             <?php

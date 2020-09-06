@@ -189,6 +189,11 @@ footer
     float: right;
     margin-top: 35px;
 }
+.vid-dl-container .vid-dl-item .vid-info-block {
+    float: left;
+    margin-left: 5px;
+    font-size: 17px;
+}
 .vid-info-footer {
     float: right;
     margin-right: 20px;
