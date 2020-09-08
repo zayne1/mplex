@@ -155,7 +155,7 @@ footer
 {
     background: #004576;
     height:46px;
-    position: absolute;
+    position: fixed;
     bottom: 1px;
     width: 100%;
     text-align: center;
