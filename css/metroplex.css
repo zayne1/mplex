@@ -207,6 +207,7 @@ footer
 .layout-col-2 #content {
     width: 40%;
     float: left;
+    margin-bottom: 50px;
 }
 .layout-col-2 #content h1{
     font-size: 31px;
