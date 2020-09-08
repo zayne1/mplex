@@ -5,13 +5,11 @@ $this->breadcrumbs=array(
 	$this->module->id,
 );
 ?>
-<h1><?php echo $this->uniqueId . '/' . $this->action->id; ?></h1>
+<h2>WIP backend</h2>
 
 <p>
-This is the view content for action "<?php echo $this->action->id; ?>".
-The action belongs to the controller "<?php echo get_class($this); ?>"
-in the "<?php echo $this->module->id; ?>" module.
+Edit <a href="organization/index" target="_blank">Organizations</a>
 </p>
 <p>
-You may customize this page by editing <tt><?php echo __FILE__; ?></tt>
+Edit <a href="event/index" target="_blank">Events</a>
 </p>
