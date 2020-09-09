@@ -157,4 +157,40 @@ class Video extends EMongoDocument
         return $status;
        
     }
+
+    public function saveMetaData($id, $fileName, $path)
+    {
+        // prepare modifiers
+        $modifier = new EMongoModifier();
+
+        // replace field1 value with 'new value'
+        $modifier->addModifier('file', 'set', $fileName);
+        $modifier->addModifier('path', 'set', $path);
+        // $modifier->addModifier('Dept', 'set', 'IT');
+
+        // prepare search to find documents
+        $criteria = new EMongoCriteria();
+        
+        // $criteria->addCond('_id','==', new MongoID('5f516e038d285816bfba1da6'));
+
+        // update all matched documents using the modifiers
+        // $status = Video::model()->updateAll($modifier, $criteria);
+        // die(print_r($status));
+
+
+        //Array ( [VidDownloadForm] => Array ( [video] => video1 ) ) 
+        // print_r($downloadArray);die;
+        $status = 0;
+        
+        $criteria->addCond('_id','==', new MongoID($id));
+        $status=Video::model()->updateAll($modifier, $criteria);
+
+        if (!$status) {
+            Yii::log('error saving mongo saveMetaData in Video.php');
+            die('error saving mongo saveMetaData in Video.php');
+        }
+    
+        return $status;
+       
+    }
 }

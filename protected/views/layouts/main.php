@@ -65,6 +65,7 @@
     </footer>
 
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.multifile.js"></script>
 </body>
 </html>  
 

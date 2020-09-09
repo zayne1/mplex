@@ -3,6 +3,12 @@
 <!-- <div class="span-19"> -->
 <div class="layout-col-2">
 	<div id="content">
+
+		<?php
+		if ($message = Yii::app()->user->getFlash('videoSavedStatus')) {
+			echo '<div class="flash-success">'.$message.'</div>';
+		}?>
+		
 		<?php echo $content; ?>
 	</div><!-- content -->
 </div>

@@ -85,7 +85,10 @@ class VideoController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		Yii::app()->user->setState('userEvent', Yii::app()->request->getParam('id', null));
+
 		$model=$this->loadModel($id);
+		$videoUploadModel=new VideoUpload;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -99,6 +102,7 @@ class VideoController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+			'videoUploadModel'=>$videoUploadModel,
 		));
 	}
 
@@ -173,5 +177,88 @@ class VideoController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+/*
+	public function actionUpload()
+	{
+		$model=new VideoUpload;
+	// Yii::log( print_r( $_POST,true));
+	Yii::log("_FILES var:.........");
+	Yii::log( print_r( $_FILES,true));
+
+	Yii::log("CUploadedFile files var:.........");
+	$files = CUploadedFile::getInstancesByName('VideoUpload');
+	Yii::log( print_r( $files,true));die;
+
+		if(isset($_POST['VideoUpload'])) {
+			$model->attributes=$_POST['VideoUpload'];
+
+			if($model->file=CUploadedFile::getInstance($model,'file')) {
+				Yii::log("File tempName:.........");
+				Yii::log($model->file->getTempName());
+				Yii::log(print_r($model->file,true));
+
+				if($model->validate()) {
+					Yii::log("validated ...........");
+					Yii::log("name ...........");
+					Yii::log(print_r($model->file->getName(),true));
+					Yii::log("size ...........");
+					Yii::log(print_r($model->file->getSize(),true));
+
+					if($model->file->saveAs(Yii::app()->basePath .'/../vid/'.$model->file->getName())) {
+						Yii::app()->user->setFlash('videoSavedStatus','Video was successfully saved');
+						Yii::log("Saving Success............");
+
+					} else {
+						Yii::app()->user->setFlash('videoSavedStatus','Error in uploading');
+						Yii::log("in UpLoad error ....");
+						print_r($model->file->getError());
+					}
+				} else {
+					Yii::app()->user->setFlash('videoSavedStatus','Validation Error in uploading');
+					Yii::log("Did not validate...............");
+					Yii::log(print_r($model->getErrors(),true));
+				}
+			}
+		}
+		Yii::app()->request->redirect( Yii::app()->request->getUrlReferrer() );
+	}*/
+
+	public function actionUpload()
+	{
+	$model=new VideoUpload;
+	
+	$files = CUploadedFile::getInstancesByName('VideoUpload');
+	Yii::log("CUploadedFile files var:.........");
+	Yii::log( print_r( $files,true));//die;
+	
+	if(isset($files) && count($files)> 0) {
+		foreach ($files as $file) {		
+			Yii::log("File tempName:.........");
+			Yii::log($file->getTempName());
+			Yii::log("name ...........");
+			Yii::log(print_r($file->getName(),true));
+			Yii::log("size ...........");
+			Yii::log(print_r($file->getSize(),true));
+
+			if ( $file->saveAs(Yii::app()->basePath .'/../vid/'.$file->getName()) ) {
+				Yii::app()->user->setFlash('videoSavedStatus','Video was successfully saved');
+				Yii::log("Saving Success............");
+
+				// Save Mongo Video model fields
+				Video::model()->saveMetaData(
+					Yii::app()->user->getState('userEvent'),
+					$file->getName(),
+					'new path'
+				);
+
+			} else {
+				Yii::app()->user->setFlash('videoSavedStatus','Error in uploading');
+				Yii::log("in UpLoad error ....");
+				print_r($file->getError());
+			}
+		}
+	}
+	Yii::app()->request->redirect( Yii::app()->request->getUrlReferrer() );
 	}
 }

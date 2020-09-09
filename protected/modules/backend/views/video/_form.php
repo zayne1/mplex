@@ -45,4 +45,37 @@
 
 	<?php $this->endWidget(); ?>
 
+
+<?php
+	$form2 = $this->beginWidget(
+	'CActiveForm',
+	array(
+		// 'action' => array('video/upload', 'page'=>3),
+		// 'action' => array('video/upload'),
+		'action' => array('upload'),
+		'id' => 'upload-form2',
+		'enableAjaxValidation' => true,
+		'htmlOptions' => array('enctype' => 'multipart/form-data'),
+	)
+);
+
+  
+    $this->widget('CMultiFileUpload', array(
+       'model'=>$videoUploadModel,
+       'attribute'=>'files',
+       'accept'=>'mp4|MP4',
+       // 'options'=>array(
+       //    'onFileSelect'=>'function(e, v, m){ alert("onFileSelect - "+v) }',
+       //    'afterFileSelect'=>'function(e, v, m){ alert("afterFileSelect - "+v) }',
+       //    'onFileAppend'=>'function(e, v, m){ alert("onFileAppend - "+v) }',
+       //    'afterFileAppend'=>'function(e, v, m){ alert("afterFileAppend - "+v) }',
+       //    'onFileRemove'=>'function(e, v, m){ alert("onFileRemove - "+v) }',
+       //    'afterFileRemove'=>'function(e, v, m){ alert("afterFileRemove - "+v) }',
+       // ),
+    ));
+
+echo CHtml::submitButton('Save video');
+$this->endWidget();
+?>
+
 </div><!-- form -->

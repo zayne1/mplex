@@ -15,4 +15,10 @@ $this->menu=array(
 
 <h1>Update Video <?php echo $model->_id; ?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php 
+echo $this->renderPartial('_form', array(
+    'model'=>$model,
+    'videoUploadModel'=>$videoUploadModel,
+    )
+); 
+?>
