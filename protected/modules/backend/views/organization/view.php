@@ -6,9 +6,9 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Organization', 'url'=>array('index')),
-	// array('label'=>'Create Organization', 'url'=>array('create')),
+	array('label'=>'Create Organization', 'url'=>array('create')),
 	array('label'=>'Update Organization', 'url'=>array('update', 'id'=>$model->_id)),
-	// array('label'=>'Delete Organization', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Delete Organization', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->_id),'confirm'=>'Are you sure you want to delete this item?')),
 	// array('label'=>'Manage Organization', 'url'=>array('admin')),
 );
 ?>
