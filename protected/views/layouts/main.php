@@ -7,10 +7,14 @@
 	<meta name="language" content="en" />
 
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.js"></script>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/fa/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/metroplex.css" />
+	
+    <?php
+    $cs = Yii::app()->getClientScript();
+    $cs->registerCssFile('/css/bootstrap.css');
+    $cs->registerCssFile('/css/fa/css/font-awesome.min.css');
+    $cs->registerCssFile('/css/animate.min.css');
+    $cs->registerCssFile('/css/metroplex.css');
+    ?>
 
 
 	<style type="text/css">

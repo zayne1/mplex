@@ -12,6 +12,9 @@ class BackendModule extends CWebModule
 			'backend.models.*',
 			'backend.components.*',
 		));
+
+		$cs = Yii::app()->getClientScript();
+		$cs->registerCssFile('/css/metroplex-backend.css');
 	}
 
 	public function beforeControllerAction($controller, $action)
