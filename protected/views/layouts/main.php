@@ -6,15 +6,17 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.js"></script>
-    <?php
+	<?php
     $cs = Yii::app()->getClientScript();
     $cs->registerCssFile('/css/bootstrap.css');
     $cs->registerCssFile('/css/fa/css/font-awesome.min.css');
     $cs->registerCssFile('/css/animate.min.css');
     $cs->registerCssFile('/css/metroplex.css');
-    ?>
+    
+    $cs->registerCoreScript('jquery');
+    $cs->registerCoreScript('multifile', CClientScript::POS_END);
 
+    ?>
 
 	<style type="text/css">
         .menu-top
@@ -77,7 +79,6 @@
     </footer>
 
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.multifile.js"></script>
     
 </body>
 </html>  
