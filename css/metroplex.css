@@ -212,7 +212,7 @@ footer
 .layout-col-2 #content {
     width: 40%;
     float: left;
-    margin-bottom: 50px;
+    padding-bottom: 50px;
 }
 .layout-col-2 #content h1{
     font-size: 31px;
@@ -247,3 +247,46 @@ footer
 #sidebar .portlet-content {
     padding: 10px;
 }
+.backend.btn-new-event {
+    display: none;
+}
+.backend.btn-new-org {
+    display: none;
+}
+.backend.btn-dashboard-home {
+    display: none;
+}
+.backend-index {
+    background: #0273c3;
+    text-align: center;
+    padding-bottom: 40px;
+    float: left;
+    width: 100%;
+}
+.backend-index h2 {    
+    color: #fff;
+    font-size: 29px;
+    line-height: 24px;
+}
+.backend-index input[type="submit"] {
+    color: white;
+    background: #0d4779;
+    border-radius: 5px;
+    text-transform: uppercase;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#content {
+    width: 100%
+    /*margin: 0px auto !important;*/
+}
+/*#content hr {
+    border: 1px;
+    border-top: 2px solid #353535;
+    clear: both;
+}
+#content h3 {
+    color: #000;
+    font-size: 22px;
+}
+*/

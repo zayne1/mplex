@@ -8,23 +8,58 @@ body
 {
     background-color: #0273c3 !important;
 }
-.backend-index {
-    background: #0273c3;
-    text-align: center;
-    padding-bottom: 40px;
-    float: left;
-    width: 100%;
-}
-.backend-index h2 {    
+.backend.btn-new-org {
+    display: block !important;
+    background: blue;
+    padding: 5px;
+    width: 85px;
+    height: 24px;
+    position: absolute;
+    right: 451px;
+    top: 13px;
     color: #fff;
-    font-size: 29px;
-    line-height: 24px;
+    text-align: center;
 }
-.backend-index input[type="submit"] {
-    color: white;
-    background: #0d4779;
-    border-radius: 5px;
-    text-transform: uppercase;
-    padding-left: 20px;
-    padding-right: 20px;
+.backend.btn-new-event {
+    display: block !important;
+    background: red;
+    padding: 5px;
+    width: 87px;
+    width: 85px;
+    height: 24px;
+    position: absolute;
+    right: 345px;
+    top: 13px;
+    color: #fff;
+    text-align: center;
+}
+.backend.btn-dashboard-home {
+    display: block !important;
+    background: green;
+    padding: 5px;
+    width: 87px;
+    width: 135px;
+    height: 24px;
+    position: absolute;
+    right: 557px;
+    top: 13px;
+    color: #fff;
+    text-align: center;
+}
+#content {
+    width: 70% !important;
+    margin: 0px auto !important;
+}
+#content hr {
+    border: 1px;
+    border-top: 2px solid #353535;
+    clear: both;
+}
+#content h3 {
+    color: #000;
+    font-size: 22px;
+}
+
+#content form {
+    color: #000;
 }
