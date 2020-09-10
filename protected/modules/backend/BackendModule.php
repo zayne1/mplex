@@ -2,6 +2,8 @@
 
 class BackendModule extends CWebModule
 {
+	public $is_backend = true;
+
 	public function init()
 	{
 		// this method is called when the module is being created

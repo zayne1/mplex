@@ -7,7 +7,6 @@
 	<meta name="language" content="en" />
 
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.js"></script>
-	
     <?php
     $cs = Yii::app()->getClientScript();
     $cs->registerCssFile('/css/bootstrap.css');
@@ -41,6 +40,15 @@
         <a href="<?php echo Yii::app()->createUrl(' '); ?>">
             <img class="home-icon" src="<?php echo Yii::app()->request->baseUrl; ?>/images/icon-home.png">
         </a>
+        <?php
+        if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controller->module->is_backend==true)) {
+        ?>
+            <a href="<?php echo Yii::app()->createUrl('backend/index'); ?>" class="backend btn-dashboard-home">Dashboard home</a>
+            <a href="<?php echo Yii::app()->createUrl('backend/organization/create'); ?>" class="backend btn-new-org">New Org</a>
+            <a href="<?php echo Yii::app()->createUrl('backend/event/create'); ?>" class="backend btn-new-event">New Event</a>
+        <?php
+        }
+        ?>
         <img class="logo-txt" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo-txt.png">
     </div>
     <div class="menu-top">
@@ -70,6 +78,7 @@
 
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.multifile.js"></script>
+    
 </body>
 </html>  
 
