@@ -10,6 +10,11 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Event</h1>
+<h1>Create Event1</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', 
+    array(  'model'=>$model,
+            'OrganizationList' => $OrganizationList,
+            'videoUploadModel'=>$videoUploadModel,
+    )
+); ?>

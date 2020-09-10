@@ -19,7 +19,12 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'_id',
-		'name',
-		'logo',
+        'name',
+        'co_type',
+        'contact_person',
+        'phone',
+        'email',
+        'website',
+        'logo',
 	),
 )); ?>

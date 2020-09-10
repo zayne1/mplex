@@ -2,10 +2,14 @@
 class Event extends EMongoDocument
 {
     public $id;
-    public $orgId;
     public $name;
+    public $date;
+    public $location;
+    public $orgId;
+    public $type;
     public $logo;
     public $pass;
+    public $video;
 
     public function init()
     {
@@ -45,14 +49,19 @@ class Event extends EMongoDocument
     // the same with attribute names
     /* Zayne: its a good idea to insert all the attribute names in here for all your mongo docs, as */
     /* I have found that having them in helps when doing updates */
-    // public function attributeNames() {
-    //     return array(
-    //         '_id',
-    //         'name',
-    //         'logo',
-    //         'pass',
-    //     );
-    // }
+    public function attributeNames() {
+        return array(
+            '_id',
+            'name',
+            'date',
+            'location',
+            'orgId',
+            'type',
+            'logo',
+            'pass',
+            'video',
+        );
+    }
 
     /**
      * This method have to be defined in every Model
@@ -70,9 +79,14 @@ class Event extends EMongoDocument
         // will receive user inputs.
         return array(
             array('orgId,name,logo,pass', 'required'),
+            array('_id, name, date, location, orgId, type, logo, pass, video',
+                   'safe'
+            ),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, orgId, name', 'safe', 'on'=>'search'),
+
+            array('logo', 'file', 'types'=>'jpg, jpeg, gif, png, webp, bmp', 'safe' => true),
         );
     }
 
@@ -80,8 +94,11 @@ class Event extends EMongoDocument
     {
         return array(
             '_id' => 'ID',
-            'orgId' => 'Org ID',
             'name' => 'Name',
+            'date' => 'Date',
+            'location' => 'Location',
+            'orgId' => 'Org ID',
+            'type' => 'Type',
             'logo' => 'Logo',
             'pass' => 'Pass',
         );
@@ -101,6 +118,23 @@ class Event extends EMongoDocument
     //         'video' => 'Video',
     //     );
     // }
+
+    public function getAllEvents()
+    {   
+        // $orgId = '5f51366b8d285816bfba1d74';
+        $criteria = new EMongoCriteria;
+        // $criteria->text_html = null;    //NB: you must set the criteria to a value, as opposed to a test eg '!== null' or '< 3'
+        // $criteria->orgId = new MongoID($orgId); /** Our find query */
+        $criteria->orgId !== null; /** Our find query */
+        // $criteria->addCond('event->name', '==', 'eva1');
+        // $criteria->event->name('==', 'eva1');
+        $criteria->limit(200);
+
+        return Event::model()->findAll($criteria);
+        // return Organization::model()->find();
+        // return $this->findAll($criteria);
+
+    }
 
     public function getEventsForOrg($orgId)
     {   

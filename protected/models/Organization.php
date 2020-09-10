@@ -3,6 +3,11 @@ class Organization extends EMongoDocument
 {
     public $id;
     public $name;
+    public $co_type;
+    public $contact_person;
+    public $phone;
+    public $email;
+    public $website;
     public $logo;
 
     public function init()
@@ -16,6 +21,22 @@ class Organization extends EMongoDocument
     public function primaryKey()
     {
         return '_id';
+    }
+
+    // the same with attribute names
+    /* Zayne: its a good idea to insert all the attribute names in here for all your mongo docs, as */
+    /* I have found that having them in helps when doing updates */
+    public function attributeNames() {
+        return array(
+            '_id',
+            'name',
+            'co_type',
+            'contact_person',
+            'phone',
+            'email',
+            'website',
+            'logo',
+        );
     }
 
     /**
@@ -34,9 +55,13 @@ class Organization extends EMongoDocument
         // will receive user inputs.
         return array(
             array('name', 'required'),
+            array('_id, name, co_type, contact_person, phone, email, website, logo',
+                   'safe'
+            ),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name', 'safe', 'on'=>'search'),
+            array('logo', 'file', 'types'=>'jpg, jpeg, gif, png, webp, bmp', 'safe' => true),
         );
     }
 
@@ -45,20 +70,16 @@ class Organization extends EMongoDocument
         return array(
             '_id' => 'ID',
             'name' => 'Name',
+            'co_type' => 'Company Type',
+            'contact_person' => 'Contact Person',
+            'phone' => 'Phone',
+            'email' => 'Email',
+            'website' => 'Website',
             'logo' => 'Logo',
         );
     }
 
-    // the same with attribute names
-    /* Zayne: its a good idea to insert all the attribute names in here for all your mongo docs, as */
-    /* I have found that having them in helps when doing updates */
-    public function attributeNames() {
-        return array(
-            '_id',
-            'name',
-            'logo',
-        );
-    }
+    
 
     /**
      * This method have to be defined in every model, like with normal CActiveRecord

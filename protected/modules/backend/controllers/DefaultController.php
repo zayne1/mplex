@@ -36,8 +36,17 @@ class DefaultController extends Controller
         );
     }
 
+    // Shows the Dashboard. Perhaps we can reame it to dashboard at some point
 	public function actionIndex()
 	{
-		$this->render('index');
+        $OrganizationList = Organization::model()->getAllOrgs();
+        $EventList = Event::model()->getAllEvents();
+
+        $this->render('index', array(
+                'OrgList' => $OrganizationList,
+                'EventList' => $EventList
+            )
+        );
+		
 	}
 }
