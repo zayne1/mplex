@@ -16,6 +16,18 @@ class Event extends EMongoDocument
     	parent::init();
     }
 
+    public function beforeSave() {
+        if ( !$this->getIsNewRecord() ) {
+
+            // Handle for updates where no new logo was added (ie we will keep the old one)
+            if( empty($this->logo) ) {
+                $oldmodel = Event::model()->findByPk(new MongoID($this->_id));
+                $this->logo = $oldmodel->logo;
+            }
+        }
+        return parent::beforeSave();
+    }
+
     /**
      * returns the primary key field for this model
      */
@@ -78,7 +90,7 @@ class Event extends EMongoDocument
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('orgId,name,logo,pass', 'required'),
+            array('orgId,name,pass', 'required'),
             array('_id, name, date, location, orgId, type, logo, pass, video',
                    'safe'
             ),
@@ -86,7 +98,8 @@ class Event extends EMongoDocument
             // Please remove those attributes that should not be searched.
             array('id, orgId, name', 'safe', 'on'=>'search'),
 
-            array('logo', 'file', 'types'=>'jpg, jpeg, gif, png, webp, bmp', 'safe' => true),
+            array('logo', 'file', 'types'=>'jpg, jpeg, gif, png, webp, bmp', 'safe' => true, 'on'=>'insert', 'allowEmpty'=>false),
+            array('logo', 'file', 'types'=>'jpg, jpeg, gif, png, webp, bmp', 'safe' => true, 'on'=>'update', 'allowEmpty'=>true),
         );
     }
 

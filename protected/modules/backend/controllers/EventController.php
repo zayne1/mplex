@@ -67,8 +67,6 @@ class EventController extends Controller
 		$model=new Event;
 		$OrganizationList = Organization::model()->getAllOrgs();
 		$videoUploadModel=new VideoUpload;
-
-		$logo = CUploadedFile::getInstancesByName('Event');
 		
 		// Convert MongoObject _id's in the List to strings for the form dropdown
 		foreach ($OrganizationList as $key => $org) {
@@ -177,12 +175,45 @@ class EventController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$OrganizationList = Organization::model()->getAllOrgs();
+		$videoUploadModel=new VideoUpload;
+
+		// Convert MongoObject _id's in the List to strings for the form dropdown
+		foreach ($OrganizationList as $key => $org) {
+			$OrganizationList[$key]['_id'] = (string)$org->_id;
+		}
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Event']))
 		{
+			// This block will save the logo image to server
+	        if($model->logo=CUploadedFile::getInstance($model,'logo')) {
+	            Yii::log("File tempName:.........");
+	            Yii::log($model->logo->getTempName());
+	            Yii::log(print_r($model->logo,true));
+
+	            // if($model->validate()) {
+	                Yii::log("validated ...........");
+	                Yii::log("name ...........");
+	                Yii::log(print_r($model->logo->getName(),true));
+	                Yii::log("size ...........");
+	                Yii::log(print_r($model->logo->getSize(),true));
+
+	                if($model->logo->saveAs(Yii::app()->basePath .'/../images/'.$model->logo->getName())) {
+	                    Yii::app()->user->setFlash('imageSavedStatus','image was successfully saved');
+	                    Yii::log("Saving Success............");
+
+	                } else {
+	                    Yii::app()->user->setFlash('imageSavedStatus','Error in uploading');
+	                    Yii::log("in UpLoad error ....");
+	                    print_r($model->logo->getError());
+	                }
+	        }
+	        if ($model->logo)
+	        	$_POST['Event']['logo'] = $model->logo->getName(); // Force set the file name
+
 			$model->attributes=$_POST['Event'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->_id));
@@ -190,6 +221,8 @@ class EventController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+			'OrganizationList'=>$OrganizationList,
+			'videoUploadModel'=>$videoUploadModel,
 		));
 	}
 
