@@ -65,7 +65,7 @@ class OrganizationController extends Controller
 	public function actionCreate()
 	{
 		$model=new Organization;
-		$logo = CUploadedFile::getInstancesByName('Event');
+
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -95,7 +95,9 @@ class OrganizationController extends Controller
 	                }
 	        }
 
-	        $_POST['Organization']['logo'] = $model->logo->getName(); // Force set the file name
+	        if ($model->logo)
+	        	$_POST['Organization']['logo'] = $model->logo->getName(); // Force set the file name
+			
 			$model->attributes=$_POST['Organization'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->_id));
@@ -120,6 +122,31 @@ class OrganizationController extends Controller
 
 		if(isset($_POST['Organization']))
 		{
+			if($model->logo=CUploadedFile::getInstance($model,'logo')) {
+	            Yii::log("File tempName:.........");
+	            Yii::log($model->logo->getTempName());
+	            Yii::log(print_r($model->logo,true));
+
+	            // if($model->validate()) {
+	                Yii::log("validated ...........");
+	                Yii::log("name ...........");
+	                Yii::log(print_r($model->logo->getName(),true));
+	                Yii::log("size ...........");
+	                Yii::log(print_r($model->logo->getSize(),true));
+
+	                if($model->logo->saveAs(Yii::app()->basePath .'/../images/'.$model->logo->getName())) {
+	                    Yii::app()->user->setFlash('imageSavedStatus','image was successfully saved');
+	                    Yii::log("Saving Success............");
+
+	                } else {
+	                    Yii::app()->user->setFlash('imageSavedStatus','Error in uploading');
+	                    Yii::log("in UpLoad error ....");
+	                    print_r($model->logo->getError());
+	                }
+	        }
+	        if ($model->logo)
+	        	$_POST['Organization']['logo'] = $model->logo->getName(); // Force set the file name
+			
 			$model->attributes=$_POST['Organization'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->_id));

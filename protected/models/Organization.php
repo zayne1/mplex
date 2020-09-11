@@ -15,6 +15,18 @@ class Organization extends EMongoDocument
     	parent::init();
     }
 
+    public function beforeSave() {
+        if ( !$this->getIsNewRecord() ) {
+            
+            // Handle for updates where no new logo was added (ie we will keep the old one)
+            if( empty($this->logo) ) {
+                $oldmodel = Organization::model()->findByPk(new MongoID($this->_id));
+                $this->logo = $oldmodel->logo;
+            }
+        }
+        return parent::beforeSave();
+    }
+
     /**
      * returns the primary key field for this model
      */
@@ -61,7 +73,8 @@ class Organization extends EMongoDocument
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name', 'safe', 'on'=>'search'),
-            array('logo', 'file', 'types'=>'jpg, jpeg, gif, png, webp, bmp', 'safe' => true),
+            array('logo', 'file', 'types'=>'jpg, jpeg, gif, png, webp, bmp', 'safe' => true, 'on'=>'insert', 'allowEmpty'=>false),
+            array('logo', 'file', 'types'=>'jpg, jpeg, gif, png, webp, bmp', 'safe' => true, 'on'=>'update', 'allowEmpty'=>true),
         );
     }
 
