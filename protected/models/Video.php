@@ -4,6 +4,7 @@ class Video extends EMongoDocument
     public $id;
     public $path;
     public $file;
+    public $label;
     public $eventId;
     public $fav;
     public $downloaded;
@@ -11,6 +12,14 @@ class Video extends EMongoDocument
     public function init()
     {
     	parent::init();
+    }
+
+    public function beforeSave() {
+                
+        if ( $this->getIsNewRecord() )
+            $this->label = $this->file; // set to file name initiallly
+
+        return parent::beforeSave();
     }
 
     public function primaryKey()
@@ -36,7 +45,7 @@ class Video extends EMongoDocument
             array('path,file,fav', 'required'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, path', 'safe', 'on'=>'search'),
+            array('id, path, label', 'safe', 'on'=>'search'),//label to go here
         );
     }
 
@@ -47,6 +56,7 @@ class Video extends EMongoDocument
             'eventId' => 'Event ID',
             'path' => 'Path',
             'file' => 'File',
+            'label' => 'File Custom name',
             'fav' => 'Favorite',
             'downloaded' => 'Downloaded',
         );
@@ -61,6 +71,7 @@ class Video extends EMongoDocument
             'eventId',
             'path',
             'file',
+            'label',
             'fav',
             'downloaded',
         );

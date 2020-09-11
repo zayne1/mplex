@@ -135,6 +135,7 @@ class EventController extends Controller
 							$video = new Video;
 							$video->id = 'aaa';//$file->getName();
 							$video->file = $file->getName();
+							$video->label = 'will get set in model beforesave()'; // Set label to file name on 1st save
 							$video->path = 'zz';//$file->getName();
 							$video->eventId = (string)$model->_id; // comes from the Event model that was just saved
 							$video->fav = 0;

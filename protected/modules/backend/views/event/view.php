@@ -58,7 +58,7 @@
 
             <a href="<?php echo Yii::app()->createUrl('backend/event/view/id/' .$vid->_id); ?>" class="animate__animated animate__slideInLeft animate__fast" style="display:block;float: left;margin-right: 10px;width: 147px;">
             </a>
-            <?php echo $vid->file; ?>
+            <?php echo $vid->label; ?>
         </div>
         <br>
     <?php
