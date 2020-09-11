@@ -10,7 +10,7 @@ body
 }
 .backend.btn-new-org {
     display: block !important;
-    background: blue;
+    background: #014576;
     padding: 5px;
     width: 85px;
     height: 24px;
@@ -22,7 +22,7 @@ body
 }
 .backend.btn-new-event {
     display: block !important;
-    background: red;
+    background: #c21238;
     padding: 5px;
     width: 87px;
     width: 85px;
@@ -63,3 +63,24 @@ body
 #content form {
     color: #000;
 }
+
+
+
+.layout-col-2 #content .pg-org-view table.detail-view tr.odd,
+.layout-col-2 #content .pg-org-view table.detail-view tr.even {
+    background: #0273c3;
+}
+.layout-col-2 #content .pg-org-view table.detail-view {
+    width: 70%;
+    float: left;
+}
+.layout-col-2 #content .pg-org-view .video-count { width: 30%;background: #fff; height: 30px;color: #000;text-align: center; }
+
+
+
+.layout-col-2 #content .pg-event-view table.detail-view tr.odd,
+.layout-col-2 #content .pg-event-view table.detail-view tr.even { background: #c21238;}
+.layout-col-2 #content .pg-event-view table.detail-view { width: 70%; float: left;}
+.layout-col-2 #content .pg-event-view .video-thumb { width: 100px; }
+.layout-col-2 #content .pg-event-view .video-count { width: 30%;background: #fff; height: 30px;color: #000;text-align: center; }
+.layout-col-2 #content .pg-event-view .vid-row-item { color: #000; }

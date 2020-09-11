@@ -229,11 +229,13 @@ footer
     margin-left: 10px;
 }
 .layout-col-2 #content table.detail-view tr.even {
-    background: #585858;
+    background: #6f6f6f;
 }
 .layout-col-2 #content table.detail-view tr.odd {
     background: #6f6f6f;
 }
+
+
 #sidebar {
     margin-top: 90px;
     border: 1px solid gray;

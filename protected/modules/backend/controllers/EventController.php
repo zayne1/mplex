@@ -50,8 +50,11 @@ class EventController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$vidList = Video::model()->getVidsForEvent($id);
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'vidList'=>$vidList,
 		));
 	}
 

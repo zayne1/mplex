@@ -50,8 +50,11 @@ class OrganizationController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$EventList = Event::model()->getEventsForOrg($id);
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'EventList'=>$EventList,
 		));
 	}
 
