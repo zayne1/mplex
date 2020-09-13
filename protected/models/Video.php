@@ -18,13 +18,12 @@ class Video extends EMongoDocument
     }
 
     public function beforeSave() {
+        if ( $this->getIsNewRecord() ) {
 
-        $this->date = date("Y-m-d", time());
-        $this->size = $this->_formatBytes($this->size);
-                
-        if ( $this->getIsNewRecord() )
             $this->label = $this->file; // set to file name initiallly
-
+            $this->date = date("Y-m-d", time());
+            $this->size = $this->_formatBytes($this->size);        
+        }
         return parent::beforeSave();
     }
 
