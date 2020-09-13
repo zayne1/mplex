@@ -39,11 +39,11 @@ class DefaultController extends Controller
     // Shows the Dashboard. Perhaps we can reame it to dashboard at some point
 	public function actionIndex()
 	{
-        $OrganizationList = Organization::model()->getAllOrgs();
+        $orgDataProvider=new EMongoDocumentDataProvider('Organization');
         $eventDataProvider=new EMongoDocumentDataProvider('Event');
 
         $this->render('index', array(
-                'OrgList' => $OrganizationList,
+                'orgDataProvider' => $orgDataProvider,
                 'eventDataProvider' => $eventDataProvider
             )
         );		

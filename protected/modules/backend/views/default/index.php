@@ -9,15 +9,13 @@ $this->breadcrumbs=array(
 <h3 class="pull-left">All Organizations</h3>
 <h3 class="pull-right">Sort</h3>
 <hr/>
-<?php 
-foreach ($OrgList as $org) {
-?>
-    <a href="<?php echo Yii::app()->createUrl('backend/organization/view/id/' .$org->_id); ?>" class="animate__animated animate__slideInLeft animate__fast" style="display:block;float: left;margin-right: 10px;width: 147px;">
-        <img src="<?php echo Yii::app()->request->baseUrl .'/images/'. $org->logo; ?>" class="organization">
-    </a>
-<?php
-} 
-?>
+<?php $this->widget('zii.widgets.CListView', array(
+    'dataProvider'=>$orgDataProvider,
+    'itemView'=>'_index_org_view',
+        'sortableAttributes'=>array(
+        'name',
+    ),
+)); ?>
 
 <div style="height: 50px;clear: both;"></div>
 
