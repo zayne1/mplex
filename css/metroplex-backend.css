@@ -107,6 +107,82 @@ a.btn-edit-event {
     border: 1px solid;
 }
 
+
+
+
+#sidebar {
+    margin-top: 90px;
+    border: 1px solid gray;
+    background: #575658;
+    /*padding: 10px;*/
+}
+#sidebar .portlet-decoration {
+    background: #454447;
+    padding: 2px;
+}
+#sidebar .portlet-content {
+    padding: 10px;
+}
+.backend.btn-new-event {
+    display: none;
+}
+.backend.btn-new-org {
+    display: none;
+}
+.backend.btn-dashboard-home {
+    display: none;
+}
+.backend-index {
+    background: #0273c3;
+    text-align: center;
+    padding-bottom: 40px;
+    float: left;
+    width: 100%;
+}
+.backend-index h2 {    
+    color: #fff;
+    font-size: 29px;
+    line-height: 24px;
+}
+.backend-index input[type="submit"] {
+    color: white;
+    background: #0d4779;
+    border-radius: 5px;
+    text-transform: uppercase;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.layout-col-2
+{
+    /*margin-left: 20px;*/
+    width: 90%;
+    margin: 0px auto;
+}
+.layout-col-2 #content {
+    width: 40%;
+    float: left;
+    padding-bottom: 50px;
+}
+.layout-col-2 #content h1{
+    font-size: 31px;
+    background: #000;    
+    color: white;
+    padding: 5px;
+}
+.layout-col-2 #content .items .view {
+    background: #585858;
+    margin-bottom: 5px;
+    padding: 7px;
+}
+.layout-col-2 #content form .row {
+    margin-left: 10px;
+}
+.layout-col-2 #content table.detail-view tr.even {
+    background: #6f6f6f;
+}
+.layout-col-2 #content table.detail-view tr.odd {
+    background: #6f6f6f;
+}
 .layout-col-2 #content .pg-org-view table.detail-view tr.odd,
 .layout-col-2 #content .pg-org-view table.detail-view tr.even {
     background: #0273c3;

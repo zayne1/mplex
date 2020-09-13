@@ -10,10 +10,12 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<?php
     $cs = Yii::app()->getClientScript();
     $cs->registerCssFile('/css/bootstrap.css');
+    $cs->registerCssFile('/css/bootstrap-responsive.min.css');
     $cs->registerCssFile('/css/fa/css/font-awesome.min.css');
     $cs->registerCssFile('/css/animate.min.css');
     $cs->registerCssFile('/css/metroplex.css');

@@ -6,10 +6,11 @@
 <?php 
 $count=1;
 foreach ($EventList as $event) {
+	$even_odd_class = ($count % 2 ? 'odd' : 'even');
 ?>
-	<div class="event-container">
+	<div class="event-container <?php echo $even_odd_class;?> ">
 	    <a href="<?php echo '#myModal'.$count;?>" data-toggle="modal">
-	        <img src="<?php echo Yii::app()->request->baseUrl .'/images/'. $event->logo; ?>" class="event animate__animated animate__slideInLeft animate__fast" style="display:block;float: left;margin-right: 10px;">
+	        <img src="<?php echo Yii::app()->request->baseUrl .'/images/'. $event->logo; ?>" class="event animate__animated animate__slideInLeft animate__fast">
 	        <?php echo $event->name; ?>
 	    </a>
 	</div>
