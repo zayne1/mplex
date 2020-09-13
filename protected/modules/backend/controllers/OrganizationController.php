@@ -50,11 +50,11 @@ class OrganizationController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$EventList = Event::model()->getEventsForOrg($id);
+		$eventDataProvider=new EMongoDocumentDataProvider('Event');
 
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
-			'EventList'=>$EventList,
+			'eventDataProvider' => $eventDataProvider
 		));
 	}
 
