@@ -40,13 +40,12 @@ class DefaultController extends Controller
 	public function actionIndex()
 	{
         $OrganizationList = Organization::model()->getAllOrgs();
-        $EventList = Event::model()->getAllEvents();
+        $eventDataProvider=new EMongoDocumentDataProvider('Event');
 
         $this->render('index', array(
                 'OrgList' => $OrganizationList,
-                'EventList' => $EventList
+                'eventDataProvider' => $eventDataProvider
             )
-        );
-		
+        );		
 	}
 }

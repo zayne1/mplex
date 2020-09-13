@@ -24,13 +24,12 @@ foreach ($OrgList as $org) {
 <h3 class="pull-left">All Events</h3>
 <h3 class="pull-right">Sort</h3>
 <hr/>
-<?php 
-foreach ($EventList as $event) {
-?>
-    <a href="<?php echo Yii::app()->createUrl('backend/event/view/id/' .$event->_id); ?>" class="animate__animated animate__slideInLeft animate__fast" style="display:block;float: left;margin-right: 10px;width: 147px;">
-        <img src="<?php echo Yii::app()->request->baseUrl .'/images/'. $event->logo; ?>" class="event">
-        <?php echo $event->name; ?>
-    </a>
-<?php
-} 
-?>
+
+<?php $this->widget('zii.widgets.CListView', array(
+    'dataProvider'=>$eventDataProvider,
+    'itemView'=>'_index_event_view',
+        'sortableAttributes'=>array(
+        'name',
+        'date',
+    ),
+)); ?>
