@@ -50,11 +50,14 @@ class EventController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$vidList = Video::model()->getVidsForEvent($id);
+		$videoDataProvider=new EMongoDocumentDataProvider('Video');
+		$criteria = new EMongoCriteria;
+		$criteria->eventId = $id; /** Our find query */
+		$videoDataProvider->setCriteria($criteria);
 
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
-			'vidList'=>$vidList,
+			'videoDataProvider' => $videoDataProvider
 		));
 	}
 
@@ -138,6 +141,7 @@ class EventController extends Controller
 							$video->eventId = (string)$model->_id; // comes from the Event model that was just saved
 							$video->fav = 0;
 							$video->downloaded = 0;
+							$video->size = $file->getSize();
 
 							if($x = $video->save()){
 								Yii::log("Video model Saving Success............");
