@@ -8,6 +8,9 @@ class Video extends EMongoDocument
     public $eventId;
     public $fav;
     public $downloaded;
+    public $length;
+    public $size;
+    public $date;
 
     public function init()
     {
@@ -15,6 +18,9 @@ class Video extends EMongoDocument
     }
 
     public function beforeSave() {
+
+        $this->date = date("Y-m-d", time());
+        $this->size = $this->_formatBytes($this->size);
                 
         if ( $this->getIsNewRecord() )
             $this->label = $this->file; // set to file name initiallly
@@ -59,6 +65,8 @@ class Video extends EMongoDocument
             'label' => 'File Custom name',
             'fav' => 'Favorite',
             'downloaded' => 'Downloaded',
+            'size' => 'Size',
+            'date' => 'Date',
         );
     }
 
@@ -74,6 +82,8 @@ class Video extends EMongoDocument
             'label',
             'fav',
             'downloaded',
+            'size',
+            'date',
         );
     }
 
@@ -203,5 +213,16 @@ class Video extends EMongoDocument
     
         return $status;
        
+    }
+
+    /* Get human readable size of bytes in mb
+        eg echo formatBytes2(24962496); // 23.81 M
+    */
+    function _formatBytes($size, $precision = 2)
+    {
+        $base = log($size, 1024);
+        $suffixes = array('', 'K', 'MB', 'G', 'T');   
+
+        return round(pow(1024, $base - floor($base)), $precision) .' '. $suffixes[floor($base)];
     }
 }
