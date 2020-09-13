@@ -1,4 +1,9 @@
-<?php /* @var $this Controller */ ?>
+<?php /* @var $this Controller */ 
+
+$backend = false;
+if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controller->module->is_backend==true))
+    $backend = true;
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -40,18 +45,37 @@
         <hr/>
         <!-- <a href="index.php"> -->
         <a href="<?php echo Yii::app()->createUrl(' '); ?>">
-            <img class="home-icon" src="<?php echo Yii::app()->request->baseUrl; ?>/images/icon-home.png">
+            <?php 
+            if ( $backend ) { ?>
+            <img class="home-icon-backend" src="<?php echo Yii::app()->request->baseUrl; ?>/images/icon-home-backend.png
+            ">
+            <?php 
+            } else { ?>
+            <img class="home-icon" src="<?php echo Yii::app()->request->baseUrl; ?>/images/icon-home-frontend.png">
+            <?php 
+            } ?>
         </a>
         <?php
-        if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controller->module->is_backend==true)) {
+        if ( $backend ) {
         ?>
+            <a href="<?php echo Yii::app()->createUrl('backend/index'); ?>" class="dash-header">Dashboard</div>
+
             <a href="<?php echo Yii::app()->createUrl('backend/index'); ?>" class="backend btn-dashboard-home">Dashboard home</a>
             <a href="<?php echo Yii::app()->createUrl('backend/organization/create'); ?>" class="backend btn-new-org">New Org</a>
             <a href="<?php echo Yii::app()->createUrl('backend/event/create'); ?>" class="backend btn-new-event">New Event</a>
         <?php
         }
         ?>
+        
+        <?php 
+        if ( $backend ) { ?>
+        <img class="logo-user-profile" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo-m.png">
+        <?php 
+        } else { ?>
         <img class="logo-txt" src="<?php echo Yii::app()->request->baseUrl; ?>/images/logo-txt.png">
+        <?php
+        } ?>
+
     </div>
     <div class="menu-top">
         <div class="menu-top-container">

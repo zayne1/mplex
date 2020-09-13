@@ -41,6 +41,12 @@
                 <?php echo $videoDataProvider->calculateTotalItemCount();?> Videos
             </div>
         </div>
+        <div class="row">
+            <a class="btn-edit-event pull-left" style="margin-left: 30px;" 
+                href="<?php echo Yii::app()->createUrl('backend/event/update/id/' . CHtml::encode($model->_id)); ?>">
+                Edit Event
+            </a>
+        </div>
     </div>
 
     <div class="row">

@@ -39,7 +39,14 @@
         <div class="row">
             <div class="pull-right video-count">
                 <!-- //Number of Events , number of videos go here -->
+                <?php echo $eventDataProvider->calculateTotalItemCount();?> Events
             </div>
+        </div>
+        <div class="row">
+            <a class="btn-edit-org pull-left" style="margin-left: 30px;" 
+                href="<?php echo Yii::app()->createUrl('backend/organization/update/id/' . CHtml::encode($model->_id)); ?>">
+                Edit Org
+            </a>
         </div>
     </div>
 

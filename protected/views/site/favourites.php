@@ -10,7 +10,7 @@
   <?php 
   foreach ($vidList as $vid) { 
   ?>
-      <div class="vid-container" style="width: 340px;height: 280px;float: left;">
+      <div class="vid-container">
         <video onload="video.currentTime=sprungzeit" width="320" height="240" src="<?php echo Yii::app()->request->baseUrl .'/vid/'. $vid->file; ?>" Xautobuffer Xautoplay controls class="myVideo" style="float: left;margin-right: 10px;">
           <div class="video-fallback">
            <br>Sie benoetigen einen Browser, der HTML5 unterstuetzt.

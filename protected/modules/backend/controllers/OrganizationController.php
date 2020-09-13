@@ -51,6 +51,9 @@ class OrganizationController extends Controller
 	public function actionView($id)
 	{
 		$eventDataProvider=new EMongoDocumentDataProvider('Event');
+		$criteria = new EMongoCriteria;
+		$criteria->orgId = $id; /** Our find query */
+		$eventDataProvider->setCriteria($criteria);
 
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),

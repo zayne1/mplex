@@ -19,8 +19,6 @@
 
     <img src="<?php echo Yii::app()->request->baseUrl .'/images/videothumb.png' ?>" class="video-thumb">
 
-    <a href="<?php echo Yii::app()->createUrl('backend/event/view/id/' .CHtml::encode($data->_id) ); ?>" class="animate__animated animate__slideInLeft animate__fast" style="display:block;float: left;margin-right: 10px;width: 147px;">
-    </a>
     <?php echo CHtml::encode($data->label); ?>
     <div style="width: 100px;float: right;margin-top: 15px;"><?php echo CHtml::encode($data->date); ?></div>
     <div style="width: 100px;float: right;margin-top: 15px;"><?php echo CHtml::encode($data->size); ?></div>

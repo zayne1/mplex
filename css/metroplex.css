@@ -45,11 +45,26 @@ position: absolute;
 
 .menu-top 
 {
+    position: fixed;
+    bottom: 1px;
+    width: 100%;
+    border-top: none;
+    z-index: 99; /* Will make it show above sticky footer */
+
     background: #004576;
     xfloat:left;
     height:60px;
-    border-top: 5px solid #eebb79;
 
+}
+
+@media (min-width: 720px) {
+    .menu-top 
+    {
+        position: initial;
+        width: auto;
+        border-top: 5px solid #eebb79;
+    }
+    
 }
 .menu-top .menu-top-container 
 {
@@ -168,7 +183,17 @@ footer
     font-weight: bold;
 
 }
-
+.vid-container {
+    width: 340px;
+    height: 280px;
+    margin:0px auto;
+}
+@media (min-width: 720px) {
+    .vid-container {
+        margin: initial;
+        float: left;
+    }
+}
 .vid-dl-container {
     width: 100%;
 }
@@ -281,6 +306,9 @@ footer
 #content {
     width: 100%
     /*margin: 0px auto !important;*/
+}
+#login-form {
+    margin-bottom: 200px;
 }
 /*#content hr {
     border: 1px;
