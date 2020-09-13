@@ -84,3 +84,4 @@ body
 .layout-col-2 #content .pg-event-view .video-thumb { width: 100px; }
 .layout-col-2 #content .pg-event-view .video-count { width: 30%;background: #fff; height: 30px;color: #000;text-align: center; }
 .layout-col-2 #content .pg-event-view .vid-row-item { color: #000; }
+.layout-col-2 #content .pg-event-view .vid-row-item a { color: #000; text-decoration: none;}
