@@ -214,6 +214,23 @@ class Video extends EMongoDocument
        
     }
 
+    public function getAllVideos()
+    {   
+        // $orgId = '5f51366b8d285816bfba1d74';
+        $criteria = new EMongoCriteria;
+        // $criteria->text_html = null;    //NB: you must set the criteria to a value, as opposed to a test eg '!== null' or '< 3'
+        // $criteria->orgId = new MongoID($orgId); /** Our find query */
+        $criteria->eventId !== null; /** Our find query */
+        // $criteria->addCond('event->name', '==', 'eva1');
+        // $criteria->event->name('==', 'eva1');
+        $criteria->limit(200);
+
+        return Video::model()->findAll($criteria);
+        // return Organization::model()->find();
+        // return $this->findAll($criteria);
+
+    }
+
     /* Get human readable size of bytes in mb
         eg echo formatBytes2(24962496); // 23.81 M
     */

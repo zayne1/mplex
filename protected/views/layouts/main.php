@@ -101,7 +101,21 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
     
     
     <footer>
-        Streaming App
+        
+        <?php 
+        if ($backend) { 
+            echo "<pre>" . 
+            count(Organization::model()->getAllOrgs()) ." Organizations       ".
+            count(Event::model()->getAllEvents()). " Events       ".
+            count(Video::model()->getAllVideos()). " Videos       " . 
+            Yii::app()->user->getState('getFreeSpace') . " Of Storage" .
+            "</pre>";
+        } else {
+        ?>
+            Streaming App
+        <?php
+        }
+        ?>
     </footer>
 
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>

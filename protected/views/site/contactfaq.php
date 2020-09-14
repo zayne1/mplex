@@ -19,7 +19,7 @@
     <br />
     <br />
     <b>Q - How Long will my Files be accessible?</b><br>
-    A - The  les are guaranteed for one year after the show. Please download the  les for lifetime access.
+    A - The  les are guaranteed for one year after the show. Please download the files for lifetime access.
     <br />
     <br />
     <b>Q - Can I take the  les out of the app?</b><br>

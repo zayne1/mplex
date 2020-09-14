@@ -132,26 +132,7 @@ a.btn-edit-event {
 .backend.btn-dashboard-home {
     display: none;
 }
-.backend-index {
-    background: #0273c3;
-    text-align: center;
-    padding-bottom: 40px;
-    float: left;
-    width: 100%;
-}
-.backend-index h2 {    
-    color: #fff;
-    font-size: 29px;
-    line-height: 24px;
-}
-.backend-index input[type="submit"] {
-    color: white;
-    background: #0d4779;
-    border-radius: 5px;
-    text-transform: uppercase;
-    padding-left: 20px;
-    padding-right: 20px;
-}
+
 .layout-col-2
 {
     /*margin-left: 20px;*/
@@ -202,3 +183,4 @@ a.btn-edit-event {
 .layout-col-2 #content .pg-event-view .video-count { width: 30%;background: #fff; height: 30px;color: #000;text-align: center; }
 .layout-col-2 #content .pg-event-view .vid-row-item { color: #000; }
 .layout-col-2 #content .pg-event-view .vid-row-item a { color: #000; text-decoration: none;}
+footer pre { background: #004576; color: #fff;}
