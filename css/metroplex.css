@@ -17,12 +17,6 @@ body
     background: #fff;
     height:60px;
 }
-.menu-top 
-{
-    position: initial;
-    width: auto;
-    border-top: 5px solid #eebb79;
-}
 
 .header hr
 {
@@ -150,59 +144,62 @@ footer
     font-weight: bold;
 
 }
-
+.menu-top .menu-top-container 
+{
+    margin: 0px auto;
+    /* background: red; */
+    width: 60%;
+    /*height: 100px;*/
+    text-align: center;
+}
+.menu-top .menu-top-container .menu-btn
+{
+    border-bottom: 3px solid #004576;
+    float: left;
+    height:57px;
+    width: 25%;
+    cursor: pointer;
+}
+.menu-top .menu-top-container .menu-btn:hover,
+.menu-top .menu-top-container .menu-btn:active
+{
+    border-bottom: 3px solid #9e9e9e;
+    background: #0073c3;
+}
+.menu-top .menu-top-container .menu-btn.watch
+{
+    background-image: url(../images/btn-watch.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.menu-top .menu-top-container .menu-btn.downloads
+{
+    background-image: url(../images/btn-downloads.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.menu-top .menu-top-container .menu-btn.fav
+{
+    background-image: url(../images/btn-fav.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.menu-top .menu-top-container .menu-btn.information
+{
+    background-image: url(../images/btn-info.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 @media (min-width: 720px) {
 
+    .menu-top 
+    {
+        position: initial; /* Show the top menu in it's initial setting in the markup, ie on top */
+        width: auto;
+        border-top: 5px solid #eebb79;
+    }
 
-
-    .menu-top .menu-top-container 
-    {
-        margin: 0px auto;
-        /* background: red; */
-        width: 60%;
-        /*height: 100px;*/
-        text-align: center;
-
-    }
-    .menu-top .menu-top-container .menu-btn
-    {
-        border-bottom: 3px solid #004576;
-        float: left;
-        height:57px;
-        width: 25%;
-        cursor: pointer;
-    }
-    .menu-top .menu-top-container .menu-btn:hover,
-    .menu-top .menu-top-container .menu-btn:active
-    {
-        border-bottom: 3px solid #9e9e9e;
-        background: #0073c3;
-    }
-    .menu-top .menu-top-container .menu-btn.watch
-    {
-        background-image: url(../images/btn-watch.png);
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    .menu-top .menu-top-container .menu-btn.downloads
-    {
-        background-image: url(../images/btn-downloads.png);
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    .menu-top .menu-top-container .menu-btn.fav
-    {
-        background-image: url(../images/btn-fav.png);
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    .menu-top .menu-top-container .menu-btn.information
-    {
-        background-image: url(../images/btn-info.png);
-        background-repeat: no-repeat;
-        background-position: center;
-    }
     .main-content 
     {
     padding-left: 10px;
