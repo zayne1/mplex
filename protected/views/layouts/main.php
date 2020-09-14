@@ -41,8 +41,17 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
 </head>
 
 
+<?php 
+    $bodyIdTag = '';
+    
+    if (isset(Yii::app()->controller->module) )
+        $bodyIdTag.=Yii::app()->controller->module->getName() .'-';
+    
+    $bodyIdTag.=Yii::app()->controller->getId();
+    $bodyIdTag.='-'.Yii::app()->controller->getAction()->getId();
+?>
 
-<body>
+<body id="<?php echo $bodyIdTag;?>">
     <div class="header">
         <hr/>
         <!-- <a href="index.php"> -->
