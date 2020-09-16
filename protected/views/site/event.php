@@ -19,12 +19,10 @@ foreach ($EventList as $event) {
 	<div id="<?php echo 'myModal'.$count; ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
 	    <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	        <h3 id="myModalLabel">Sign in</h3>
+	        <h3 id="myModalLabel">Sign in (password: <?php echo $event->pass;?>)</h3>
 	    </div>
 	    <div class="modal-body">
 	        <h3>Recital 2017 Wednesday</h3>
-
-	        <h3>Please sign in with your password: <?php echo $event->pass;?></h3>
 
 	        <form id="login-form" action="/event?eventId=<?php echo $event->_id; ?>" method="post">
 		        <label for="LoginForm_password" class="required">Password <span class="required">*</span></label>					
