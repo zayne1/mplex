@@ -21,6 +21,7 @@ class Video extends EMongoDocument
         if ( $this->getIsNewRecord() ) {
 
             $this->label = $this->file; // set to file name initiallly
+            $this->label = substr($this->label, 0, -4); // remove file extension
             $this->date = date("Y-m-d", time());
             $this->size = $this->_formatBytes($this->size);        
         }
