@@ -17,27 +17,32 @@
           <br>Sie benoetigen einen Browser, der HTML5 unterstuetzt.
         </div>
       </video>
+      <div class="vid-info-txt">
+        <?php echo $vid->label; ?>
+        <br>
+        <span><?php echo $vid->size; ?></span>
+      </div>
       <div class="vid-info-footer">
 
         <?php if ($vid->fav==1) {
         ?>
-          <a href="<?php echo Yii::app()->request->requestUri .'?remFav='. $vid->_id; ?>" style="display: block;float: right;clear: both;text-decoration: none;">
-            <i class="icon-star pull-left icon-3x muted icon-green"></i>
+          <a href="<?php echo Yii::app()->request->requestUri .'?remFav='. $vid->_id; ?>" style="display: block;float: right;clear: both;text-decoration: none;margin-left: 10px;">
+            <i class="icon-star pull-left icon-2x muted icon-blue"></i>
           </a>
 
         <?php
         }
         else {
         ?>
-          <a href="<?php echo Yii::app()->request->requestUri .'?addFav='. $vid->_id; ?>" style="display: block;float: right;xclear: both;text-decoration: none;">
-              <i class="icon-star pull-left icon-3x muted "></i>
+          <a href="<?php echo Yii::app()->request->requestUri .'?addFav='. $vid->_id; ?>" style="display: block;float: right;xclear: both;text-decoration: none;margin-left: 10px;">
+              <i class="icon-star pull-left icon-2x muted "></i>
           </a>
         <?php
         }
         ?>
         <?php if ($vid->downloaded==1) {
         ?>
-          <i class="icon-download-alt pull-left icon-3x muted icon-green" style="display: block;float: right;xclear: both;text-decoration: none;"></i>
+          <i class="icon-download-alt pull-left icon-2x muted icon-green" style="display: block;float: right;xclear: both;text-decoration: none;"></i>
         <?php
         }
         ?>
@@ -48,6 +53,8 @@
   <?php
   }
   ?>
+
+  <div class="bottom-spacer"></div>
 
   <!--<a href="<?php //echo Yii::app()->createUrl('multidownloadtest'); ?>">Multi download proof of concept (Click link to Download all currently set favourites)</a></li> -->
     

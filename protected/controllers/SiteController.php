@@ -225,6 +225,7 @@ class SiteController extends Controller
 		if(isset($_POST['VidDownloadForm']))
 		{
 			$vidArray = $_POST['VidDownloadForm'];
+			Yii::app()->user->setState('vidArray', $vidArray);
 
 			if (Video::model()->addDownloads($vidArray)) {
 				$this->redirect(Yii::app()->baseUrl . '/multidownloadtest');	// will download vids
@@ -253,7 +254,7 @@ class SiteController extends Controller
 		}
 
 		$this->render('favourites', array(
-                'introText' => 'Favourites',
+                'introText' => 'Favorites',
                 'introSubText' => '',
                 'vidList' => $vidList
             )
@@ -275,10 +276,9 @@ class SiteController extends Controller
 	public function actionMultidownloadtest()
 	{
 
-		$eventId = Yii::app()->user->getState('userEvent');
-
-		//remove after demo
-		$favVidList = Video::model()->getFavVidsForEvent($eventId);
+		$dlVidList = Yii::app()->user->getState('vidArray');//print_r($dlVidList);die;
+		Yii::app()->user->setState('vidArray',null);
+		$dlVidObjList = Video::model()->getMultipleVids($dlVidList);//print_r($favVidList);die;
 
 		
 
@@ -287,8 +287,8 @@ class SiteController extends Controller
 
 		if ($zip->open($zipname, ZipArchive::CREATE) === TRUE) {
 			// $counter = 0;
-			foreach ($favVidList as $vid) {
-			  $zip->addFile(getcwd() .'/vid/'. $vid->file, $vid->file);
+			foreach ($dlVidObjList as $vidObj) {
+			  $zip->addFile(getcwd() .'/vid/'. $vidObj->file, $vidObj->file);
 			  // $zip->setCompressionIndex($counter, ZipArchive::CM_STORE);
 			  // $counter++;
 			}

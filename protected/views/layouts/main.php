@@ -33,6 +33,9 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
         .icon-green {
             color:#42B142;
         }
+        .icon-blue {
+            color:#0073c3;
+        }
     </style>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>

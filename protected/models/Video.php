@@ -125,6 +125,17 @@ class Video extends EMongoDocument
         return Video::model()->findAll($criteria);
     }
 
+    public function getMultipleVids($vidArray)
+    {   
+        // $orgId = '5f51366b8d285816bfba1d74';
+        $newVidArr = array();
+        foreach ($vidArray as $vidId) {
+            $newVidArr[]= Video::model()->findByPk(new MongoID($vidId));
+        }
+
+        return $newVidArr;
+    }
+
 
     public function addFav($newFavVidId)
     {

@@ -62,7 +62,7 @@ body
     /*text-align: center;*/
     line-height: 37px;
     font-weight: bold;
-    font-size: 26px;
+    font-size: 20px;
     padding-left: 10px;
 }
 #content 
@@ -132,6 +132,7 @@ a.organization-img-container .organization {width: 100%;}
 {
     margin: initial;
     float: left;
+    margin-bottom: 20px;
 }
 
 .vid-dl-container 
@@ -213,6 +214,84 @@ footer
     background-position: center;
 }
 
+body#site-video .menu-btn.watch,
+body#site-downloads .menu-btn.downloads,
+body#site-contactfaq .menu-btn.information,
+body#site-favourites .menu-btn.fav {
+    border-bottom: 3px solid #9e9e9e;
+    background-color: #0073c3;
+}
+video { background: #000; }
+.vid-info-footer {
+    float: right;
+    margin-right: 35px;
+    margin-top: 10px;
+}
+.vid-info-txt {
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 174px;
+    font-size: 17px;
+}
+.vid-info-txt span {
+    font-size: 15px;
+}
+
+.vid-dl-container {
+    width: 100%;
+}
+.vid-dl-container #select-all-vid {
+    color: #000;
+    background: #fff;
+    width: 74px;
+    text-align: center;
+    float: right;
+}
+.vid-dl-container .vid-dl-item {
+    border: 1px solid gray;
+    padding: 5px;
+    float: left;
+    width: 100%;
+    margin-top: 5px;
+}
+.vid-dl-container .vid-dl-item img {
+    float: left;
+    width: 100px;
+}
+.vid-dl-container .vid-dl-item .vid-dl-item-checkbox {
+    float: right;
+    margin-top: 21px;
+    font-size: 16px;
+}
+.vid-dl-container .vid-dl-item .vid-info-block {
+    float: left;
+    margin-left: 5px;
+    font-size: 17px;
+}
+.vid-dl-container .vid-dl-item .vid-info-block span{
+    font-size: 15px;
+}
+.vid-dl-container input.download-submit {
+    margin-left: 25%;
+    margin-top: 20px;
+    font-size: 17px;
+    padding: 5px;
+    width: 169px;
+}
+.faq-divider {
+    clear: both;
+    display: block;
+    margin: 0px auto;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+.faq-email {
+    color: #fff;
+    font-size: 19px;
+}
+.bottom-spacer {clear:both; width:100%;margin-bottom:30px;margin-top:30px;padding-bottom: 30px; padding-top:30px;}
+
 @media (min-width: 720px) {
 
     .menu-top 
@@ -221,6 +300,7 @@ footer
         width: auto;
         border-top: 5px solid #eebb79;
     }
+    .page-name {font-size: 26px;}
     .menu-top .menu-top-container { width: 60%;}
 
     .main-content 
@@ -254,42 +334,24 @@ footer
         width: 200px;
         margin-bottom: 10px;
     }
+    .vid-info-txt {
+        width: 203px;
+    }
     
     .vid-container {
         width: 340px;
         height: 280px;
         margin:0px auto;
     }
-
     .vid-dl-container {
-        width: 100%;
+        width: 60%;
     }
+    .vid-dl-container input.download-submit {
+        margin-left:40%;    
+    }
+    .bottom-spacer {margin:0px; padding:0px;}
 
 
-    .vid-dl-container .vid-dl-item {
-        border: 1px solid gray;
-        padding: 5px;
-        float: left;
-        width: 100%;
-        margin-top: 5px;
-    }
-    .vid-dl-container .vid-dl-item img {
-        float: left;
-        width: 140px;
-    }
-    .vid-dl-container .vid-dl-item .vid-dl-item-checkbox {
-        float: right;
-        margin-top: 35px;
-    }
-    .vid-dl-container .vid-dl-item .vid-info-block {
-        float: left;
-        margin-left: 5px;
-        font-size: 17px;
-    }
-    .vid-info-footer {
-        float: right;
-        margin-right: 20px;
-    }
 
     
     /*#content hr {
