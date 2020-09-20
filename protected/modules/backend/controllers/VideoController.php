@@ -241,6 +241,8 @@ class VideoController extends Controller
 			Yii::log("size ...........");
 			Yii::log(print_r($file->getSize(),true));
 
+			$length = Video::model()->getLength($file->getTempName());
+
 			if ( $file->saveAs(Yii::app()->basePath .'/../vid/'.$file->getName()) ) {
 				Yii::app()->user->setFlash('videoSavedStatus','Video was successfully saved');
 				Yii::log("Saving Success............");
@@ -249,7 +251,8 @@ class VideoController extends Controller
 				Video::model()->saveMetaData(
 					Yii::app()->user->getState('userEvent'),
 					$file->getName(),
-					'new path'
+					'new path',
+					$length
 				);
 
 			} else {

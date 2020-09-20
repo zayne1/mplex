@@ -128,6 +128,8 @@ class EventController extends Controller
 						Yii::log("size ...........");
 						Yii::log(print_r($file->getSize(),true));
 
+						$length = Video::model()->getLength($file->getTempName());
+
 						if ( $file->saveAs(Yii::app()->basePath .'/../vid/'.$file->getName()) ) {
 							Yii::app()->user->setFlash('videoSavedStatus','Video was successfully saved');
 							Yii::log("Saving Success............");
@@ -142,6 +144,7 @@ class EventController extends Controller
 							$video->fav = 0;
 							$video->downloaded = 0;
 							$video->size = $file->getSize();
+							$video->length = $length;
 
 							if($x = $video->save()){
 								Yii::log("Video model Saving Success............");

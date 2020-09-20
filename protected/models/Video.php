@@ -65,6 +65,7 @@ class Video extends EMongoDocument
             'label' => 'File Custom name',
             'fav' => 'Favorite',
             'downloaded' => 'Downloaded',
+            'length' => 'Length',
             'size' => 'Size',
             'date' => 'Date',
         );
@@ -82,6 +83,7 @@ class Video extends EMongoDocument
             'label',
             'fav',
             'downloaded',
+            'length',
             'size',
             'date',
         );
@@ -190,7 +192,7 @@ class Video extends EMongoDocument
        
     }
 
-    public function saveMetaData($id, $fileName, $path)
+    public function saveMetaData($id, $fileName, $path, $length)
     {
         // prepare modifiers
         $modifier = new EMongoModifier();
@@ -198,6 +200,7 @@ class Video extends EMongoDocument
         // replace field1 value with 'new value'
         $modifier->addModifier('file', 'set', $fileName);
         $modifier->addModifier('path', 'set', $path);
+        $modifier->addModifier('length', 'set', $length);
         // $modifier->addModifier('Dept', 'set', 'IT');
 
         // prepare search to find documents
@@ -253,4 +256,15 @@ class Video extends EMongoDocument
 
         return round(pow(1024, $base - floor($base)), $precision) .' '. $suffixes[floor($base)];
     }
+
+    /*
+    Takes a video file path
+    returns length string
+    */
+    public function getLength($filepath)
+    {
+        exec('mediainfo --Inform="Video;%Duration/String%" "'.$filepath.'"', $arr);
+        return $arr[0];
+    }
+
 }
