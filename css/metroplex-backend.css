@@ -104,6 +104,7 @@ a.btn-edit-event {
 
 
 #sidebar {
+    display: none;
     margin-top: 90px;
     border: 1px solid gray;
     background: #575658;
@@ -129,10 +130,19 @@ a.btn-edit-event {
     width: 90%;
     margin: 0px auto;
 }
+.layout-col-2 .flash-success {
+    display: flex;
+    display: -webkit-box;
+    position: absolute;
+    width: 50%;
+    display: flex;
+}
 .layout-col-2 #content {
     width: 40%;
-    float: left;
+    /*float: left;*/
     padding-bottom: 50px;
+    display: flex;
+    display: -webkit-box;
 }
 .layout-col-2 #content h1{
     font-size: 31px;
@@ -154,13 +164,31 @@ a.btn-edit-event {
 .layout-col-2 #content table.detail-view tr.odd {
     background: #6f6f6f;
 }
-.layout-col-2 #content .pg-org-view table.detail-view tr.odd,
-.layout-col-2 #content .pg-org-view table.detail-view tr.even {
-    background: #0273c3;
+.layout-col-2 #content .pg-org-view,
+.layout-col-2 #content .pg-event-view {
+    width: 100%;
+}
+.layout-col-2 #content .pg-org-view .row,
+.layout-col-2 #content .pg-event-view .row {
+    margin-left: 0px;
 }
 .layout-col-2 #content .pg-org-view table.detail-view {
     width: 70%;
     float: left;
+}
+.layout-col-2 #content .pg-org-view table.detail-view tr.odd,
+.layout-col-2 #content .pg-org-view table.detail-view tr.even {
+    background: #0273c3;
+}
+.layout-col-2 #content .pg-org-view table.detail-view th,
+.layout-col-2 #content .pg-event-view table.detail-view th {
+    display: none;
+}
+.layout-col-2 #content .pg-org-view table.detail-view th, 
+.layout-col-2 #content .pg-org-view table.detail-view td,
+.layout-col-2 #content .pg-event-view table.detail-view th, 
+.layout-col-2 #content .pg-event-view table.detail-view td {
+    border: none;
 }
 .layout-col-2 #content .pg-org-view .video-count { width: 30%;background: #fff; height: 30px;color: #000;text-align: center; }
 
@@ -173,4 +201,22 @@ a.btn-edit-event {
 .layout-col-2 #content .pg-event-view .video-count { width: 30%;background: #fff; height: 30px;color: #000;text-align: center; }
 .layout-col-2 #content .pg-event-view .vid-row-item { color: #000; }
 .layout-col-2 #content .pg-event-view .vid-row-item a { color: #000; text-decoration: none;}
+
+.btn-save-org-row {
+    float: right;
+}
+.btn-save-org-row input {
+    width: 150px !important;
+    background: #014576;
+    color: #fff;
+}
+.btn-save-event-row {
+    float: right;
+}
+.btn-save-event-row input {
+    width: 150px !important;
+    background: #454447;
+    color: #fff;
+}
+
 footer pre { background: #004576; color: #fff; font-size: 17px;}

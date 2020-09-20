@@ -73,8 +73,8 @@
 		echo $form->error($model, 'logo');
 ?>
 
-			<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+			<div class="row buttons btn-save-org-row">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Save Org' : 'Save Org'); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>

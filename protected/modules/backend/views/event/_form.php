@@ -28,11 +28,11 @@
 				'attribute' => 'date',
 				'model'=>$model,
 				'options'=> array(
-				'dateFormat' =>'yy-mm-dd',
-				'altFormat' =>'yy-mm-dd',
+				'dateFormat' =>'mm-dd-yy',
+				'altFormat' =>'mm-dd-yy',
 				'changeMonth' => true,
 				'changeYear' => true,
-				'appendText' => 'yyyy-mm-dd',
+				'appendText' => 'mm-dd-yyyy',
 				),
 			));
 			?>
@@ -83,7 +83,7 @@
 		
 		<br><br>
 		
-		<div class="row">
+		<div class="Xrow pull-left">
 		<?php 
 		echo $form->labelEx($model, 'vidfiles');
 		echo '<label>After adding a file, click "Choose File" again to add another to the list</label>';
@@ -103,12 +103,12 @@
 		    ));
 		?>
 		</div>
+	<!-- <br>
 	<br>
 	<br>
-	<br>
-	<br>
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<br> -->
+	<div class="row buttons btn-save-event-row" style="margin-top: 50px;">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Save Event' : 'Save Event'); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>

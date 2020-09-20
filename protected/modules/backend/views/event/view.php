@@ -18,7 +18,7 @@
     <hr/>
     <!-- <h1>View Event #<?php echo $model->_id; ?></h1> -->
     <div class="row">
-        <div class="row">
+        <div class="row" style="background-color: #c21238;">
             <?php $this->widget('zii.widgets.CDetailView', array(
             	'data'=>$model,
             	'attributes'=>array(
@@ -46,12 +46,29 @@
                 href="<?php echo Yii::app()->createUrl('backend/event/update/id/' . CHtml::encode($model->_id)); ?>">
                 Edit Event
             </a>
+
+            <a class="btn-edit-event pull-left" style="margin-left: 30px;" id="<?php echo CHtml::encode($model->_id); ?>" href="#">         
+                Delete event
+
+                <!-- We use the js below to use a controller's delete via POST as we cannot just create a param (it only accepts POST for delete.
+                We copied this code from what Yii's Gii CRUD generated to do deletions (with slight mods to return to current page:) 
+                -->
+                <script type="text/javascript">
+                    /*<![CDATA[*/
+                    jQuery(function($) {
+                    jQuery('body').on('click','#<?php echo CHtml::encode($model->_id);?>',function(){
+                        if(confirm('Are you sure you want to delete this item?')) 
+                        {jQuery.yii.submitForm(this,'/backend/event/delete/id/<?php echo CHtml::encode($model->_id);?>',{'returnUrl':'/backend/index'});return false;} else return false;});
+                    });
+                    /*]]>*/
+                </script>
+            </a>
         </div>
     </div>
 
     <div class="row">
         <h3 class="pull-left">Videos</h3>
-        <h3 class="pull-right">Sort</h3>
+        <h3 class="pull-right">Sort by Name / Size / Date</h3>
         <hr/>
     </div>
 
