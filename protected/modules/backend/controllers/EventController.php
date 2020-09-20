@@ -55,9 +55,72 @@ class EventController extends Controller
 		$criteria->eventId = $id; /** Our find query */
 		$videoDataProvider->setCriteria($criteria);
 
+		$videoUploadModel=new VideoUpload;
+
+		$uploads_model = new Uploads;
+
+		if(isset($_POST['form-VideoUpload']))
+		{
+			$vidfiles = CUploadedFile::getInstancesByName('VideoUpload');
+			Yii::log("CUploadedFile vidfiles var:.........");
+			Yii::log( print_r( $vidfiles,true));//die;
+			
+			// This block will save the vid files to server
+			if(isset($vidfiles) && count($vidfiles)> 0) {
+				foreach ($vidfiles as $file) {		
+					Yii::log("File tempName:.........");
+					Yii::log($file->getTempName());
+					Yii::log("name ...........");
+					Yii::log(print_r($file->getName(),true));
+					Yii::log("size ...........");
+					Yii::log(print_r($file->getSize(),true));
+
+					$length = Video::model()->getLength($file->getTempName());
+
+					if ( $file->saveAs(Yii::app()->basePath .'/../vid/'.$file->getName()) ) {
+						Yii::app()->user->setFlash('videoSavedStatus','Video was successfully saved');
+						Yii::log("Saving Success............");
+
+						// Save Mongo Video model fields
+						$video = new Video;
+						$video->id = 'aaa';//$file->getName();
+						$video->file = $file->getName();
+						$video->label = 'will get set in model beforesave()'; // Set label to file name on 1st save
+						$video->path = 'zz';//$file->getName();
+						$video->eventId = (string)$id;
+						$video->fav = 0;
+						$video->downloaded = 0;
+						$video->size = $file->getSize();
+						$video->length = $length;
+
+						if($x = $video->save()){
+							Yii::log("Video model Saving Success............");
+						} else {
+							Yii::log("Video model Saving FAIL............");
+							Yii::log(print_r($video->getErrors()));
+						}
+
+
+
+					} else {
+						Yii::app()->user->setFlash('videoSavedStatus','Error in uploading');
+						Yii::log("in UpLoad error ....");
+						print_r($file->getError());
+					}
+				}
+			}
+
+		}
+
+		Yii::import("xupload.models.XUploadForm");
+		$xupload_form_model = new XUploadForm;
+		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
-			'videoDataProvider' => $videoDataProvider
+			'videoDataProvider' => $videoDataProvider,
+			'videoUploadModel' => $videoUploadModel,
+			'uploads_model'=>$uploads_model,
+            'xupload_form_model'=>$xupload_form_model,
 		));
 	}
 

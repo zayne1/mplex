@@ -18,6 +18,9 @@ return array(
 		'application.components.*',
 		'ext.mongo.*',
 	),
+	'aliases' => array(
+        'xupload' => 'ext.xupload',        
+    ),
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
@@ -67,6 +70,7 @@ return array(
                 '<module:admin>/index'    =>'admin/default/index',
                 '<module:admin>/<action>'=>'admin/default/<action>',
 
+                '<module:backend>/upload/'=>'backend/upload/', // id as word, eg uuid
 
 				'<module:backend>/'    =>'backend/default/index',
                 '<module:backend>/index'    =>'backend/default/index',
@@ -78,6 +82,7 @@ return array(
                 '<module:backend>/event/id/'=>'backend/event/view', // id as word, eg uuid
                 '<module:backend>/video/<action>'=>'backend/video/<action>',
                 '<module:backend>/video/id/'=>'backend/video/view', // id as word, eg uuid
+                // '<module:cms>/upload/'=>'cms/upload/',
                     
 
 

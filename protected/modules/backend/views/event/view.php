@@ -47,6 +47,41 @@
                 Edit Event
             </a>
 
+            <div class="btn-edit-event pull-left" style="margin-left: 30px;">
+                
+                <?php $form=$this->beginWidget('CActiveForm', array(
+                    'id'=>'event-form',
+                    'enableAjaxValidation'=>false,
+                    'htmlOptions' => array('enctype' => 'multipart/form-data'),
+                )); ?>
+                    <?php 
+                    echo $form->labelEx($model, 'vidfiles');
+                    echo '<label>After adding a file, click "Choose File" again to add another to the list</label>';
+                    $this->widget('CMultiFileUpload', array(
+                           'model'=>$videoUploadModel,
+                           // 'model'=>$model,
+                           'attribute'=>'vidfiles',
+                           'accept'=>'mp4|MP4',
+                           'options'=>array(
+                           //    'onFileSelect'=>'function(e, v, m){ alert("onFileSelect - "+v) }',
+                              // 'afterFileSelect'=>'function(e, v, m){ alert("afterFileSelect - "+v) }',
+                           //    'onFileAppend'=>'function(e, v, m){ alert("onFileAppend - "+v) }',
+                           //    'afterFileAppend'=>'function(e, v, m){ alert("afterFileAppend - "+v) }',
+                           //    'onFileRemove'=>'function(e, v, m){ alert("onFileRemove - "+v) }',
+                           //    'afterFileRemove'=>'function(e, v, m){ alert("afterFileRemove - "+v) }',
+                           ),
+                        ));
+                    ?>
+
+                    <div class="row buttons btn-save-event-row" style="margin-top: 50px;">
+                        <?php echo CHtml::submitButton($model->isNewRecord ? 'Upload Videos' : 'Upload Videos', array('name'=>'form-VideoUpload')); ?>
+                    </div>
+                <?php $this->endWidget(); ?>
+                
+            </div>
+
+            
+
             <a class="btn-edit-event pull-left" style="margin-left: 30px;" id="<?php echo CHtml::encode($model->_id); ?>" href="#">         
                 Delete event
 
@@ -64,6 +99,54 @@
                 </script>
             </a>
         </div>
+    </div>
+    <div class="row">
+        <h1>xupload test</h1>
+        <div class="form">
+            <!--<div>Header</div>-->
+            <?php $form=$this->beginWidget('CActiveForm', array(
+                'id'=>'form_gallery_data',
+                
+                // Client side validation
+                'enableClientValidation'=>true,
+            'clientOptions'=>array(
+                'validateOnSubmit'=>true,
+            ),
+                'htmlOptions' => array('enctype' => 'multipart/form-data'),
+            )); ?>
+
+                
+            
+            
+                <div class="row">
+                    <?php echo $form->labelEx($uploads_model,'gallery'); ?>
+                    <?php
+                    $this->widget( 'xupload.XUpload', array(
+                        'url' => Yii::app()->createUrl( "/backend/upload"),
+                        //our XUploadForm
+                        'model' => $xupload_form_model,
+                        //We set this for the widget to be able to target our own form
+                        'htmlOptions' => array('id'=>'form_gallery_data'),
+                        'attribute' => 'file',
+                        'multiple' => true,
+                        //Note that we are using a custom view for our widget
+                        //Thats becase the default widget includes the 'form' 
+                        //which we don't want here
+        //                'formView' => 'application.views.gallery._form',
+                        )    
+                    );
+                    ?>
+                    
+                    <?php //echo CHtml::submitButton($uploads_model->isNewRecord ? 'Create' : 'Save'); ?>
+                    <button type="submit">Submit</button>
+                    
+                </div>
+
+                        
+
+            
+        <?php $this->endWidget(); ?>
+        </div>  
     </div>
 
     <div class="row">
