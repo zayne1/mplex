@@ -18,7 +18,7 @@ But the layout needs to be a certain way, so in code I have them in the wrong or
     <div>
         <div>
             <h3 class="pull-left">All Events</h3>
-            <h3 class="pull-right">Sort</h3>
+            <h3 class="pull-right">Sort by Name / Date</h3>
             <hr/>
         </div>
 
@@ -36,7 +36,7 @@ But the layout needs to be a certain way, so in code I have them in the wrong or
     <div>
         <div>
             <h3 class="pull-left">All Organizations</h3>
-            <h3 class="pull-right">Sort</h3>
+            <h3 class="pull-right">Sort by Name / Type</h3>
             <hr/>
         </div>
             <?php $this->widget('zii.widgets.CListView', array(

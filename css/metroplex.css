@@ -76,13 +76,18 @@ body
     padding-bottom: 40px;
     float: left;
     width: 100%;
+    padding-top: 110px;
 }
 .backend-index h2 {    
     color: #fff;
     font-size: 29px;
     line-height: 24px;
 }
-.backend-index input[type="submit"] {
+.backend-index #login-form 
+{
+    margin-bottom: 200px;
+}
+.backend-index #login-form input[type="submit"] {
     color: white;
     background: #0d4779;
     border-radius: 5px;
@@ -90,9 +95,10 @@ body
     padding-left: 20px;
     padding-right: 20px;
 }
-.backend-index #login-form 
-{
-    margin-bottom: 200px;
+
+.backend-index #login-form #LoginForm_password,
+.backend-index #login-form #LoginForm_username {
+    width: 269px;
 }
 .main-content
 {
@@ -293,20 +299,35 @@ video { background: #000; }
 .bottom-spacer {clear:both; width:100%;margin-bottom:30px;margin-top:30px;padding-bottom: 30px; padding-top:30px;}
 
 @media (min-width: 720px) {
+    
+    body#site-login {
+        background: #0273c3;
+    }
+    body#site-login h2 {
+        text-transform: uppercase;
+    }
+    .header 
+    {
+        border-bottom: 5px solid #eebb79;
+    }
 
     .menu-top 
     {
         position: initial; /* Show the top menu in it's initial setting in the markup, ie on top */
         width: auto;
-        border-top: 5px solid #eebb79;
     }
     .page-name {font-size: 26px;}
     .menu-top .menu-top-container { width: 60%;}
 
     .main-content 
     {
-    padding-left: 10px;
-    padding-right: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .backend-index .home-icon {
+        max-width: 133px;
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
     
     a.organization-img-container { display:block;float: left;margin-right: 10px;width: 147px;}

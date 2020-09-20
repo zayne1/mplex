@@ -58,23 +58,23 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
     <div class="header">
         <hr/>
         <!-- <a href="index.php"> -->
-        <a href="<?php echo Yii::app()->createUrl(' '); ?>">
-            <?php 
-            if ( $backend ) { ?>
-            <img class="home-icon-backend" src="<?php echo Yii::app()->request->baseUrl; ?>/images/icon-home-backend.png
-            ">
-            <?php 
-            } else { ?>
-            <img class="home-icon" src="<?php echo Yii::app()->request->baseUrl; ?>/images/icon-home-frontend.png">
-            <?php 
-            } ?>
+        
+        <?php 
+        if ( $backend ) { ?>
+        <a href="<?php echo Yii::app()->createUrl('backend/index'); ?>">
+            <img class="home-icon-backend" src="<?php echo Yii::app()->request->baseUrl; ?>/images/icon-home-backend.png">
         </a>
+        <?php 
+        } else { ?>
+        <a href="<?php echo Yii::app()->createUrl(' '); ?>">
+            <img class="home-icon" src="<?php echo Yii::app()->request->baseUrl; ?>/images/icon-home-frontend.png">
+        </a>
+        <?php 
+        } ?>
         <?php
         if ( $backend ) {
         ?>
             <a href="<?php echo Yii::app()->createUrl('backend/index'); ?>" class="dash-header">Dashboard</div>
-
-            <a href="<?php echo Yii::app()->createUrl('backend/index'); ?>" class="backend btn-dashboard-home">Dashboard home</a>
             <a href="<?php echo Yii::app()->createUrl('backend/organization/create'); ?>" class="backend btn-new-org">New Org</a>
             <a href="<?php echo Yii::app()->createUrl('backend/event/create'); ?>" class="backend btn-new-event">New Event</a>
         <?php
