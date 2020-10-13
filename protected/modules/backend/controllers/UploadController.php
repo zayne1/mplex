@@ -10,8 +10,8 @@ class UploadController extends Controller
     {
         Yii::import("xupload.models.XUploadForm");
         //    Here we define the paths where the files will be stored temporarily
-        $path = realpath(Yii::app()->getBasePath()."/../images/uploads/tmp/")."/";
-        $publicPath = Yii::app()->getBaseUrl()."/images/uploads/tmp/";
+        $path = realpath(Yii::app()->getBasePath()."/../videos/uploads/tmp/")."/";
+        $publicPath = Yii::app()->getBaseUrl()."/videos/uploads/tmp/";
 
         //This is for IE which doens't handle 'Content-type: application/json' correctly
         header('Vary: Accept' );
@@ -54,12 +54,12 @@ class UploadController extends Controller
 
 
                     //Now we need to save this path to the user's session
-                    if ( Yii::app()->user->hasState('images') ) {
-                        $userImages = Yii::app()->user->getState('images');
+                    if ( Yii::app()->user->hasState('files') ) {
+                        $userFiles = Yii::app()->user->getState('files');
                     } else {
-                        $userImages = array();
+                        $userFiles = array();
                     }
-                     $userImages[] = array(
+                     $userFiles[] = array(
                         "path" => $path.$filename,
                         //the same file or a thumb version that you generated
                         "thumb" => $path.$filename,
@@ -68,7 +68,7 @@ class UploadController extends Controller
                         'mime' => $model->mime_type,
                         'name' => $model->name,
                     );
-                    Yii::app()->user->setState('images', $userImages);
+                    Yii::app()->user->setState('files', $userFiles);
 
                     //Now we need to tell our widget that the upload was succesfull
                     //We do so, using the json structure defined in
@@ -86,6 +86,28 @@ class UploadController extends Controller
                             )),
                             "delete_type" => "POST"
                         ) ) );
+                        
+                        // setup for Model saving
+                        $video = new Video;
+                        $video->id = 'aaa';//$file->getName();
+                        // $video->file = $model->file->getName();
+                        $video->file = $filename;
+                        $video->label = $model->file->getName();
+                        $video->path = $path;//$file->getName();
+                        // $video->eventId = (string)$id;
+                        $video->eventId = Yii::app()->user->getState('eventIdForCurUpload');
+                        $video->fav = 0;
+                        $video->downloaded = 0;
+                        $video->size = $model->file->getSize();
+                        $video->length = Video::model()->getLength($path.$filename);
+
+                        if($x = $video->save()){
+                            Yii::log("Video model Saving Success............");
+                        } else {
+                            Yii::log("Video model Saving FAIL............");
+                            Yii::log(print_r($video->getErrors()));
+                        }
+
                 } else {
                     //If the upload failed for some reason we log some data and let the widget know
                     echo json_encode(array(

@@ -1,20 +1,27 @@
-db.org.insert({
+/*db.orgtest.insert({
 	"_id":ObjectId(),
 	"name":"org1",
+	"logo":"org1.png",
 	"event": [
 				{
 					"_id":ObjectId(),
+					"orgId":"",
 					"name": "eva1",
+					"logo":"eventlogo1",
 					"pass": "passa1",
 					"video": [
 								{
 								"_id":ObjectId(),
+								"eventId":"",
 								"path": "/patha1",
+								"file": "file1",
 								"fav":0
 								},
 								{
 								"_id":ObjectId(),
+								"eventId":"",
 								"path": "/patha2",
+								"file": "file1",
 								"fav":0
 								},
 					]
@@ -22,26 +29,106 @@ db.org.insert({
 	]
 })
 
-db.org.insert({
+db.orgtest.insert({
 	"_id":ObjectId(),
 	"name":"org2",
+	"logo":"org2.png",
 	"event": [
 				{
 					"_id":ObjectId(),
+					"orgId":"",
 					"name": "evb1",
+					"logo":"eventlogo1",
 					"pass": "passb1",
 					"video": [
 								{
 								"_id":ObjectId(),
+								"eventId":"",
 								"path": "/pathb1",
+								"file": "file1",
 								"fav":0
 								},
 								{
 								"_id":ObjectId(),
+								"eventId":"",
 								"path": "/pathb2",
+								"file": "file1",
 								"fav":0
 								},
 					]
 				}
 	]
 })
+------------------------*/
+
+db.org.insert([
+	{
+		"_id":ObjectId(),
+		"name":"org1",
+		"logo":"org1.png",
+	},
+	{
+		"_id":ObjectId(),
+		"name":"org2",
+		"logo":"org2.png",
+	}
+])
+
+
+db.event.insert([
+	{
+		"_id":ObjectId(),
+		"orgId":"",
+		"name": "evb1",
+		"logo":"event1.png",
+		"pass": "passb1",
+	},
+	{
+		"_id":ObjectId(),
+		"orgId":"",
+		"name": "eva1",
+		"logo":"event2.jpg",
+		"pass": "passa1",
+	},
+		{
+		"_id":ObjectId(),
+		"orgId":"",
+		"name": "evac",
+		"logo":"event3.jpg",
+		"pass": "ev3pass",
+	}
+])
+db.video.insert([
+	{
+		"_id":ObjectId(),
+		"eventId":"",
+		"path": "/pathb1",
+		"file": "Charles1.mp4",
+		"fav":0,
+		"downloaded":0,
+	},
+	{
+		"_id":ObjectId(),
+		"eventId":"",
+		"path": "/pathb2",
+		"file": "Charles2.mp4",
+		"fav":0,
+		"downloaded":0,
+	},
+		{
+		"_id":ObjectId(),
+		"eventId":"",
+		"path": "/patha1",
+		"file": "Charles3.mp4",
+		"fav":0,
+		"downloaded":0,
+	},
+	{
+		"_id":ObjectId(),
+		"eventId":"",
+		"path": "/patha2",
+		"file": "Charles4.mp4",
+		"fav":0,
+		"downloaded":0,
+	},
+])

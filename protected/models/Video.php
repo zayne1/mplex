@@ -20,11 +20,14 @@ class Video extends EMongoDocument
     public function beforeSave() {
         if ( $this->getIsNewRecord() ) {
 
-            $this->label = $this->file; // set to file name initiallly
+            // $this->label = $this->file; // set to file name initiallly
             $this->label = substr($this->label, 0, -4); // remove file extension
             $this->date = date("Y-m-d", time());
             $this->size = $this->_formatBytes($this->size);        
         }
+
+        $this->moveFiles();
+
         return parent::beforeSave();
     }
 
@@ -267,4 +270,34 @@ class Video extends EMongoDocument
         return $arr[0];
     }
 
+    /*
+    Final work before saving record
+    */
+    public function moveFiles()
+    {
+        
+        //Resolve the final path for our files
+        $finalPath = Yii::app()->getBasePath()."/../videos/uploads/{$this->eventId}/";
+        //Create the folder and give permissions if it doesnt exists
+        if ( !is_dir($finalPath) ) {
+            mkdir($finalPath);
+            chmod($finalPath, 0777);
+        }
+
+        //Now lets create the corresponding models and move the files
+        
+        if ( is_file($this->path.$this->file) ) {
+            if ( rename($this->path.$this->file, $finalPath.$this->file) ) {
+                chmod($finalPath.$this->file, 0777);
+
+                $this->path = $finalPath; // Just setting the final path for the save that comes later
+            }
+        } else {
+            //You can also throw an execption here to rollback the transaction
+            Yii::log($this->path.$this->file ." is not a file", CLogger::LEVEL_WARNING);
+        }
+        
+        //Clear the user's session
+        Yii::app()->user->setState('files', null);
+    }
 }

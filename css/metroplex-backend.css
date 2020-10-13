@@ -201,6 +201,7 @@ a.btn-edit-event {
 .layout-col-2 #content .pg-event-view .video-count { width: 30%;background: #fff; height: 30px;color: #000;text-align: center; }
 .layout-col-2 #content .pg-event-view .vid-row-item { color: #000; }
 .layout-col-2 #content .pg-event-view .vid-row-item a { color: #000; text-decoration: none;}
+.layout-col-2 #content .pg-event-view
 
 .btn-save-org-row {
     float: right;
@@ -218,5 +219,6 @@ a.btn-edit-event {
     background: #454447;
     color: #fff;
 }
+#fileupload { display: none; }
 
 footer pre { background: #004576; color: #fff; font-size: 17px;}

@@ -41,44 +41,18 @@
                 <?php echo $videoDataProvider->calculateTotalItemCount();?> Videos
             </div>
         </div>
+        
         <div class="row">
+            <a class="btn-edit-event js-btn-upload-show pull-left" style="margin-left: 30px;background: #454447;color:#fff;" href="#">
+                Upload Videos
+            </a>
+
             <a class="btn-edit-event pull-left" style="margin-left: 30px;" 
                 href="<?php echo Yii::app()->createUrl('backend/event/update/id/' . CHtml::encode($model->_id)); ?>">
                 Edit Event
             </a>
-
-            <div class="btn-edit-event pull-left" style="margin-left: 30px;">
-                
-                <?php $form=$this->beginWidget('CActiveForm', array(
-                    'id'=>'event-form',
-                    'enableAjaxValidation'=>false,
-                    'htmlOptions' => array('enctype' => 'multipart/form-data'),
-                )); ?>
-                    <?php 
-                    echo $form->labelEx($model, 'vidfiles');
-                    echo '<label>After adding a file, click "Choose File" again to add another to the list</label>';
-                    $this->widget('CMultiFileUpload', array(
-                           'model'=>$videoUploadModel,
-                           // 'model'=>$model,
-                           'attribute'=>'vidfiles',
-                           'accept'=>'mp4|MP4',
-                           'options'=>array(
-                           //    'onFileSelect'=>'function(e, v, m){ alert("onFileSelect - "+v) }',
-                              // 'afterFileSelect'=>'function(e, v, m){ alert("afterFileSelect - "+v) }',
-                           //    'onFileAppend'=>'function(e, v, m){ alert("onFileAppend - "+v) }',
-                           //    'afterFileAppend'=>'function(e, v, m){ alert("afterFileAppend - "+v) }',
-                           //    'onFileRemove'=>'function(e, v, m){ alert("onFileRemove - "+v) }',
-                           //    'afterFileRemove'=>'function(e, v, m){ alert("afterFileRemove - "+v) }',
-                           ),
-                        ));
-                    ?>
-
-                    <div class="row buttons btn-save-event-row" style="margin-top: 50px;">
-                        <?php echo CHtml::submitButton($model->isNewRecord ? 'Upload Videos' : 'Upload Videos', array('name'=>'form-VideoUpload')); ?>
-                    </div>
-                <?php $this->endWidget(); ?>
-                
-            </div>
+        
+            
 
             
 
@@ -101,11 +75,10 @@
         </div>
     </div>
     <div class="row">
-        <h1>xupload test</h1>
         <div class="form">
             <!--<div>Header</div>-->
             <?php $form=$this->beginWidget('CActiveForm', array(
-                'id'=>'form_gallery_data',
+                'id'=>'fileupload',
                 
                 // Client side validation
                 'enableClientValidation'=>true,
@@ -119,14 +92,14 @@
             
             
                 <div class="row">
-                    <?php echo $form->labelEx($uploads_model,'gallery'); ?>
+                    <?php echo $form->labelEx($uploads_model,'fileupload'); ?>
                     <?php
                     $this->widget( 'xupload.XUpload', array(
                         'url' => Yii::app()->createUrl( "/backend/upload"),
                         //our XUploadForm
                         'model' => $xupload_form_model,
                         //We set this for the widget to be able to target our own form
-                        'htmlOptions' => array('id'=>'form_gallery_data'),
+                        'htmlOptions' => array('id'=>'fileupload'),
                         'attribute' => 'file',
                         'multiple' => true,
                         //Note that we are using a custom view for our widget
@@ -136,9 +109,6 @@
                         )    
                     );
                     ?>
-                    
-                    <?php //echo CHtml::submitButton($uploads_model->isNewRecord ? 'Create' : 'Save'); ?>
-                    <button type="submit">Submit</button>
                     
                 </div>
 
@@ -166,3 +136,14 @@
     )); ?>
     
 </div>
+
+<script type="text/javascript">
+    /*<![CDATA[*/
+    jQuery(function($) {
+        $('.js-btn-upload-show').click(function (e) {
+            e.preventDefault();
+            $('#fileupload').toggle('slow');
+        }) 
+    });
+    /*]]>*/
+</script>

@@ -112,6 +112,10 @@ class EventController extends Controller
 
 		}
 
+		//Clear the user's session
+        Yii::app()->user->setState('files', null);
+        Yii::app()->user->setState('eventIdForCurUpload', $id);
+
 		Yii::import("xupload.models.XUploadForm");
 		$xupload_form_model = new XUploadForm;
 		
