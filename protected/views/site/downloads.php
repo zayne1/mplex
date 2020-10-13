@@ -37,9 +37,10 @@
     
     
     <script type="text/javascript">
-      $(document).on('click', '#select-all-vid', function() {
-        $('input.vid-dl-item-checkbox').prop('checked',true);
-      });
+        $('#select-all-vid').css('cursor','pointer'); 
+        $(document).on('click', '#select-all-vid', function() {
+            $('input.vid-dl-item-checkbox').prop('checked',true);
+        });
     </script>
     
 </div>
