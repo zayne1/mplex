@@ -15,7 +15,6 @@
     <?php echo $this->renderPartial('_form', 
         array(  'model'=>$model,
                 'OrganizationList' => $OrganizationList,
-                'videoUploadModel'=>$videoUploadModel,
         )
     ); ?>
 </div>

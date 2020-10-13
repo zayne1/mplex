@@ -92,7 +92,9 @@
             
             
                 <div class="row">
-                    <?php echo $form->labelEx($uploads_model,'fileupload'); ?>
+                    <div style="margin-left: 30px;margin-top: 10px;margin-bottom: 10px;">
+                        Add files, then Upload them, then refresh page to see updated list.
+                    </div>
                     <?php
                     $this->widget( 'xupload.XUpload', array(
                         'url' => Yii::app()->createUrl( "/backend/upload"),

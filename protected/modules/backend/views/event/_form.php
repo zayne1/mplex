@@ -83,26 +83,6 @@
 		
 		<br><br>
 		
-		<div class="Xrow pull-left">
-		<?php 
-		echo $form->labelEx($model, 'vidfiles');
-		echo '<label>After adding a file, click "Choose File" again to add another to the list</label>';
-		$this->widget('CMultiFileUpload', array(
-		       'model'=>$videoUploadModel,
-		       // 'model'=>$model,
-		       'attribute'=>'vidfiles',
-		       'accept'=>'mp4|MP4',
-		       'options'=>array(
-		       //    'onFileSelect'=>'function(e, v, m){ alert("onFileSelect - "+v) }',
-		          // 'afterFileSelect'=>'function(e, v, m){ alert("afterFileSelect - "+v) }',
-		       //    'onFileAppend'=>'function(e, v, m){ alert("onFileAppend - "+v) }',
-		       //    'afterFileAppend'=>'function(e, v, m){ alert("afterFileAppend - "+v) }',
-		       //    'onFileRemove'=>'function(e, v, m){ alert("onFileRemove - "+v) }',
-		       //    'afterFileRemove'=>'function(e, v, m){ alert("afterFileRemove - "+v) }',
-		       ),
-		    ));
-		?>
-		</div>
 	<!-- <br>
 	<br>
 	<br>

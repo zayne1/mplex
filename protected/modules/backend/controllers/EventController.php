@@ -136,7 +136,6 @@ class EventController extends Controller
 	{
 		$model=new Event;
 		$OrganizationList = Organization::model()->getAllOrgs();
-		$videoUploadModel=new VideoUpload;
 		
 		// Convert MongoObject _id's in the List to strings for the form dropdown
 		foreach ($OrganizationList as $key => $org) {
@@ -180,56 +179,7 @@ class EventController extends Controller
 			$_POST['Event']['logo'] = $model->logo->getName(); // Force set the file name
 			$model->attributes=$_POST['Event'];
 			if($model->save()) {
-				// we're doing the saving of the video files & vid model after the Event save() as we need the new Event id 
-				$vidfiles = CUploadedFile::getInstancesByName('VideoUpload');
-				Yii::log("CUploadedFile vidfiles var:.........");
-				Yii::log( print_r( $vidfiles,true));//die;
-				
-				// This block will save the vid files to server
-				if(isset($vidfiles) && count($vidfiles)> 0) {
-					foreach ($vidfiles as $file) {		
-						Yii::log("File tempName:.........");
-						Yii::log($file->getTempName());
-						Yii::log("name ...........");
-						Yii::log(print_r($file->getName(),true));
-						Yii::log("size ...........");
-						Yii::log(print_r($file->getSize(),true));
-
-						$length = Video::model()->getLength($file->getTempName());
-
-						if ( $file->saveAs(Yii::app()->basePath .'/../vid/'.$file->getName()) ) {
-							Yii::app()->user->setFlash('videoSavedStatus','Video was successfully saved');
-							Yii::log("Saving Success............");
-
-							// Save Mongo Video model fields
-							$video = new Video;
-							$video->id = 'aaa';//$file->getName();
-							$video->file = $file->getName();
-							$video->label = 'will get set in model beforesave()'; // Set label to file name on 1st save
-							$video->path = 'zz';//$file->getName();
-							$video->eventId = (string)$model->_id; // comes from the Event model that was just saved
-							$video->fav = 0;
-							$video->downloaded = 0;
-							$video->size = $file->getSize();
-							$video->length = $length;
-
-							if($x = $video->save()){
-								Yii::log("Video model Saving Success............");
-							} else {
-								Yii::log("Video model Saving FAIL............");
-								Yii::log(print_r($video->getErrors()));
-							}
-
-
-
-						} else {
-							Yii::app()->user->setFlash('videoSavedStatus','Error in uploading');
-							Yii::log("in UpLoad error ....");
-							print_r($file->getError());
-						}
-					}
-				}
-
+				// $this->redirect(array('view','id'=>$model->_id));
 				$this->redirect(array('view','id'=>$model->_id));
 			}
 		}
@@ -237,7 +187,6 @@ class EventController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 			'OrganizationList' => $OrganizationList,
-			'videoUploadModel'=>$videoUploadModel,
 		));
 	}
 
