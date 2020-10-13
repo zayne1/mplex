@@ -36,6 +36,15 @@ foreach ($EventList as $event) {
 	    <div class="modal-footer">
 	    </div>
 	</div>
+	<script type="text/javascript">
+		/*<![CDATA[*/
+	    jQuery(function($) {
+			$('#<?php echo 'myModal'.$count; ?>').on('shown', function () {
+				$('#<?php echo 'myModal'.$count; ?> #LoginForm_password').focus();
+			})
+	    });
+	    /*]]>*/
+    </script>
 <?php
 $count++;
 }
