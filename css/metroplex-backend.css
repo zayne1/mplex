@@ -80,6 +80,7 @@ img.logo-user-profile {
     color: #000;
 }
 .list-view .items {margin-bottom: 60px; float: left; width: 100%;}
+.list-view .items img.event { margin-left: 10%; margin-bottom: 10%; margin-top: 10%; width: 80%;}
 
 a.btn-edit-org {
     display: block;
