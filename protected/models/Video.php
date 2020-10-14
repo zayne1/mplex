@@ -11,6 +11,7 @@ class Video extends EMongoDocument
     public $length;
     public $size;
     public $date;
+    public $thumb;
 
     public function init()
     {
@@ -22,8 +23,9 @@ class Video extends EMongoDocument
 
             // $this->label = $this->file; // set to file name initiallly
             $this->label = substr($this->label, 0, -4); // remove file extension
-            $this->date = date("Y-m-d", time());
             $this->size = $this->_formatBytes($this->size);        
+            $this->date = date("Y-m-d", time());
+            $this->thumb = 'videodefaultthumb.png';
         }
 
         $this->moveFiles();
@@ -71,6 +73,7 @@ class Video extends EMongoDocument
             'length' => 'Length',
             'size' => 'Size',
             'date' => 'Date',
+            'thumb' => 'Thumb',
         );
     }
 
@@ -89,6 +92,7 @@ class Video extends EMongoDocument
             'length',
             'size',
             'date',
+            'thumb',
         );
     }
 

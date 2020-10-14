@@ -135,6 +135,7 @@
             'size',
             'date',
         ),
+        'viewData'=>array('video'=>$video),
     )); ?>
     
 </div>

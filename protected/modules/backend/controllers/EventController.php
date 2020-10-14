@@ -58,6 +58,7 @@ class EventController extends Controller
 		$videoUploadModel=new VideoUpload;
 
 		$uploads_model = new Uploads;
+		$video = new Video;
 
 		if(isset($_POST['form-VideoUpload']))
 		{
@@ -112,6 +113,53 @@ class EventController extends Controller
 
 		}
 
+		if(isset($_POST['Video']))
+		{
+			$video = Video::model()->findByPk(new MongoID($_POST['Video']['videoId']));
+			$thumbnailFileName = '';
+		
+			unset($_POST['Video']['videoId']); // remove this key as it is not in the db & will therefore cause a saving fail
+		
+			// This block will save the thumb image to server
+	        if($video->thumb=CUploadedFile::getInstance($video,'thumb')) {
+	        	
+	        	$thumbnailFileName = $video->_id .'.'. $video->thumb->getExtensionName();
+
+	            Yii::log("File tempName:.........");
+	            Yii::log($video->thumb->getTempName());
+	            Yii::log(print_r($video->thumb,true));
+
+	            // if($video->validate()) {
+	                Yii::log("validated ...........");
+	                Yii::log("name ...........");
+	                Yii::log(print_r($video->thumb->getName(),true));
+	                Yii::log("size ...........");
+	                Yii::log(print_r($video->thumb->getSize(),true));
+
+	                if($video->thumb->saveAs(Yii::app()->basePath .'/../images/videothumbs/'.$thumbnailFileName )) {
+	                    Yii::app()->user->setFlash('imageSavedStatus','image was successfully saved');
+	                    Yii::log("Saving Success............");
+
+	                } else {
+	                    Yii::app()->user->setFlash('imageSavedStatus','Error in uploading');
+	                    Yii::log("in UpLoad error ....");
+	                    print_r($video->thumb->getError());
+	                }
+	        }
+	        if ($video->thumb){
+	        	Yii::log('_________vid thumb1');
+	        }
+
+	        $video->thumb=$thumbnailFileName;
+
+			if($video->update(array('thumb'),true)) {
+				// $this->redirect(array('view','id'=>$video->_id));
+				Yii::app()->request->redirect( Yii::app()->request->getUrlReferrer() );
+			} else {
+				Yii::log('_________Error saving video thumb');
+			}
+		}
+
 		//Clear the user's session
         Yii::app()->user->setState('files', null);
         Yii::app()->user->setState('eventIdForCurUpload', $id);
@@ -121,6 +169,7 @@ class EventController extends Controller
 		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'video'=> $video,
 			'videoDataProvider' => $videoDataProvider,
 			'videoUploadModel' => $videoUploadModel,
 			'uploads_model'=>$uploads_model,

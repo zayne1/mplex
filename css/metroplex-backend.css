@@ -198,10 +198,12 @@ a.btn-edit-event {
 .layout-col-2 #content .pg-event-view table.detail-view tr.odd,
 .layout-col-2 #content .pg-event-view table.detail-view tr.even { background: #c21238;}
 .layout-col-2 #content .pg-event-view table.detail-view { width: 70%; float: left;}
-.layout-col-2 #content .pg-event-view .video-thumb { width: 100px; margin-right: 20px;}
+.layout-col-2 #content .pg-event-view .video-thumb { width: 100px; height:57px; margin-right: 20px;}
 .layout-col-2 #content .pg-event-view .video-count { width: 30%;background: #fff; height: 30px;color: #000;text-align: center; }
 .layout-col-2 #content .pg-event-view .vid-row-item { color: #000; }
 .layout-col-2 #content .pg-event-view .vid-row-item a { color: #000; text-decoration: none;}
+.layout-col-2 #content .pg-event-view .vid-row-item input.Video-file-input { display: none;}
+.layout-col-2 #content .pg-event-view .vid-row-item .vid-thumb-save-submit { display: none;}
 .layout-col-2 #content .pg-event-view
 
 .btn-save-org-row {
