@@ -2,7 +2,7 @@
     <?php echo $introText; ?>
 </div>
 <div class="main-content">
-    <h3><?php echo $introSubText; ?>XX1</h3>
+    <h3><?php echo $introSubText; ?></h3>
 <?php 
 $count=1;
 foreach ($EventList as $event) {
@@ -22,7 +22,7 @@ foreach ($EventList as $event) {
 	        <h3 id="myModalLabel">Sign in (password: <?php echo $event->pass;?>)</h3>
 	    </div>
 	    <div class="modal-body">
-	        <h3>Recital 2017 Wednesday</h3>
+	        <h3><?php echo $event->name; ?></h3>
 
 	        <form id="login-form" action="/event?eventId=<?php echo $event->_id; ?>" method="post">
 		        <label for="LoginForm_password" class="required">Password <span class="required">*</span></label>					

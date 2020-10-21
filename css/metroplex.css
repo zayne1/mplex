@@ -83,6 +83,7 @@ body
     font-size: 29px;
     line-height: 24px;
 }
+#site-downloads h3 { font-size: 19px; }
 .backend-index #login-form 
 {
     margin-bottom: 200px;
@@ -145,6 +146,10 @@ a.organization-img-container .organization {width: 100%;}
 {
     width:50%;
     margin: 0px auto;
+}
+.vid-dl-container #downloads-form {
+    max-height: 261px;
+    overflow-y: scroll;
 }
 .modal
 {
@@ -269,7 +274,7 @@ video.myVideo {
     border: 1px solid gray;
     padding: 5px;
     float: left;
-    width: 100%;
+    width: 95%;
     margin-top: 5px;
 }
 .vid-dl-container .vid-dl-item img {
@@ -289,12 +294,20 @@ video.myVideo {
 .vid-dl-container .vid-dl-item .vid-info-block span{
     font-size: 15px;
 }
-.vid-dl-container input.download-submit {
-    margin-left: 25%;
+.vid-dl-container .download-submit-container {
+    position: fixed;
+    bottom: 71px;
+    width: 82%;
+    text-align: center;
+    background: #464547;
+}
+.vid-dl-container .download-submit-container input.download-submit {
+    /*margin-left: 25%;*/
     margin-top: 20px;
     font-size: 17px;
     padding: 5px;
     width: 169px;
+    background: silver;
 }
 .faq-divider {
     clear: both;
@@ -317,6 +330,7 @@ video.myVideo {
     body#site-login h2 {
         text-transform: uppercase;
     }
+    #site-downloads h3 { font-size: 26px; }
     .header 
     {
         border-bottom: 5px solid #eebb79;
@@ -382,8 +396,15 @@ video.myVideo {
     .vid-dl-container {
         width: 60%;
     }
-    .vid-dl-container input.download-submit {
-        margin-left:40%;    
+    .vid-dl-container #downloads-form {
+        max-height: 461px;
+    }
+    .vid-dl-container .download-submit-container {
+        width: 55%;
+    }
+    .vid-dl-container .download-submit-container input.download-submit {
+        margin-left: 0px;
+        margin-top: 0px;
     }
     .bottom-spacer {margin:0px; padding:0px;}
 
@@ -399,5 +420,5 @@ video.myVideo {
         color: #000;
         font-size: 22px;
     }
-    */
+    
 }

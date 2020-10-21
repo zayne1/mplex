@@ -9,7 +9,10 @@
     <h3><?php echo $introSubText; ?></h3>
 
     <div class="vid-dl-container">
-        <div id="select-all-vid">Select all</div>
+        <div style="width:100%;height:24px;">
+            <div id="select-all-vid">Select all</div>
+        </div>
+        
         <form id="downloads-form" action="/downloads" method="post">
             <?php 
             $count=1;
@@ -29,7 +32,9 @@
             $count++;
             }
             ?>
-            <input type="submit" name="" value="Download" class="download-submit">
+            <div class="download-submit-container">
+                <input type="submit" name="" value="Download" class="download-submit">
+            </div>
         </form>
     </div>
 

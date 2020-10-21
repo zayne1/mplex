@@ -312,4 +312,14 @@ class SiteController extends Controller
             )
         );
 	}
+
+	/* Overriding base Controller getPageTitle to not show Module name:
+		it was showing <sitename> <page> <module>
+		but we want <sitename> <page>
+		*/
+	public function getPageTitle()
+	{
+		if($this->getAction()!==null && strcasecmp($this->getAction()->getId(),$this->defaultAction))
+			return $this->pageTitle=Yii::app()->name.' - '.ucfirst($this->getAction()->getId());
+	}
 }
