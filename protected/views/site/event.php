@@ -2,14 +2,14 @@
     <?php echo $introText; ?>
 </div>
 <div class="main-content">
-    <h3><?php echo $introSubText; ?></h3>
+    <h3><?php echo $introSubText; ?>XX1</h3>
 <?php 
 $count=1;
 foreach ($EventList as $event) {
 	$even_odd_class = ($count % 2 ? 'odd' : 'even');
 ?>
 	<div class="event-container <?php echo $even_odd_class;?> ">
-	    <a href="<?php echo '#myModal'.$count;?>" data-toggle="modal">
+	    <a href="<?php echo '#myModal'.$count;?>" data-toggle="modal" id="link-myModal1">
 	        <img src="<?php echo Yii::app()->request->baseUrl .'/images/'. $event->logo; ?>" class="event animate__animated animate__slideInLeft animate__fast">
 	        <?php echo $event->name; ?>
 	    </a>
@@ -39,6 +39,28 @@ foreach ($EventList as $event) {
 	<script type="text/javascript">
 		/*<![CDATA[*/
 	    jQuery(function($) {
+	    	
+			const fakeInput = document.createElement('input');
+
+			/*Iphone hack: To get autofocus (& therefore keyboard popup) working on iphone, we need to create a click event with some dummy fake input shit */
+			$('#link-<?php echo 'myModal'.$count; ?>').on('touchstart click', function () {	  
+				// create invisible dummy input to receive the focus first
+				fakeInput.setAttribute('type', 'text');
+				fakeInput.style.position = 'absolute';
+				fakeInput.style.opacity = 0;
+				fakeInput.style.height = 0;
+				fakeInput.style.fontSize = '16px'; // disable auto zoom
+
+				// you may need to append to another element depending on the browser's auto 
+				// zoom/scroll behavior
+				document.body.prepend(fakeInput);
+				fakeInput.focus();
+
+				// here we hand focus control to the actual target input
+  				$('#<?php echo 'myModal'.$count; ?> #LoginForm_password').focus();
+			})
+
+			// normal txt focus for web/android. Iphone hack is done in the above hacky block
 			$('#<?php echo 'myModal'.$count; ?>').on('shown', function () {
 				$('#<?php echo 'myModal'.$count; ?> #LoginForm_password').focus();
 			})
