@@ -30,7 +30,7 @@
                     'phone',
                     'email',
                     'website',
-                    'logo',
+                    // 'logo',
             	),
             )); ?>
 
@@ -67,10 +67,10 @@
         </div>
     </div>
 
-    <div class="row clearfix">
+    <div class="row clearfix info-header">
         <h3 class="pull-left">Events</h3>
-        <h3 class="pull-right">Sort by Name / Date</h3>
-        <hr/>
+        <!-- <h3 class="pull-right">Sort by Name / Date</h3> -->
+        <!-- <hr/> -->
     </div>
 
     <?php $this->widget('zii.widgets.CListView', array(

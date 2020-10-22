@@ -26,9 +26,9 @@
                     'name',
                     'date',
                     'location',
-                    'orgId',
+                    // 'orgId',
                     'type',
-                    'logo',
+                    // 'logo',
                     'pass',
             	),
             )); ?>
@@ -121,10 +121,10 @@
         </div>  
     </div>
 
-    <div class="row">
+    <div class="row clearfix info-header">
         <h3 class="pull-left">Videos</h3>
-        <h3 class="pull-right">Sort by Name / Size / Date</h3>
-        <hr/>
+        <!-- <h3 class="pull-right">Sort by Name / Size / Date</h3> -->
+        <!-- <hr/> -->
     </div>
 
     <?php $this->widget('zii.widgets.CListView', array(
