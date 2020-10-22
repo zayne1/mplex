@@ -11,9 +11,9 @@
 	<?php echo $form->errorSummary($model); ?>
 
 			<div class="row">
-			<?php echo $form->labelEx($model,'id'); ?>
-			<?php echo $form->textField($model,'id'); ?>
-			<?php echo $form->error($model,'id'); ?>
+			<?php //echo $form->labelEx($model,'id'); ?>
+			<?php //echo $form->textField($model,'id'); ?>
+			<?php //echo $form->error($model,'id'); ?>
 		</div>
 		<div class="row">
 			<?php echo $form->labelEx($model,'name'); ?>
@@ -45,6 +45,7 @@
 		</div>
 
 		<div class="row">
+			<label for="Event_orgId">Organization</label>
 			<?php echo $form->dropDownList($model , 'orgId', 
 				CHtml::listData($OrganizationList,'_id','name'),
 				array('empty' => 'Select Org')); 
@@ -52,9 +53,11 @@
 		 </div>
 
 		<div class="row">
+			<label for="Event_type">Event Type</label>
 			<?php echo $form->dropDownList($model , 'type', array(
 					'Music Concert'=>'Music Concert',
 					'Music Concert'=>'Music Concert',
+					'Dance Recital'=>'Dance Recital',
 					'Lecturer'=>'Lecturer',
 					'Theatre Production'=>'Theatre Production',
 					'Cheer Competition'=>'Cheer Competition',
@@ -67,7 +70,7 @@
 		 </div>
 
 		<div class="row">
-			<?php echo $form->labelEx($model,'pass'); ?>
+			<label for="Event_pass" class="required">Password <span class="required">*</span></label>
 			<?php echo $form->textField($model,'pass'); ?>
 			<?php echo $form->error($model,'pass'); ?>
 		</div>
