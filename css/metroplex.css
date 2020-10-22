@@ -330,6 +330,7 @@ video.myVideo {
     body#site-login h2 {
         text-transform: uppercase;
     }
+    #site-contactfaq .main-content { font-size: 17px; }
     #site-downloads h3 { font-size: 26px; }
     .header 
     {
