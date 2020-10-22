@@ -4,6 +4,12 @@ body
     /*background-color: #e0e0e0 !important;*/
     color: #000;
 }
+
+form input[type="text"],
+form select { 
+    color: #464547; 
+}
+
 .header {background-color: #0273c3 !important;}
 .header .home-icon-backend {
     float: left;
@@ -245,6 +251,7 @@ a.btn-edit-event {
     width: 150px !important;
     background: #014576;
     color: #fff;
+    margin-top: 20px;
 }
 .btn-save-event-row {
     float: right;

@@ -17,6 +17,7 @@
 		</div>
 
 		<div class="row">
+			<label for="Organization_co_type">Organization Type</label>
 			<?php echo $form->dropDownList($model , 'co_type', array(
 					'Dance Studio'=>'Dance Studio',
 					'Cheer Organization'=>'Cheer Organization',
@@ -64,15 +65,15 @@
 			<?php //echo $form->error($model,'orgId'); ?>
 		</div>
 
-
-<?php
-		// We don't set the db val with this, but rather we force it in the EventController's
-		// create action. Have a look there
-		echo $form->labelEx($model, 'logo');
-		echo $form->fileField($model, 'logo');
-		echo $form->error($model, 'logo');
-?>
-
+		<div class="row">
+			<?php
+			// We don't set the db val with this, but rather we force it in the EventController's
+			// create action. Have a look there
+			echo $form->labelEx($model, 'logo');
+			echo $form->fileField($model, 'logo');
+			echo $form->error($model, 'logo');
+			?>
+		</div>
 			<div class="row buttons btn-save-org-row">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Save Org' : 'Save Org'); ?>
 	</div>
