@@ -52,7 +52,8 @@ class EventController extends Controller
 	{
 		$videoDataProvider=new EMongoDocumentDataProvider('Video');
 		$criteria = new EMongoCriteria;
-		$criteria->eventId = $id; /** Our find query */
+		$criteria->eventId = $id;
+		$criteria->sort('label',EMongoCriteria::SORT_ASC);
 		$videoDataProvider->setCriteria($criteria);
 
 		$videoUploadModel=new VideoUpload;

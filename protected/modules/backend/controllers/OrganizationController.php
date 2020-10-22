@@ -52,7 +52,8 @@ class OrganizationController extends Controller
 	{
 		$eventDataProvider=new EMongoDocumentDataProvider('Event');
 		$criteria = new EMongoCriteria;
-		$criteria->orgId = $id; /** Our find query */
+		$criteria->orgId = $id;
+		$criteria->sort('name',EMongoCriteria::SORT_ASC);
 		$eventDataProvider->setCriteria($criteria);
 
 		$this->render('view',array(
