@@ -283,14 +283,13 @@ class SiteController extends Controller
 		$dlVidObjList = Video::model()->getMultipleVids($dlVidList);//print_r($favVidList);die;
 
 		
-
-		$zipname = 'enter_any_name_for_the_zipped_file.zip';
+		$zipname = md5(Yii::app()->user->id.microtime()) . '.zip'; // Give a random filename or the the files will keep being added to the exiting tmp zip file, making it larger & larger (will contain new + prev files)
 		$zip = new ZipArchive;
 
 		if ($zip->open($zipname, ZipArchive::CREATE) === TRUE) {
 			// $counter = 0;
 			foreach ($dlVidObjList as $vidObj) {
-			  $zip->addFile(getcwd() .'/vid/'. $vidObj->file, $vidObj->file);
+			  $zip->addFile(getcwd() .'/videos/uploads/'. $vidObj->eventId .'/'. $vidObj->file, $vidObj->file);
 			  // $zip->setCompressionIndex($counter, ZipArchive::CM_STORE);
 			  // $counter++;
 			}
