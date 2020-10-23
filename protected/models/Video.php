@@ -112,6 +112,7 @@ class Video extends EMongoDocument
         $criteria->eventId = $eventId; /** Our find query */
         // $criteria->addCond('event->name', '==', 'eva1');
         // $criteria->event->name('==', 'eva1');
+        $criteria->sort('label',EMongoCriteria::SORT_ASC); // do an initial sort using name field
         $criteria->limit(200);
 
         return Video::model()->findAll($criteria);

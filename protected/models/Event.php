@@ -158,6 +158,7 @@ class Event extends EMongoDocument
         $criteria->orgId = $orgId; /** Our find query */
         // $criteria->addCond('event->name', '==', 'eva1');
         // $criteria->event->name('==', 'eva1');
+        $criteria->sort('name',EMongoCriteria::SORT_ASC);
         $criteria->limit(200);
 
         return Event::model()->findAll($criteria);
