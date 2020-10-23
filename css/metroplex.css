@@ -351,7 +351,7 @@ video.myVideo {
         padding-right: 10px;
     }
     video.myVideo {
-        width: 300px;
+        width: 335px;
         height: 240px;
     }
     .backend-index .home-icon {
@@ -391,8 +391,8 @@ video.myVideo {
     
     .vid-container {
         width: 340px;
-        height: 280px;
-        margin:0px auto;
+        height: 331px;
+        margin-right: 10px;
     }
     .vid-dl-container {
         width: 60%;
