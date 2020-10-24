@@ -10,9 +10,13 @@
 
   <?php 
   foreach ($vidList as $vid) { 
+    $poster = '';
+    if ($vid->thumb)
+      $poster = Yii::app()->request->baseUrl .'/images/videothumbs/'. $vid->thumb;
+
   ?>
     <div class="vid-container">
-      <video onload="video.currentTime=sprungzeit" Xwidth="300" Xheight="240" src="<?php echo Yii::app()->request->baseUrl .'/videos/uploads/'. $vid->eventId . '/'. $vid->file; ?>" Xautobuffer Xautoplay controls class="myVideo">
+      <video onload="video.currentTime=sprungzeit" Xwidth="300" Xheight="240" src="<?php echo Yii::app()->request->baseUrl .'/videos/uploads/'. $vid->eventId . '/'. $vid->file; ?>" Xautobuffer Xautoplay controls class="myVideo" poster="<?php echo $poster;?>">
         <div class="video-fallback">
           <br>Sie benoetigen einen Browser, der HTML5 unterstuetzt.
         </div>
@@ -21,6 +25,8 @@
         <?php echo $vid->label; ?>
         <br>
         <span><?php echo $vid->size; ?></span>
+        <span>&nbsp; &nbsp; &nbsp;<?php echo $vid->length; ?></span>
+
       </div>
       <div class="vid-info-footer">
 
@@ -40,9 +46,14 @@
         <?php
         }
         ?>
+        
         <?php if ($vid->downloaded==1) {
         ?>
           <i class="icon-download-alt pull-left icon-2x muted icon-green" style="display: block;float: right;xclear: both;text-decoration: none;"></i>
+        <?php
+        } else {
+        ?>
+          <i class="icon-download-alt pull-left icon-2x muted" style="display: block;float: right;xclear: both;text-decoration: none;"></i>
         <?php
         }
         ?>
