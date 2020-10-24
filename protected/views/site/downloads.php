@@ -7,6 +7,7 @@
 </div>
 <div class="main-content">
     <h3><?php echo $introSubText; ?></h3>
+    <span class="visible-phone">For downloading large numbers of files, please visit www.metroplexstream.com using a PC or Laptop.</span>
 
     <div class="vid-dl-container">
         <div style="width:100%;height:24px;">
@@ -20,11 +21,12 @@
             ?>
 
                 <div class="vid-dl-item">
-                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/videothumb.png">
+                    <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/videothumbs/videodefaultthumb.png">
                     <div class="vid-info-block">
                         <?php echo $vid->label; ?>
                         <br>
                         <span><?php echo $vid->size; ?></span>
+                        <span>&nbsp; &nbsp; &nbsp;<?php echo $vid->length; ?></span>
                     </div>
                     <input class="vid-dl-item-checkbox" type="checkbox" name="<?php echo "VidDownloadForm[video" .$count. "]"; ?>" value="<?php echo $vid->_id;?>">
                 </div>
