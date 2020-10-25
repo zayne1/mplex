@@ -46,7 +46,11 @@
     <script type="text/javascript">
         $('#select-all-vid').css('cursor','pointer'); 
         $(document).on('click', '#select-all-vid', function() {
-            $('input.vid-dl-item-checkbox').prop('checked',true);
+            if( $("input.vid-dl-item-checkbox").is(':checked') === false){ 
+                $('input.vid-dl-item-checkbox').prop('checked',true);
+            } else if( $("input.vid-dl-item-checkbox").is(':checked') === true){
+                $('input.vid-dl-item-checkbox').prop('checked',false);
+            }
         });
     </script>
     
