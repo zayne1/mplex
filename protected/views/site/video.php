@@ -53,7 +53,16 @@
         <?php
         } else {
         ?>
-          <i class="icon-download-alt pull-left icon-2x muted" style="display: block;float: right;xclear: both;text-decoration: none;"></i>
+          
+          <form id="single-download-form" action="/downloads" method="post" style="display: block;float: right;">
+            <input type="hidden" name="VidDownloadForm[0]" value="<?php echo $vid->_id;?>">
+            <label for="vid-<?php echo $vid->_id;?>" XXid="<?php echo $vid->_id;?>">
+                <i class="icon-download-alt pull-left icon-2x muted" style="display: block;float: right;xclear: both;text-decoration: none;"></i>
+            </label>
+
+            <input id="vid-<?php echo $vid->_id;?>" type="submit" name="" value="Download" style="display: none;">
+          </form>
+          
         <?php
         }
         ?>
