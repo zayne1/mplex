@@ -121,7 +121,7 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
             count(Organization::model()->getAllOrgs()) ." Organizations       ".
             count(Event::model()->getAllEvents()). " Events       ".
             count(Video::model()->getAllVideos()). " Videos       " . 
-            Yii::app()->user->getState('getFreeSpace') . " Of Storage" .
+            Yii::app()->user->getState('getDirSizeVideo') . " Of video storage used" .
             "</pre>";
         } else {
         ?>

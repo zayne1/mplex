@@ -302,7 +302,26 @@ class Video extends EMongoDocument
             Yii::log($this->path.$this->file ." is not a file", CLogger::LEVEL_WARNING);
         }
         
+        Yii::app()->user->setState('getDirSizeVideo',Video::model()->getDirSize( Yii::app()->getBasePath()."/../videos" ));
+
         //Clear the user's session
         Yii::app()->user->setState('files', null);
+    }
+
+    public static function getDirSize($directory) {
+        $arrTrimmed = array();
+
+        exec('du -sh '.$directory, $arr);
+        $arrTrimmed[] = $arr[0];
+
+        $infoLine = $arr[0];
+        $infoLineWithSpacesReduced = preg_replace('!\s+!', ' ', $infoLine); // reduce multiple spaces to single space
+        $wordArr = explode(' ', $infoLineWithSpacesReduced);
+        $val = $wordArr[0];
+
+        // $this->lastOutput = $arrTrimmed;
+        // return $this->lastOutput;
+        // return $arrTrimmed;
+        return $val;
     }
 }

@@ -4,7 +4,7 @@ class DefaultController extends Controller
 {
     public function init()
     {
-        Yii::app()->user->setState('getFreeSpace',$this->getFreeSpace());
+        Yii::app()->user->setState('getDirSizeVideo',Video::model()->getDirSize( Yii::app()->getBasePath()."/../videos" ));
     }
 
     public function filters()
