@@ -115,6 +115,10 @@ class VideoController extends Controller
 	{
 		if(Yii::app()->request->isPostRequest)
 		{
+			// We load the model to get the vals we need for the file deletion
+			$vidObj=$this->loadModel($id);
+  			unlink( Yii::app()->getBasePath().'/../videos/uploads/'. $vidObj->eventId .'/'. $vidObj->file );
+			
 			// we only allow deletion via POST request
 			$this->loadModel($id)->delete();
 
