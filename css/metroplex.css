@@ -396,10 +396,13 @@ video.myVideo {
     }
     .vid-dl-container {
         width: 60%;
+        height: 55%;
+        position: absolute;
+        left: 20%;
     }
     .vid-dl-container #downloads-form {
-        max-height: 461px;
-        margin-bottom: 150px;
+        height: 100%;
+        max-height: 100%;
     }
     .vid-dl-container .download-submit-container {
         width: 55%;
