@@ -171,19 +171,19 @@ a.btn-edit-event {
 .layout-col-2 #content table.detail-view tr.odd {
     background: #6f6f6f;
 }
-.layout-col-2 #content .pg-org-view .list-view .sorter,
-.layout-col-2 #content .pg-event-view .list-view .sorter {
+
+.list-view .sorter {
     float: right;
-    font-size: 22px;
+    font-size: 22px !important;
     height: 26px;
-    margin-top: 26px;
+    margin-top: 26px !important;
 }
-.layout-col-2 #content .pg-org-view .list-view .summary,
-.layout-col-2 #content .pg-event-view .list-view .summary {
+
+.list-view .summary {
     display: none;
 }
-.layout-col-2 #content .pg-org-view .list-view .items,
-.layout-col-2 #content .pg-event-view .list-view .items {
+
+.list-view .items {
     border-top: 1px solid #000;
     padding-top: 10px;
 }
