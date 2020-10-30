@@ -78,7 +78,18 @@
 
   <!--<a href="<?php //echo Yii::app()->createUrl('multidownloadtest'); ?>">Multi download proof of concept (Click link to Download all currently set favourites)</a></li> -->
     
-    
+    <script type="text/javascript">
+        
+        if( $.browser.mozilla) {
+          
+          $('video').prop('controls',false);
+
+          $(document).on('click', 'video', function() {
+              this.controls=true;
+              this.play();
+          });
+        }
+    </script>
 
     
 </div>
