@@ -55,6 +55,7 @@ class EventController extends Controller
 		$criteria->eventId = $id;
 		$criteria->sort('label',EMongoCriteria::SORT_ASC);
 		$videoDataProvider->setCriteria($criteria);
+		$videoDataProvider->setPagination(false);
 
 		$videoUploadModel=new VideoUpload;
 
