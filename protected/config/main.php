@@ -91,6 +91,7 @@ return array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+				'<controller:\w+>/setZippingStatus/status/'=>'<controller>/setZippingStatus',
 				// defaults to a site page if not above
                 '<view:[a-zA-Z0-9-]+>/'=>'site/page',
                     

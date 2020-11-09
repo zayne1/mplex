@@ -322,6 +322,24 @@ video.myVideo {
 }
 .bottom-spacer {clear:both; width:100%;margin-bottom:30px;margin-top:30px;padding-bottom: 30px; padding-top:30px;}
 
+#prep-download-container {
+    display: none;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    overflow: hidden;
+}
+#prep-download {
+    background: #00000054;
+    border-radius: 20px;
+    text-align: center;
+    width: 250px;
+    height: 100px;
+    margin: 0px auto;
+    line-height: 101px;
+    font-size: 18px;
+}
+
 @media (min-width: 720px) {
     
     body#site-login {

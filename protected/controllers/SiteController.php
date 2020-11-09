@@ -302,7 +302,7 @@ class SiteController extends Controller
 			echo 'failed to open zip file';
 		}
 
-		// die('gg');
+		$this->actionSetZippingStatus(0);
 		
 		$this->renderPartial('multidownloaddemoview', array(
                 'zipname' => $zipname,
@@ -320,5 +320,25 @@ class SiteController extends Controller
 	{
 		if($this->getAction()!==null && strcasecmp($this->getAction()->getId(),$this->defaultAction))
 			return $this->pageTitle=Yii::app()->name.' - '.ucfirst($this->getAction()->getId());
+	}
+
+	/* Get status of wether we are still zipping our files */
+	public function actionGetZippingStatus()
+	{
+        $this->layout=false;
+        header('Content-type: application/json');
+        echo CJSON::encode( (bool)Yii::app()->user->getState('isBusyZipping') );
+        Yii::app()->end();
+        return true;
+	}
+
+	/* Set status of wether we are still zipping our files . Must be 1 or 0 */
+	public function actionSetZippingStatus($status=0)
+	{
+		if ( Yii::app()->request->getQuery('status') !==null) {
+			Yii::app()->user->setState('isBusyZipping', Yii::app()->request->getQuery('status'));
+		} else {
+			Yii::app()->user->setState('isBusyZipping', $status);
+		}
 	}
 }

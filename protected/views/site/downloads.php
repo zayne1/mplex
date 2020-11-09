@@ -44,6 +44,7 @@
     
     
     <script type="text/javascript">
+
         $('#select-all-vid').css('cursor','pointer'); 
         $(document).on('click', '#select-all-vid', function() {
             if( $("input.vid-dl-item-checkbox").is(':checked') === false){ 
@@ -54,4 +55,41 @@
         });
     </script>
     
+    <script type="text/javascript">        
+        /* Code to handle the front-end zip creation dialog */
+
+        $('.download-submit-container').css('cursor','pointer'); 
+        $(document).on('click', '.download-submit-container', function() {            
+            $.post('GetZippingStatus?status=1', function() { // set status to 1 once download starts
+                $('#prep-download-container').show();
+                intervalHandle = setInterval(function(){ downloadZipPoller(); }, 1000);    // check status every second
+            });
+        });
+
+        function downloadZipPoller(){
+            $.ajax({ 
+                type: "GET",
+                cache: false,
+                url: "GetZippingStatus",                
+            }).done(function( result ) {
+                if (result === false) { // when done with zipping (status is set yo 0/false in backend)
+                    $('#prep-download-container').hide();
+                    clearInterval(intervalHandle);
+                }
+            }).fail(function() { 
+                alert( "error" );
+            }).always(function() {
+                console.log( "complete" );
+            });
+        }
+
+    </script>
+    
+</div>
+
+<div class="loading" id="prep-download-container">
+    <div id="prep-download">
+        <i class="icon-spinner icon-spin"></i>
+        Preparing your download
+    </div>
 </div>
