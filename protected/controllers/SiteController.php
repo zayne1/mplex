@@ -234,6 +234,21 @@ class SiteController extends Controller
 			}
 		}
 
+		if ( null !== Yii::app()->user->getState('zipName') ) {
+			$zipName = Yii::app()->user->getState('zipName');
+			$zipSize = Yii::app()->user->getState('zipSize');
+			
+			Yii::app()->user->setState('zipName', null);
+			Yii::app()->user->setState('zipSize', null);
+			$this->redirect(Yii::app()->baseUrl . $zipName);
+			die();
+			// $this->renderPartial('multidownloaddemoview', array(
+	  //               'zipname' => $zipName,
+	  //               'size' => $zipSize
+	  //           )
+	  //       );
+		}
+
 		$this->render('downloads', array(
                 'introText' => 'Download',
                 'introSubText' => 'Download videos to share',
@@ -293,6 +308,7 @@ class SiteController extends Controller
 			  // $zip->setCompressionIndex($counter, ZipArchive::CM_STORE);
 			  // $counter++;
 			}
+			$this->actionSetZippingStatus(0);
 			// print_r($zip);
 			$zip->close();
 
@@ -302,14 +318,9 @@ class SiteController extends Controller
 			echo 'failed to open zip file';
 		}
 
-		$this->actionSetZippingStatus(0);
-		
-		$this->renderPartial('multidownloaddemoview', array(
-                'zipname' => $zipname,
-                'size' => $size
-                
-            )
-        );
+		Yii::app()->user->setState('zipSize', $size);
+		Yii::app()->user->setState('zipName', $zipname);
+		$this->redirect(Yii::app()->baseUrl . '/downloads?multi=1');	
 	}
 
 	/* Overriding base Controller getPageTitle to not show Module name:
@@ -327,7 +338,7 @@ class SiteController extends Controller
 	{
         $this->layout=false;
         header('Content-type: application/json');
-        echo CJSON::encode( (bool)Yii::app()->user->getState('isBusyZipping') );
+		echo CJSON::encode( (int)Yii::app()->user->getState('isBusyZipping') );
         Yii::app()->end();
         return true;
 	}

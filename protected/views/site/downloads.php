@@ -59,10 +59,19 @@
         /* Code to handle the front-end zip creation dialog */
 
         $('.download-submit-container').css('cursor','pointer'); 
-        $(document).on('click', '.download-submit-container', function() {            
-            $.post('GetZippingStatus?status=1', function() { // set status to 1 once download starts
+        $(document).on('click', '.download-submit-container', function() {     
+            $.ajax({
+                type: "POST",
+                cache: false,
+                url: "SetZippingStatus?status=1", // set status to 1 once download starts
+                async: false,
+            }).done(function() {
                 $('#prep-download-container').show();
                 intervalHandle = setInterval(function(){ downloadZipPoller(); }, 1000);    // check status every second
+            }).fail(function() { 
+                console.log("post error");
+            }).always(function() {
+                console.log( "post complete" );
             });
         });
 
@@ -70,14 +79,15 @@
             $.ajax({ 
                 type: "GET",
                 cache: false,
-                url: "GetZippingStatus",                
+                url: "GetZippingStatus", 
+                timeout: 1500,
             }).done(function( result ) {
-                if (result === false) { // when done with zipping (status is set yo 0/false in backend)
+                if (result === 0) { // when done with zipping (status is set yo 0/false in backend)
                     $('#prep-download-container').hide();
                     clearInterval(intervalHandle);
                 }
             }).fail(function() { 
-                alert( "error" );
+                console.log("ajax error");
             }).always(function() {
                 console.log( "complete" );
             });
