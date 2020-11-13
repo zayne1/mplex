@@ -148,8 +148,7 @@ a.organization-img-container .organization {width: 100%;}
     margin: 0px auto;
 }
 .vid-dl-container #downloads-form {
-    max-height: 261px;
-    overflow-y: scroll;
+    max-height: initial;
 }
 .modal
 {
@@ -296,14 +295,14 @@ video.myVideo {
 }
 .vid-dl-container .download-submit-container {
     position: fixed;
-    bottom: 71px;
+    bottom: 61px;
     width: 82%;
     text-align: center;
-    background: #464547;
+    background: #464547b0;
 }
 .vid-dl-container .download-submit-container input.download-submit {
     /*margin-left: 25%;*/
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 17px;
     padding: 5px;
     width: 169px;
@@ -330,7 +329,7 @@ video.myVideo {
     overflow: hidden;
 }
 #prep-download {
-    background: #00000054;
+    background: #000;
     border-radius: 20px;
     text-align: center;
     width: 250px;
@@ -421,16 +420,18 @@ video.myVideo {
     .vid-dl-container #downloads-form {
         height: 100%;
         max-height: 100%;
+        overflow-y: scroll;
     }
     .vid-dl-container .download-submit-container {
-        width: 55%;
+        position: fixed;
+        width: 58%;
         background: #464547b0;
         height: 46px;
         padding-top: 5px;
-        bottom: 46px;
+        bottom: 48px;
     }
     .vid-dl-container .download-submit-container input.download-submit {
-        margin-left: 0px;
+        margin-left: 31px;
         margin-top: 0px;
     }
     .bottom-spacer {margin:0px; padding:0px;}
