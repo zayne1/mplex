@@ -275,6 +275,7 @@ video.myVideo {
     float: left;
     width: 95%;
     margin-top: 5px;
+
 }
 .vid-dl-container .vid-dl-item img {
     float: left;
@@ -289,7 +290,13 @@ video.myVideo {
     float: left;
     margin-left: 5px;
     font-size: 17px;
+    width: initial;
 }
+.vid-dl-container .vid-dl-item .vid-info-block .vid-info-block-name {
+    width: 164px;
+    height: 34px;
+}
+
 .vid-dl-container .vid-dl-item .vid-info-block span{
     font-size: 15px;
 }
@@ -422,6 +429,14 @@ video.myVideo {
         max-height: 100%;
         overflow-y: scroll;
     }
+    .vid-dl-container .vid-dl-item .vid-info-block {
+        width: 80%;
+    }
+    .vid-dl-container .vid-dl-item .vid-info-block .vid-info-block-name {
+        height: 35px;
+        width: 100%;
+        overflow: hidden;
+    }
     .vid-dl-container .download-submit-container {
         position: fixed;
         width: 58%;
@@ -436,17 +451,51 @@ video.myVideo {
     }
     .bottom-spacer {margin:0px; padding:0px;}
 
-
-
-    
-    /*#content hr {
-        border: 1px;
-        border-top: 2px solid #353535;
-        clear: both;
-    }
-    #content h3 {
-        color: #000;
-        font-size: 22px;
-    }
-    
 }
+
+    
+
+
+/****** CSS MARQUEE BELOW ********/
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-75%);
+    }
+}
+
+@keyframes marquee-r {
+    from {
+        transform: translateX(-75%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.marquee {
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    height: 10em;
+    overflow: hidden;
+}
+
+.track {
+    position: absolute;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee 30s linear infinite;
+}
+
+@media (min-width: 720px) {
+    .track {
+        position: absolute;
+        white-space: nowrap;
+        will-change: none;
+        animation: none;
+    }
+}
+/********** END CSS MARQUEE *************/

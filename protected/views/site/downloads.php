@@ -23,8 +23,11 @@
                 <div class="vid-dl-item">
                     <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/videothumbs/videodefaultthumb.png">
                     <div class="vid-info-block">
-                        <?php echo $vid->label; ?>
-                        <br>
+                        <div class="vid-info-block-name marquee">
+                            <div class="track">
+                                <?php echo $vid->label; ?>
+                            </div>
+                        </div>
                         <span><?php echo $vid->size; ?></span>
                         <span>&nbsp; &nbsp; &nbsp;<?php echo $vid->length; ?></span>
                     </div>
