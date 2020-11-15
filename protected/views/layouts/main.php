@@ -12,6 +12,14 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+    if ($backend){
+    ?>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <?php
+    }
+    ?>
 
 	<?php
     $cs = Yii::app()->getClientScript();

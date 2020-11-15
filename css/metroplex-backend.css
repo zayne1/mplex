@@ -9,7 +9,9 @@ form input[type="text"],
 form select { 
     color: #464547; 
 }
-
+.font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
 .header {background-color: #0273c3 !important;}
 .header .home-icon-backend {
     float: left;
@@ -214,10 +216,14 @@ a.btn-edit-event {
     float: left;
     font-size: 17px;
     font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
 }
 .layout-col-2 #content .pg-org-view table.detail-view tr.odd,
 .layout-col-2 #content .pg-org-view table.detail-view tr.even {
     background: #0273c3;
+}
+.layout-col-2 #content .pg-event-view table.detail-view {
+    font-family: 'Montserrat', sans-serif;
 }
 .layout-col-2 #content .pg-org-view table.detail-view th,
 .layout-col-2 #content .pg-event-view table.detail-view th {
