@@ -229,6 +229,9 @@ a.btn-edit-event {
 .layout-col-2 #content .pg-event-view table.detail-view th {
     display: none;
 }
+.layout-col-2 #content .pg-event-view table.detail-view tr.odd:nth-of-type(3n+5) td::before {
+    content: "Password - ";
+}
 .layout-col-2 #content .pg-org-view table.detail-view th, 
 .layout-col-2 #content .pg-org-view table.detail-view td,
 .layout-col-2 #content .pg-event-view table.detail-view th, 
