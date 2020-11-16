@@ -35,7 +35,7 @@ class VideoController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','iconreset'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -267,5 +267,22 @@ class VideoController extends Controller
 		}
 	}
 	Yii::app()->request->redirect( Yii::app()->request->getUrlReferrer() );
+	}
+
+	public function actionIconreset($id)
+	{
+		if(Yii::app()->request->isPostRequest)
+		{
+			// We load the model to get the vals we need for the file deletion
+			$vidObj=$this->loadModel($id);
+  			$vidObj->thumb='videodefaultthumb.png';
+  			$vidObj->save();
+
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 }

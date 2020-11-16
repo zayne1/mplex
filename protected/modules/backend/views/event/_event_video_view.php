@@ -50,6 +50,24 @@
 
     <?php $this->endWidget(); ?>
 
+    <a href="#" class="<?php echo 'js-iconreset-'.CHtml::encode($data->_id);?>" style="display: block;float: left;margin-right: 15px;">
+        <!-- <i class="icon-trash icon-2x"></i> -->
+        [Reset Icon]
+        <!-- 
+        We copied this code from what Yii's Gii CRUD generated to do deletions (with slight mods to return to current page:) 
+        -->
+        <script type="text/javascript">
+            /*<![CDATA[*/
+            jQuery(function($) {
+                jQuery('body').on('click',"<?php echo '.js-iconreset-'.CHtml::encode($data->_id);?>",function(){
+                    if(confirm('Are you sure you want to reset the video icon?')) 
+                    {jQuery.yii.submitForm(this,'/backend/video/iconreset/id/<?php echo CHtml::encode($data->_id);?>',{'returnUrl':window.location.href});return false;} else return false;
+                });
+            });
+            /*]]>*/
+        </script>
+    </a>
+
 
     <img src="<?php echo Yii::app()->request->baseUrl .'/images/videothumbs/'. $data->thumb; ?>" class="video-thumb">
 
