@@ -181,6 +181,7 @@ class SiteController extends Controller
 		$eventId = Yii::app()->user->getState('userEvent');
 		$newFavVidId = Yii::app()->request->getParam('addFav', null);
 		$newRemVidId = Yii::app()->request->getParam('remFav', null);
+		$vidDownloadedList = Video::model()->getDownloadedVids();
 
 		if(isset($newFavVidId)) {
 			if (Video::model()->addFav($newFavVidId)){
@@ -199,6 +200,7 @@ class SiteController extends Controller
                 'introText' => 'Watch Video',
                 'introSubText' => '',
                 'vidList' => $vidList,
+                'vidDownloadedList' => $vidDownloadedList,
             )
         );
 	}

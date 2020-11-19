@@ -47,7 +47,7 @@
         }
         ?>
         
-        <?php if ($vid->downloaded==1) {
+        <?php if ( $vidDownloadedList && in_array($vid->_id, $vidDownloadedList) ) {
         ?>
           <i class="icon-download-alt pull-left icon-2x muted icon-green" style="display: block;float: right;xclear: both;text-decoration: none;"></i>
         <?php

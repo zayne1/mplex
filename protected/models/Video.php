@@ -167,37 +167,28 @@ class Video extends EMongoDocument
 
     public function addDownloads($downloadArray)
     {
-        // prepare modifiers
-        $modifier = new EMongoModifier();
+        if ($currVidDownloadListArr = $this->getDownloadedVids()) {
 
-        // replace field1 value with 'new value'
-        $modifier->addModifier('downloaded', 'set', 1);
-        // $modifier->addModifier('Dept', 'set', 'IT');
-
-        // prepare search to find documents
-        $criteria = new EMongoCriteria();
-        
-        // $criteria->addCond('_id','==', new MongoID('5f516e038d285816bfba1da6'));
-
-        // update all matched documents using the modifiers
-        // $status = Video::model()->updateAll($modifier, $criteria);
-        // die(print_r($status));
-
-
-        //Array ( [VidDownloadForm] => Array ( [video] => video1 ) ) 
-        // print_r($downloadArray);die;
-        $status = 0;
-        foreach ($downloadArray as $vidId) {
-            $criteria->addCond('_id','==', new MongoID($vidId));
-            $status=Video::model()->updateAll($modifier, $criteria);
-
-            if (!$status) {
-                Yii::log('error saving mongo add download field in Video.php');
-                die('failed to save download statusto database');
+            foreach ($downloadArray as $vidId) {
+                if ( !in_array($vidId, $currVidDownloadListArr) )
+                array_push($currVidDownloadListArr, $vidId);
             }
+            
+            $serialized_arr = json_encode($currVidDownloadListArr);
+        } else {
+            $serialized_arr = json_encode($downloadArray);
         }
-        return $status;
-       
+
+        // Create new or overwrite existing cookie with new vals
+        $cookie = new CHttpCookie('cookie_viddownloads',$serialized_arr, array(
+                'domain' => $_SERVER['SERVER_NAME'],
+                'expire' => time()+60*60*24*180, // 180 days from this moment
+            )
+        );
+        Yii::app()->request->cookies['cookie_viddownloads'] = $cookie; // load it for later reading
+        
+        if ($cookie)
+            return 1;
     }
 
     public function saveMetaData($id, $fileName, $path, $length)
@@ -323,5 +314,15 @@ class Video extends EMongoDocument
         // return $this->lastOutput;
         // return $arrTrimmed;
         return $val;
+    }
+
+    public function getDownloadedVids()
+    {
+        if (isset(Yii::app()->request->cookies['cookie_viddownloads'])) {
+            $serialized_viddownloads_arr = Yii::app()->request->cookies['cookie_viddownloads']->value;
+            return json_decode($serialized_viddownloads_arr);
+        } else {
+            return null;
+        }
     }
 }
