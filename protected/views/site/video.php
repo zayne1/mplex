@@ -47,7 +47,7 @@
         }
         ?>
         
-        <?php if ( $vidDownloadedList && in_array($vid->_id, $vidDownloadedList) ) {
+        <?php if ( $vidDownloadedList && in_array($vid->_id, $vidDownloadedList) ) { // if downloaded (in download cookie)
         ?>
           <i class="icon-download-alt pull-left icon-2x muted icon-green" style="display: block;float: right;xclear: both;text-decoration: none;"></i>
         <?php
@@ -60,7 +60,7 @@
                 <i class="icon-download-alt pull-left icon-2x muted" style="display: block;float: right;xclear: both;text-decoration: none;"></i>
             </label>
 
-            <input id="vid-<?php echo $vid->_id;?>" type="submit" name="" value="Download" style="display: none;">
+            <input id="vid-<?php echo $vid->_id;?>" class="js-singleDownloadClick" type="submit" name="" value="Download" style="display: none;">
           </form>
           
         <?php
@@ -89,7 +89,14 @@
               this.play();
           });
         }
-    </script>
 
-    
+        // Handle the download click button (set its state to already downloaded)
+        $('.js-singleDownloadClick').css('cursor','pointer'); 
+        $(document).on('click', '.js-singleDownloadClick', function(e) {     
+          
+          $( $(e.target).closest('form') ).after('<i class="icon-download-alt pull-left icon-2x muted icon-green" style="display: block;float: right;xclear: both;text-decoration: none;"></i>');
+
+          $(e.target).closest('form').hide();
+        });
+    </script>
 </div>
