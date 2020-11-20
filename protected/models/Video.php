@@ -121,18 +121,14 @@ class Video extends EMongoDocument
 
     }
 
-    public function getFavVidsForEvent($eventId)
+    public function getFavVidsForEvent()
     {   
-        // $orgId = '5f51366b8d285816bfba1d74';
-        $criteria = new EMongoCriteria;
-        // $criteria->text_html = null;    //NB: you must set the criteria to a value, as opposed to a test eg '!== null' or '< 3'
-        // $criteria->orgId = new MongoID($orgId); /** Our find query */
-        $criteria->eventId = $eventId; /** Our find query */
-        // $criteria->addCond('event->name', '==', 'eva1');
-        $criteria->fav('==', 1);
-        $criteria->limit(200);
-
-        return Video::model()->findAll($criteria);
+        if (isset(Yii::app()->request->cookies['cookie_vidFavs'])) {
+            $serialized_vidFavs_arr = Yii::app()->request->cookies['cookie_vidFavs']->value;
+            return json_decode($serialized_vidFavs_arr);
+        } else {
+            return null;
+        }
     }
 
     public function getMultipleVids($vidArray)
@@ -149,19 +145,48 @@ class Video extends EMongoDocument
 
     public function addFav($newFavVidId)
     {
-        $vid = Video::model()->findByPk(new MongoID($newFavVidId));
+        $newFavVidArr = array($newFavVidId); //turn input into an array so that we can easily work with it
 
-        $vid->fav = 1;
-        if ($vid->save())
+        if ($currVidFavListArr = $this->getFavVidsForEvent()) {
+            foreach ($newFavVidArr as $vidId) {
+                if ( !in_array($vidId, $currVidFavListArr) )
+                    array_push($currVidFavListArr, $vidId);        
+            }
+            $serialized_arr = json_encode($currVidFavListArr);
+        } else {
+            $serialized_arr = json_encode($newFavVidArr);
+        }
+
+        // Create new or overwrite existing cookie with new vals
+        $cookie = new CHttpCookie('cookie_vidFavs',$serialized_arr, array(
+                'domain' => $_SERVER['SERVER_NAME'],
+                'expire' => time()+60*60*24*180, // 180 days from this moment
+            )
+        );
+        Yii::app()->request->cookies['cookie_vidFavs'] = $cookie; // load it for later reading
+        
+        if ($cookie)
             return 1;
     }
 
     public function remFav($newRemVidId)
     {
-        $vid = Video::model()->findByPk(new MongoID($newRemVidId));
+        if ($currVidFavListArr = $this->getFavVidsForEvent()) {
+            
+            $reducedArr = array_merge(array_diff($currVidFavListArr, array($newRemVidId))); // remove a known string ( $newRemVidId in this case) from an array, and reset the index as to not possibly confuse other array looping code
 
-        $vid->fav = 0;
-        if ($vid->save())
+            $serialized_arr = json_encode($reducedArr);
+        }
+
+        // Create new or overwrite existing cookie with new vals
+        $cookie = new CHttpCookie('cookie_vidFavs',$serialized_arr, array(
+                'domain' => $_SERVER['SERVER_NAME'],
+                'expire' => time()+60*60*24*180, // 180 days from this moment
+            )
+        );
+        Yii::app()->request->cookies['cookie_vidFavs'] = $cookie; // load it for later reading
+        
+        if ($cookie)
             return 1;
     }
 
@@ -171,7 +196,7 @@ class Video extends EMongoDocument
 
             foreach ($downloadArray as $vidId) {
                 if ( !in_array($vidId, $currVidDownloadListArr) )
-                array_push($currVidDownloadListArr, $vidId);
+                    array_push($currVidDownloadListArr, $vidId);
             }
             
             $serialized_arr = json_encode($currVidDownloadListArr);

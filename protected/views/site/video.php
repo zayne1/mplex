@@ -30,7 +30,7 @@
       </div>
       <div class="vid-info-footer">
 
-        <?php if ($vid->fav==1) {
+        <?php if ( $favVidList && in_array($vid->_id, $favVidList) ) { // if downloaded (in download cookie)
         ?>
           <a href="<?php echo Yii::app()->request->requestUri .'?remFav='. $vid->_id; ?>" style="display: block;float: right;clear: both;text-decoration: none;margin-left: 10px;">
             <i class="icon-star pull-left icon-2x muted icon-blue"></i>
