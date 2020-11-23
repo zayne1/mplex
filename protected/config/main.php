@@ -130,6 +130,16 @@ return array(
 				*/
 			),
 		),
+		'session' => array (
+			'sessionName' => 'SiteAccess',
+			'cookieMode' => 'only',
+			// 'savePath' => '/path/to/new/directory',
+			'timeout' => 315360000,
+			'cookieParams'=>array(
+                'domain' => $_SERVER['SERVER_NAME'],
+                'expire' => time()+60*60*24*180,
+            ),
+		),
 	),
 
 	// application-level parameters that can be accessed
