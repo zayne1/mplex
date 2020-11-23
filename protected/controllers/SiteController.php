@@ -197,6 +197,8 @@ class SiteController extends Controller
 		$vidList = Video::model()->getVidsForEvent($eventId);
 		// print_r($vidList);die;
 
+		$this->updateSiteLoginCookie();
+
 		$this->render('video', array(
                 'introText' => 'Watch Video',
                 'introSubText' => '',
@@ -355,5 +357,17 @@ class SiteController extends Controller
 		} else {
 			Yii::app()->user->setState('isBusyZipping', $status);
 		}
+	}
+
+	/* 
+	Here we attempt to Hijack (overwrite) the SiteAccess cookie (which we set to handle the PHP session in main config) we set in the config, so that we can force our super long time expires time, to keep it alive for ages */
+	public function updateSiteLoginCookie()
+	{
+		$cookie = new CHttpCookie('SiteAccess',session_id(), array(
+        'domain' => $_SERVER['SERVER_NAME'],
+        'expire' => time()+60*60*24*180, // 180 days from this moment
+            )
+        );
+        Yii::app()->request->cookies['cookie_siteAccess'] = $cookie; // load it for later reading
 	}
 }
