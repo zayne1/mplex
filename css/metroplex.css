@@ -277,6 +277,9 @@ video.myVideo {
     margin-top: 5px;
 
 }
+.vid-dl-container form>.vid-dl-item:nth-last-of-type(2) { /*give last vid-dl-item item a bottom margin on mobile so that it's not hidden behind footer*/
+    margin-bottom: 105px;
+}
 .vid-dl-container .vid-dl-item img {
     float: left;
     width: 100px;
@@ -431,6 +434,9 @@ video.myVideo {
     }
     .vid-dl-container .vid-dl-item .vid-info-block {
         width: 80%;
+    }
+    .vid-dl-container form>.vid-dl-item:nth-last-of-type(2) { /*reset last vid-dl-item item's bottom margin*/
+        margin-bottom: initial;
     }
     .vid-dl-container .vid-dl-item .vid-info-block .vid-info-block-name {
         height: 35px;
