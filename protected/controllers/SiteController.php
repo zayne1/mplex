@@ -270,6 +270,7 @@ class SiteController extends Controller
 
 		$vidList = Video::model()->getVidsForEvent($eventId);
 		$favVidList = Video::model()->getFavVidsForEvent();
+		$vidDownloadedList = Video::model()->getDownloadedVids();
 
 		if (isset($newRemVidId)) {
 			if (Video::model()->remFav($newRemVidId)){
@@ -282,6 +283,7 @@ class SiteController extends Controller
                 'introSubText' => '',
                 'vidList' => $vidList,
                 'favVidList' => $favVidList,
+                'vidDownloadedList' => $vidDownloadedList,
             )
         );
 	}
