@@ -132,7 +132,7 @@
         'itemView'=>'_event_video_view',
             'sortableAttributes'=>array(
             'label' => 'Name',
-            'size',
+            'sizeNum' => 'Size',
             'date',
         ),
         'viewData'=>array('video'=>$video),

@@ -24,7 +24,7 @@
       <div class="vid-info-txt">
         <?php echo $vid->label; ?>
         <br>
-        <span><?php echo $vid->size; ?></span>
+        <span><?php echo $vid->sizeLabel; ?></span>
         <span>&nbsp; &nbsp; &nbsp;<?php echo $vid->length; ?></span>
 
       </div>

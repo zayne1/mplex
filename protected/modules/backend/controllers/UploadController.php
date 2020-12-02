@@ -98,7 +98,7 @@ class UploadController extends Controller
                         $video->eventId = Yii::app()->user->getState('eventIdForCurUpload');
                         $video->fav = 0;
                         $video->downloaded = 0;
-                        $video->size = $model->file->getSize();
+                        $video->sizeNum = $model->file->getSize();
                         $video->length = Video::model()->getLength($path.$filename);
 
                         if($x = $video->save()){

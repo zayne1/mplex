@@ -28,7 +28,7 @@
                                 <?php echo $vid->label; ?>
                             </div>
                         </div>
-                        <span><?php echo $vid->size; ?></span>
+                        <span><?php echo $vid->sizeLabel; ?></span>
                         <span>&nbsp; &nbsp; &nbsp;<?php echo $vid->length; ?></span>
                     </div>
                     <input class="vid-dl-item-checkbox" type="checkbox" name="<?php echo "VidDownloadForm[video" .$count. "]"; ?>" value="<?php echo $vid->_id;?>">

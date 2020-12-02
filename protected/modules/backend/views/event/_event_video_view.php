@@ -73,7 +73,7 @@
 
     <?php echo CHtml::encode($data->label); ?>
     <div style="width: 100px;float: right;margin-top: 15px;"><?php echo CHtml::encode($data->date); ?></div>
-    <div style="width: 100px;float: right;margin-top: 15px;"><?php echo CHtml::encode($data->size); ?></div>
+    <div style="width: 100px;float: right;margin-top: 15px;"><?php echo CHtml::encode($data->sizeLabel); ?></div>
     <div style="width: 100px;float: right;margin-top: 15px;"><?php echo CHtml::encode($data->length); ?></div>
 </div>
 <br>

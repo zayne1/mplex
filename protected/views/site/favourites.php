@@ -20,7 +20,7 @@
           <div class="vid-info-txt">
             <?php echo $vid->label; ?>
             <br>
-            <span><?php echo $vid->size; ?></span>
+            <span><?php echo $vid->sizeLabel; ?></span>
           </div>
           <div class="vid-info-footer">
 
