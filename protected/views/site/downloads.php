@@ -17,14 +17,15 @@
         <form id="downloads-form" action="/downloads" method="post">
             <?php 
             $count=1;
+            $jsCount=0;
             foreach ($vidList as $vid) { 
             ?>
 
-                <div class="vid-dl-item">
+                <div class="vid-dl-item" id="<?php echo $vid->_id;?>">
                     <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/videothumbs/videodefaultthumb.png">
                     <div class="vid-info-block">
                         <div class="vid-info-block-name marquee">
-                            <div class="track">
+                            <div class="trackXXX">
                                 <?php echo $vid->label; ?>
                             </div>
                         </div>
@@ -33,8 +34,26 @@
                     </div>
                     <input class="vid-dl-item-checkbox" type="checkbox" name="<?php echo "VidDownloadForm[video" .$count. "]"; ?>" value="<?php echo $vid->_id;?>">
                 </div>
+
+                <script type="text/javascript">     
+                //***** Start Scrolling & marquee adding code *******//
+                    var scrollEventHandler<?php echo $jsCount;?> = function() {
+                        if(isScrolledIntoView( $('.vid-info-block').get(<?php echo $jsCount;?>) )) {
+                            setTimeout(function(){ 
+                                $('#<?php echo $vid->_id;?>').closest('.vid-dl-item').find('.trackXXX').addClass('track');
+                            }, 1500);
+
+                            unbindScrollEventHandler(<?php echo $jsCount;?>);
+                        }
+                    }
+
+                    $(window).scroll(scrollEventHandler<?php echo $jsCount;?>);
+
+                //***** End Scrolling & marquee adding code *******//
+                </script>
             <?php
             $count++;
+            $jsCount++;
             }
             ?>
             <div class="download-submit-container">
@@ -95,6 +114,26 @@
                 console.log( "complete" );
             });
         }
+
+
+        //***** Start Scrolling & marquee adding code *******//
+                
+        window.scrollTo(0, 1); // Do an initial 1px scroll down to 'activate' the initial items, as they are viewable on pg load
+
+        function unbindScrollEventHandler(num) {
+            // $('#downloads-form').unbind('scroll', window['scrollEventHandler'+num]);
+            $(document).unbind('scroll', window['scrollEventHandler'+num]);
+        }
+
+        function isScrolledIntoView(el) {
+            var elemTop = el.getBoundingClientRect().top;
+            var elemBottom = el.getBoundingClientRect().bottom;
+
+            var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+            return isVisible;
+        }
+
+        //***** End Scrolling & marquee adding code *******//
 
     </script>
     
