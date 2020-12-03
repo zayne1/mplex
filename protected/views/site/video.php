@@ -80,7 +80,7 @@
     
     <script type="text/javascript">
         
-        if( $.browser.mozilla) {
+        // if( $.browser.mozilla) {
           
           $('video').prop('controls',false);
 
@@ -88,7 +88,7 @@
               this.controls=true;
               this.play();
           });
-        }
+        // }
 
         // Handle the download click button (set its state to already downloaded)
         $('.js-singleDownloadClick').css('cursor','pointer'); 
