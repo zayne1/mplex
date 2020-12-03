@@ -108,7 +108,7 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
             <a href="<?php echo Yii::app()->createUrl('downloads'); ?>">
                 <div class="menu-btn downloads"></div>
             </a>
-            <a href="<?php echo Yii::app()->createUrl('favourites'); ?>">
+            <a href="<?php echo Yii::app()->createUrl('favorites'); ?>">
                 <div class="menu-btn fav"></div>
             </a>
             <a href="<?php echo Yii::app()->createUrl('contactfaq'); ?>">

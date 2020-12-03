@@ -26,7 +26,7 @@
 
             <?php if ( $favVidList && in_array($vid->_id, $favVidList) ) { // if fav (in download cookie)
             ?>
-              <a href="<?php echo Yii::app()->request->baseUrl .'/favourites?remFav='. $vid->_id; ?>" style="display: block;float: right;clear: both;text-decoration: none;">
+              <a href="<?php echo Yii::app()->request->baseUrl .'/favorites?remFav='. $vid->_id; ?>" style="display: block;float: right;clear: both;text-decoration: none;">
                 <i class="icon-star pull-left icon-2x muted icon-blue"></i>
               </a>
 

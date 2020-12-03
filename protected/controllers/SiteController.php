@@ -263,7 +263,7 @@ class SiteController extends Controller
         );
 	}
 
-	public function actionFavourites()
+	public function actionFavorites()
 	{
 		$newRemVidId = Yii::app()->request->getParam('remFav', null);
 		$eventId = Yii::app()->user->getState('userEvent');
@@ -274,11 +274,11 @@ class SiteController extends Controller
 
 		if (isset($newRemVidId)) {
 			if (Video::model()->remFav($newRemVidId)){
-				$this->redirect(Yii::app()->baseUrl . '/favourites');
+				$this->redirect(Yii::app()->baseUrl . '/favorites');
 			}
 		}
 
-		$this->render('favourites', array(
+		$this->render('favorites', array(
                 'introText' => 'Favorites',
                 'introSubText' => '',
                 'vidList' => $vidList,
