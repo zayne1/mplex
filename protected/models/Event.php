@@ -28,6 +28,17 @@ class Event extends EMongoDocument
         return parent::beforeSave();
     }
 
+    public function beforeDelete() {
+        exec('rm -rf '.Yii::app()->getBasePath()."/../videos/uploads/{$this->_id}", $arr);
+
+        $vidList = Video::model()->getVidsForEvent((string)$this->_id);
+        foreach ($vidList as $vid) {
+            $vid->deleteByPk($vid->getPrimaryKey());
+        }
+
+        return parent::beforeDelete();
+    }
+
     /**
      * returns the primary key field for this model
      */
