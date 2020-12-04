@@ -214,7 +214,7 @@ a.btn-edit-event {
 .layout-col-2 #content .pg-org-view table.detail-view {
     width: 70%;
     float: left;
-    font-size: 17px;
+    font-size: 22px;
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
 }
@@ -244,7 +244,7 @@ a.btn-edit-event {
 
 .layout-col-2 #content .pg-event-view table.detail-view tr.odd,
 .layout-col-2 #content .pg-event-view table.detail-view tr.even { background: #c21238;}
-.layout-col-2 #content .pg-event-view table.detail-view { width: 70%; float: left; font-size: 17px;font-weight: bold;}
+.layout-col-2 #content .pg-event-view table.detail-view { width: 70%; float: left; font-size: 22px;font-weight: bold;}
 .layout-col-2 #content .pg-event-view .video-thumb { width: 100px; height:57px; margin-right: 20px;}
 .layout-col-2 #content .pg-event-view .video-count { width: 30%;background: #fff; height: 30px;color: #000;text-align: center; }
 .layout-col-2 #content .pg-event-view .vid-row-item { color: #000; }
