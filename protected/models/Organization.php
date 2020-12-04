@@ -27,6 +27,15 @@ class Organization extends EMongoDocument
         return parent::beforeSave();
     }
 
+    public function beforeDelete() {
+        $EventList = Event::model()->getEventsForOrg((string)$this->_id);
+        
+        foreach ($EventList as $event) {
+            $event->deleteByPk($event->getPrimaryKey());
+        }
+        return parent::beforeDelete();
+    }
+
     /**
      * returns the primary key field for this model
      */
