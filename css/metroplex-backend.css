@@ -45,7 +45,7 @@ img.logo-user-profile {
     width: 85px;
     height: 24px;
     position: absolute;
-    right: 451px;
+    right: 550px;
     top: 13px;
     color: #fff;
     text-align: center;
@@ -58,7 +58,20 @@ img.logo-user-profile {
     width: 85px;
     height: 24px;
     position: absolute;
-    right: 345px;
+    right: 443px;
+    top: 13px;
+    color: #fff;
+    text-align: center;
+}
+.backend.btn-login-update {
+    display: block !important;
+    background: #80555e;
+    padding: 5px;
+    width: 87px;
+    width: 147px;
+    height: 24px;
+    position: absolute;
+    right: 274px;
     top: 13px;
     color: #fff;
     text-align: center;

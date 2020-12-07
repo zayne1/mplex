@@ -82,6 +82,9 @@ return array(
                 '<module:backend>/event/id/'=>'backend/event/view', // id as word, eg uuid
                 '<module:backend>/video/<action>'=>'backend/video/<action>',
                 '<module:backend>/video/id/'=>'backend/video/view', // id as word, eg uuid
+                '<module:backend>/user/<action>'=>'backend/user/<action>',
+                '<module:backend>/user/id/'=>'backend/user/view', // id as word, eg uuid
+                
                 // '<module:cms>/upload/'=>'cms/upload/',
                     
 

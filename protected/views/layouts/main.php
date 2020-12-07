@@ -86,6 +86,7 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
             <a href="<?php echo Yii::app()->createUrl('backend/index'); ?>" class="dash-header">Dashboard</div>
             <a href="<?php echo Yii::app()->createUrl('backend/organization/create'); ?>" class="backend btn-new-org">New Org</a>
             <a href="<?php echo Yii::app()->createUrl('backend/event/create'); ?>" class="backend btn-new-event">New Event</a>
+            <a href="<?php echo Yii::app()->createUrl('backend/user/update/id/'.Yii::app()->user->userid); ?>" class="backend btn-login-update">Update log-in details</a>
         <?php
         }
         ?>

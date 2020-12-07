@@ -15,6 +15,34 @@ class UserIdentity extends CUserIdentity
 	 * against some persistent user identity storage (e.g. database).
 	 * @return boolean whether authentication succeeds.
 	 */
+
+	private $_id;
+
+	public function authenticate()
+	{
+		$record = User::model()->findByAttributes(array('username'=>$this->username));
+
+		if($record===null) {
+			$this->errorCode=self::ERROR_USERNAME_INVALID;
+		}
+		// else if ($record->password!==crypt($this->password, $record->password)) {
+		// 	Yii::log('-------- in auth(), crypt');
+		// 	$this->errorCode=self::ERROR_USERNAME_INVALID;
+		// } 
+		else if ( ($this->username == $record->username) && ($this->password == $record->password) ){
+			
+			// $this->_id=$record->id;
+			$this->setState('username', $this->username); // we can call it later via Yii::app()->user->username
+			$this->setState('userid', (string)$record->_id); // we can call it later via Yii::app()->user->userid
+			// $this->setState('title', $record->title); // we can call it later via Yii::app()->user->title
+			$this->errorCode=self::ERROR_NONE;
+		}
+		
+		return !$this->errorCode;
+	}
+
+
+/*
 	public function authenticate()
 	{
 		$users=array(
@@ -34,4 +62,5 @@ class UserIdentity extends CUserIdentity
 		}
 		return !$this->errorCode;
 	}
+	*/
 }
