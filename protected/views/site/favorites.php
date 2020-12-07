@@ -8,10 +8,11 @@
 <div class="main-content">
     <h3><?php echo $introSubText; ?></h3>
   <?php 
+  $prevVidId = '';
   foreach ($vidList as $vid) { 
     if ( $favVidList && in_array($vid->_id, $favVidList) ) { // if vid is a fav (if it's in fav cookie)
     ?>
-        <div class="vid-container">
+        <div class="vid-container" id="<?php echo $vid->_id;?>">
           <video onload="video.currentTime=sprungzeit" width="300" height="240" src="<?php echo Yii::app()->request->baseUrl .'/videos/uploads/'. $vid->eventId . '/'. $vid->file; ?>" Xautobuffer Xautoplay controls class="myVideo">
             <div class="video-fallback">
              <br>Sie benoetigen einen Browser, der HTML5 unterstuetzt.
@@ -26,7 +27,7 @@
 
             <?php if ( $favVidList && in_array($vid->_id, $favVidList) ) { // if fav (in download cookie)
             ?>
-              <a href="<?php echo Yii::app()->request->baseUrl .'/favorites?remFav='. $vid->_id; ?>" style="display: block;float: right;clear: both;text-decoration: none;">
+              <a href="<?php echo Yii::app()->request->baseUrl .'/favorites?remFav='. $vid->_id . '#'.$prevVidId; ?>" style="display: block;float: right;clear: both;text-decoration: none;">
                 <i class="icon-star pull-left icon-2x muted icon-blue"></i>
               </a>
 
@@ -53,6 +54,7 @@
         </div>
     
     <?php
+    $prevVidId = $vid->_id;
     }
   }
 ?>

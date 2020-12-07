@@ -15,7 +15,7 @@
       $poster = Yii::app()->request->baseUrl .'/images/videothumbs/'. $vid->thumb;
 
   ?>
-    <div class="vid-container">
+    <div class="vid-container" id="<?php echo $vid->_id;?>">
       <video onload="video.currentTime=sprungzeit" Xwidth="300" Xheight="240" src="<?php echo Yii::app()->request->baseUrl .'/videos/uploads/'. $vid->eventId . '/'. $vid->file; ?>" Xautobuffer Xautoplay controls class="myVideo" poster="<?php echo $poster;?>">
         <div class="video-fallback">
           <br>Sie benoetigen einen Browser, der HTML5 unterstuetzt.
@@ -32,7 +32,7 @@
 
         <?php if ( $favVidList && in_array($vid->_id, $favVidList) ) { // if downloaded (in download cookie)
         ?>
-          <a href="<?php echo Yii::app()->request->requestUri .'?remFav='. $vid->_id; ?>" style="display: block;float: right;clear: both;text-decoration: none;margin-left: 10px;">
+          <a href="<?php echo Yii::app()->request->requestUri .'?remFav='. $vid->_id . '#'.$vid->_id;?>" style="display: block;float: right;clear: both;text-decoration: none;margin-left: 10px;">
             <i class="icon-star pull-left icon-2x muted icon-blue"></i>
           </a>
 
@@ -40,7 +40,7 @@
         }
         else {
         ?>
-          <a href="<?php echo Yii::app()->request->requestUri .'?addFav='. $vid->_id; ?>" style="display: block;float: right;xclear: both;text-decoration: none;margin-left: 10px;">
+          <a href="<?php echo Yii::app()->request->requestUri .'?addFav='. $vid->_id . '#'.$vid->_id; ?>" style="display: block;float: right;xclear: both;text-decoration: none;margin-left: 10px;">
               <i class="icon-star pull-left icon-2x muted "></i>
           </a>
         <?php
