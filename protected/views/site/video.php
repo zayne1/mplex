@@ -16,7 +16,7 @@
 
   ?>
     <div class="vid-container" id="<?php echo $vid->_id;?>">
-      <video onload="video.currentTime=sprungzeit" Xwidth="300" Xheight="240" src="<?php echo Yii::app()->request->baseUrl .'/videos/uploads/'. $vid->eventId . '/'. $vid->file; ?>" Xautobuffer Xautoplay controls class="myVideo" poster="<?php echo $poster;?>">
+      <video playsinline preload="metadata" onload="video.currentTime=sprungzeit" width="300" height="240" src="<?php echo Yii::app()->request->baseUrl .'/videos/uploads/'. $vid->eventId . '/'. $vid->file; ?>" Xautobuffer Xautoplay controls class="myVideo" poster="<?php echo $poster;?>">
         <div class="video-fallback">
           <br>Sie benoetigen einen Browser, der HTML5 unterstuetzt.
         </div>
