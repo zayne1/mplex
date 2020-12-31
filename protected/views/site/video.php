@@ -72,24 +72,46 @@
 
   <div class="bottom-spacer"></div>
 
-  <!--<a href="<?php //echo Yii::app()->createUrl('multidownloadtest'); ?>">Multi download proof of concept (Click link to Download all currently set favourites)</a></li> -->
-    
-    <script type="text/javascript">
-        
-        // if( $.browser.mozilla) {
-          
-          $('video').prop('controls',false);
-
-          $(document).on('click', 'video', function() {
-              this.controls=true;
-              this.play();
-          });
-        // }
-
-        // Handle the download click button (set its state to already downloaded on click, as opposed to waiting for a pg reload)
-        $('.js-singleDownloadClick').css('cursor','pointer'); 
-        $(document).on('click', '.js-singleDownloadClick', function(e) {     
-          $(e.target).closest('form').find('i').addClass('icon-green')
-        });
-    </script>
 </div>
+
+<script type="text/javascript">
+
+  var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/)
+
+  if(isSafari) {
+    /* Hide the app's default black play icon thumbs, so that they do not show under the built in browser play icons/poster */
+    
+    $.each( $('video'), function(i,v){
+      
+      var str = $(v).prop('poster')
+      
+      if ( str.search("videodefaultthumb.png") > 0)
+        $(v).prop('poster',null);
+    });
+  }
+
+
+  if(!isSafari) {
+    /* Hide controls so that the browsers default play icon is hidden */          
+    $('video').prop('controls',false);
+    
+    $('video').css('cursor','pointer'); 
+    $(document).on('click', 'video', function(e) {
+        e.preventDefault();
+
+        this.controls=true;
+        
+        if (this.paused) {
+            this.play();
+        } else {
+            this.pause();
+        }
+    });
+  }
+
+  // Handle the download click button (set its state to already downloaded on click, as opposed to waiting for a pg reload)
+  $('.js-singleDownloadClick').css('cursor','pointer'); 
+  $(document).on('click', '.js-singleDownloadClick', function(e) {     
+    $(e.target).closest('form').find('i').addClass('icon-green')
+  });
+</script>
