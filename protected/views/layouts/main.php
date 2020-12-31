@@ -11,7 +11,10 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
     <link rel="shortcut icon" type="image/jpg" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimal-ui">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <?php
     if ($backend){
     ?>
@@ -141,7 +144,49 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
     </footer>
 
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js"></script>
-    
-</body>
-</html>  
 
+    <script type="text/javascript">
+
+        //check if using mobile safari [returns true is mobile safari] =====
+
+        var ua = window.navigator.userAgent;
+        var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+        var webkit = !!ua.match(/WebKit/i);
+        var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+        //===================================================
+
+        $(window).load(function() {
+            /* Small Safari hack (that I don'nt think actually works) to stop Safaris's bottom toolbar 
+            from breaking the sticky footer (Safari's bottom toolbar pops up during browsing breaks 
+            any clickable areas at bottom of page ) */
+            if(iOSSafari) {
+                /mobile/i.test(navigator.userAgent) && !window.location.hash && setTimeout(function () {
+                    window.scrollTo(0, 1);
+                }, 1000);
+            }
+        });
+
+        var initial = 0;
+
+        if (iOSSafari) {
+            /* Big Safari hack (that actually works) to stop Safaris's bottom toolbar from breaking 
+            the sticky footer (Safari's bottom toolbar pops up during browsing breaks any clickable 
+            areas at bottom of page ) */
+
+            initial = window.innerHeight;
+
+            $("footer").css("background","#e9e8e9");
+            $("footer").css("color","#0073c3");
+
+            $(window).resize(function () {
+                if (window.innerHeight === initial) {
+                    $(".menu-top").animate({ marginBottom: "1px" })
+                    
+                } else {
+                    $(".menu-top").animate({ marginBottom: "40px" })
+                }
+            })
+        }
+    </script>
+</body>
+</html>
