@@ -152,6 +152,7 @@ class SiteController extends Controller
 
 			if (Event::model()->validatePass($_POST['LoginForm']['password'], $eventId)) {
 				Yii::app()->user->setState('userEvent', $eventId);
+				$this->updateUserEventCookie();
 				$this->redirect(Yii::app()->baseUrl . '/video');
 			}
 			else
@@ -178,7 +179,7 @@ class SiteController extends Controller
 
 	public function actionVideo()
 	{
-		$eventId = Yii::app()->user->getState('userEvent');
+		$eventId = Yii::app()->request->cookies['cookie_userEvent']->value;
 		$newFavVidId = Yii::app()->request->getParam('addFav', null);
 		$newRemVidId = Yii::app()->request->getParam('remFav', null);
 		$vidDownloadedList = Video::model()->getDownloadedVids();
@@ -198,6 +199,7 @@ class SiteController extends Controller
 		// print_r($vidList);die;
 
 		$this->updateSiteLoginCookie();
+		$this->updateUserEventCookie();
 
 		$this->render('video', array(
                 'introText' => 'Watch Video',
@@ -211,7 +213,7 @@ class SiteController extends Controller
 
 	public function actionDownloads()
 	{
-		$eventId = Yii::app()->user->getState('userEvent');
+		$eventId = Yii::app()->request->cookies['cookie_userEvent']->value;
 		// $newAddDownloadVidId = Yii::app()->request->getParam('addDownload', null);
 
 		$vidList = Video::model()->getVidsForEvent($eventId);
@@ -266,7 +268,7 @@ class SiteController extends Controller
 	public function actionFavorites()
 	{
 		$newRemVidId = Yii::app()->request->getParam('remFav', null);
-		$eventId = Yii::app()->user->getState('userEvent');
+		$eventId = Yii::app()->request->cookies['cookie_userEvent']->value;
 
 		$vidList = Video::model()->getVidsForEvent($eventId);
 		$favVidList = Video::model()->getFavVidsForEvent();
@@ -290,8 +292,6 @@ class SiteController extends Controller
 
 	public function actionContactfaq()
 	{
-		$eventId = Yii::app()->user->getState('userEvent');
-
 		$this->render('contactfaq', array(
                 'introText' => 'Contact/Faq',
                 'introSubText' => '',
@@ -373,5 +373,29 @@ class SiteController extends Controller
             )
         );
         Yii::app()->request->cookies['cookie_siteAccess'] = $cookie; // load it for later reading
+	}
+
+	public function updateUserEventCookie() {
+		$eventId = null;
+
+		if ($e = Yii::app()->user->getState('userEvent') ) {
+			$eventId = $e;
+			
+		} else {
+			$e = Yii::app()->request->cookies['cookie_userEvent']->value;
+			$eventId = $e;
+		}
+
+		// Create new or overwrite existing cookie with new vals
+		$cookie = new CHttpCookie('cookie_userEvent',$eventId, array(
+		        'domain' => $_SERVER['SERVER_NAME'],
+		        'expire' => time()+60*60*24*180, // 180 days from this moment
+		    )
+		);
+
+		Yii::app()->request->cookies['cookie_userEvent'] = $cookie; // load it for later reading
+
+		if ($cookie)
+		    return 1;
 	}
 }
