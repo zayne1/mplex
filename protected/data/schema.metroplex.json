@@ -60,6 +60,14 @@ db.orgtest.insert({
 	]
 })
 ------------------------*/
+db.user.insert([
+    {
+        "_id":ObjectId(),
+        "id" : null, 
+        "username" : "admin", 
+        "password" : "admin",
+    }
+])
 
 db.org.insert([
 	{
