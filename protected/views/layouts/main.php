@@ -36,6 +36,7 @@ if ( isset(Yii::app()->controller->module->is_backend) && (Yii::app()->controlle
     $cs->registerCoreScript('multifile', CClientScript::POS_END);
 
     ?>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/modernizr-zayne-custom.js"></script>
 
 	<style type="text/css">
         .menu-top

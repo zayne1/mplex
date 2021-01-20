@@ -398,4 +398,17 @@ class SiteController extends Controller
 		if ($cookie)
 		    return 1;
 	}
+
+	public function actionSetSingleDownloadCookie($videoID=0) {
+		if ( Yii::app()->request->getQuery('videoID') !==null) {
+
+			$vidArray[] = Yii::app()->request->getQuery('videoID');
+
+			if (Video::model()->addDownloads($vidArray)) {
+				return 1;
+			}
+		} else {
+			Yii::app()->user->setState('isBusyZipping', $status);
+		}
+	}
 }

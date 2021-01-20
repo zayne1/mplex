@@ -53,8 +53,8 @@
             $boolShowGreenArrow = 'icon-green';
         }
         ?>
-          
-          <form id="single-download-form" action="/downloads" method="post" style="display: block;float: right;">
+          <!--  We'll hide this form and button if Modernizr detects that browser can't do direct html5 downloads -->
+          <form class="single-download-form" action="/downloads" method="post" style="display: block;float: right;">
             <input type="hidden" name="VidDownloadForm[0]" value="<?php echo $vid->_id;?>">
             <label for="vid-<?php echo $vid->_id;?>" XXid="<?php echo $vid->_id;?>">
                 <i class="icon-download-alt pull-left icon-2x muted <?php echo $boolShowGreenArrow;?>" style="display: block;float: right;xclear: both;text-decoration: none;"></i>
@@ -62,6 +62,9 @@
 
             <input id="vid-<?php echo $vid->_id;?>" class="js-singleDownloadClick" type="submit" name="" value="Download" style="display: none;">
           </form>
+          
+          <!--  We'll show this link if Modernizr detects that browser can do direct html5 downloads -->
+          <a download href="<?php echo Yii::app()->request->baseUrl .'/videos/uploads/'. $vid->eventId . '/'. $vid->file; ?>" data-vidid="<?php echo $vid->_id;?>" class="js-HTML5singleDownloadClick icon-download-alt pull-left icon-2x muted <?php echo $boolShowGreenArrow;?>" style="display: block;float: right;xclear: both;text-decoration: none;"></a>
       </div>
       
     </div>
@@ -113,5 +116,33 @@
   $('.js-singleDownloadClick').css('cursor','pointer'); 
   $(document).on('click', '.js-singleDownloadClick', function(e) {     
     $(e.target).closest('form').find('i').addClass('icon-green')
+  });
+
+  if (Modernizr.adownload) {
+    $('.single-download-form').hide();
+    $('.js-HTML5singleDownloadClick').show();
+  } else {
+    $('.single-download-form').show();
+    $('.js-HTML5singleDownloadClick').hide();
+  }
+
+
+  $('.js-HTML5singleDownloadClick').css('cursor','pointer'); 
+  $(document).on('click', '.js-HTML5singleDownloadClick', function(e) {   
+
+    var vidID = $(e.target).data('vidid');
+
+    $.ajax({
+        type: "POST",
+        cache: false,
+        url: "SetSingleDownloadCookie?videoID="+vidID,
+    }).done(function() {
+        $(e.target).removeClass('muted');
+        $(e.target).addClass('icon-green');
+    }).fail(function() { 
+        console.log("post error");
+    }).always(function() {
+        console.log( "post complete" );
+    });
   });
 </script>
