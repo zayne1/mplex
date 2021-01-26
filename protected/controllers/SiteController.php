@@ -307,8 +307,15 @@ class SiteController extends Controller
 		Yii::app()->user->setState('vidArray',null);
 		$dlVidObjList = Video::model()->getMultipleVids($dlVidList);//print_r($favVidList);die;
 
+		$currEventId = Yii::app()->request->cookies['cookie_userEvent']->value;
+		$currOrgId = Event::model()->findByPk(new MongoID($currEventId))->orgId;
+		$currEventNameSlug = Event::model()->findByPk(new MongoID($currEventId))->slug;
+		$currOrgNameSlug = Organization::model()->findByPk(new MongoID($currOrgId))->slug;
+		$currEventYear = substr( Event::model()->findByPk(new MongoID($currEventId))->date, -4);
 		
-		$zipname = md5(Yii::app()->user->id.microtime()) . '.zip'; // Give a random filename or the the files will keep being added to the exiting tmp zip file, making it larger & larger (will contain new + prev files)
+		$zipname = $currOrgNameSlug . '_' . $currEventNameSlug . '_' . $currEventYear . '.zip';
+		exec('rm  ' . getcwd() . "/" . $zipname); // remove any existing zips with the same name, or ZipArchive will just keep adding files to the existing zip
+
 		$zip = new ZipArchive;
 
 		if ($zip->open($zipname, ZipArchive::CREATE) === TRUE) {
