@@ -426,6 +426,8 @@ class SiteController extends Controller
 		$EventList = Event::model()->getAllEvents();
 		$OrgList = Organization::model()->getAllOrgs();
 		$VidList = Video::model()->getAllVideos();
+		$currEventId = Yii::app()->request->cookies['cookie_userEvent']->value;
+		$currEventFolder = getcwd() .'/videos/uploads/'. $currEventId .'/';
 
 		// Give current events a slug
         foreach ($EventList as $event) {
@@ -443,6 +445,13 @@ class SiteController extends Controller
         foreach ($VidList as $vid) {
   			$vid->slug = Yii::app()->zutils->slugify($vid->label);
   			$vid->save();
+
+  			// From here on we mod the db file field to use a slug filename, then change the names of the actual files on disk
+  			usleep(100000);
+  			$vid->file = $vid->slug . $vid->extension;
+  			$vid->save();
+  			usleep(100000);
+			exec('mv  '.getcwd().'/videos/uploads/'.$vid->eventId.'/'.$vid->file.' ' .getcwd().'/videos/uploads/'.$vid->eventId.'/'.$vid->slug.$vid->extension);
         }
 	}
 }
