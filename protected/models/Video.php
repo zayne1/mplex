@@ -4,7 +4,9 @@ class Video extends EMongoDocument
     public $id;
     public $path;
     public $file;
+    public $extension;
     public $label;
+    public $slug;
     public $eventId;
     public $fav;
     public $downloaded;
@@ -28,6 +30,9 @@ class Video extends EMongoDocument
             $this->date = date("Y-m-d", time());
             $this->thumb = 'videodefaultthumb.png';
         }
+
+        $this->extension = Yii::app()->zutils->getFileExtension($this->file);
+        $this->slug = Yii::app()->zutils->slugify($this->label);
 
         $this->moveFiles();
 
@@ -68,7 +73,9 @@ class Video extends EMongoDocument
             'eventId' => 'Event ID',
             'path' => 'Path',
             'file' => 'File',
+            'extension' => 'Extension',
             'label' => 'File Custom name',
+            'slug' => 'Slug',
             'fav' => 'Favorite',
             'downloaded' => 'Downloaded',
             'length' => 'Length',
@@ -88,7 +95,9 @@ class Video extends EMongoDocument
             'eventId',
             'path',
             'file',
+            'extension',
             'label',
+            'slug',
             'fav',
             'downloaded',
             'length',

@@ -3,6 +3,7 @@ class Event extends EMongoDocument
 {
     public $id;
     public $name;
+    public $slug;
     public $date;
     public $location;
     public $orgId;
@@ -25,6 +26,9 @@ class Event extends EMongoDocument
                 $this->logo = $oldmodel->logo;
             }
         }
+
+        $this->slug = Yii::app()->zutils->slugify($this->name);
+        
         return parent::beforeSave();
     }
 
@@ -76,6 +80,7 @@ class Event extends EMongoDocument
         return array(
             '_id',
             'name',
+            'slug',
             'date',
             'location',
             'orgId',
@@ -119,6 +124,7 @@ class Event extends EMongoDocument
         return array(
             '_id' => 'ID',
             'name' => 'Name',
+            'slug' => 'Slug',
             'date' => 'Date',
             'location' => 'Location',
             'orgId' => 'Org ID',

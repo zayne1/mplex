@@ -3,6 +3,7 @@ class Organization extends EMongoDocument
 {
     public $id;
     public $name;
+    public $slug;
     public $co_type;
     public $contact_person;
     public $phone;
@@ -24,6 +25,9 @@ class Organization extends EMongoDocument
                 $this->logo = $oldmodel->logo;
             }
         }
+
+        $this->slug = Yii::app()->zutils->slugify($this->name);
+        
         return parent::beforeSave();
     }
 
@@ -51,6 +55,7 @@ class Organization extends EMongoDocument
         return array(
             '_id',
             'name',
+            'slug',
             'co_type',
             'contact_person',
             'phone',
@@ -92,6 +97,7 @@ class Organization extends EMongoDocument
         return array(
             '_id' => 'ID',
             'name' => 'Name',
+            'slug' => 'Slug',
             'co_type' => 'Company Type',
             'contact_person' => 'Contact Person',
             'phone' => 'Phone',
