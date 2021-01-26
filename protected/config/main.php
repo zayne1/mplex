@@ -54,6 +54,9 @@ return array(
 	        'safeFlag'          => false,
 	        'useCursor'         => false,
 	    ),
+	    'zutils' => array(
+            'class' => 'application.components.ZUtils',
+        ),
 		// uncomment the following to enable URLs in path-format
 		
 		'urlManager'=>array(
