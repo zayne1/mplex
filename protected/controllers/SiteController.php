@@ -411,4 +411,31 @@ class SiteController extends Controller
 			Yii::app()->user->setState('isBusyZipping', $status);
 		}
 	}
+
+	/*
+	When called as a url, this controller action will run updates on the db
+	*/
+	public function actionRunUpdateScript() {
+		$EventList = Event::model()->getAllEvents();
+		$OrgList = Organization::model()->getAllOrgs();
+		$VidList = Video::model()->getAllVideos();
+
+		// Give current events a slug
+        foreach ($EventList as $event) {
+  			$event->slug = Yii::app()->zutils->slugify($event->name);
+  			$event->save();
+        }
+
+        // Give orgs events a slug
+        foreach ($OrgList as $org) {
+  			$org->slug = Yii::app()->zutils->slugify($org->name);
+  			$org->save();
+        }
+
+        // Give current vids a slug
+        foreach ($VidList as $vid) {
+  			$vid->slug = Yii::app()->zutils->slugify($vid->label);
+  			$vid->save();
+        }
+	}
 }
