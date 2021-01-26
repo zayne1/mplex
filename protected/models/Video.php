@@ -31,9 +31,6 @@ class Video extends EMongoDocument
             $this->thumb = 'videodefaultthumb.png';
         }
 
-        $this->extension = Yii::app()->zutils->getFileExtension($this->file);
-        $this->slug = Yii::app()->zutils->slugify($this->label);
-
         $this->moveFiles();
 
         return parent::beforeSave();

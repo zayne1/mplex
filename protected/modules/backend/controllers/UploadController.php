@@ -41,10 +41,11 @@ class UploadController extends Controller
                 //Grab some data
                 $model->mime_type = $model->file->getType();
                 $model->size = $model->file->getSize();
-                $model->name = $model->file->getName();
-                //(optional) Generate a random name for our file
-                $filename = md5(Yii::app()->user->id.microtime().$model->name);
-                $filename .= ".".$model->file->getExtensionName();
+                $extension = $model->file->getExtensionName();
+
+                $filenameNoExt = str_replace('.'.$extension, '',$model->file->getName()); // rem extension so that we can correctly slugify the filename
+                $filenameSlug = Yii::app()->zutils->slugify($filenameNoExt);
+                $filename = $filenameSlug.".".$extension;
                 if ( $model->validate() ) {
                     //Move our file to our temporary dir
                     $model->file->saveAs($path.$filename);
@@ -92,7 +93,9 @@ class UploadController extends Controller
                         $video->id = 'aaa';//$file->getName();
                         // $video->file = $model->file->getName();
                         $video->file = $filename;
+                        $video->extension = ".".$extension;
                         $video->label = $model->file->getName();
+                        $video->slug = $filenameSlug;
                         $video->path = $path;//$file->getName();
                         // $video->eventId = (string)$id;
                         $video->eventId = Yii::app()->user->getState('eventIdForCurUpload');
