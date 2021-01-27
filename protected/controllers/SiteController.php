@@ -444,6 +444,7 @@ class SiteController extends Controller
         // Give current vids a slug
         foreach ($VidList as $vid) {
   			$vid->slug = Yii::app()->zutils->slugify($vid->label);
+			$vid->extension = Yii::app()->zutils->getFileExtension($vid->file);
   			$vid->save();
 
   			// From here on we mod the db file field to use a slug filename, then change the names of the actual files on disk
