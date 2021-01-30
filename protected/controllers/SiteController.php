@@ -313,7 +313,7 @@ class SiteController extends Controller
 		$currOrgNameSlug = Organization::model()->findByPk(new MongoID($currOrgId))->slug;
 		$currEventYear = substr( Event::model()->findByPk(new MongoID($currEventId))->date, -4);
 		
-		$zipname = $currOrgNameSlug . '_' . $currEventNameSlug . '_' . $currEventYear . '.zip';
+		$zipname = $currOrgNameSlug . '_' . $currEventYear . '.zip';
 		exec('rm  ' . getcwd() . "/" . $zipname); // remove any existing zips with the same name, or ZipArchive will just keep adding files to the existing zip
 
 		$zip = new ZipArchive;
