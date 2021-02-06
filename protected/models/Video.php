@@ -354,7 +354,7 @@ class Video extends EMongoDocument
     {
         if (isset(Yii::app()->request->cookies['cookie_viddownloads'])) {
             $serialized_viddownloads_arr = Yii::app()->request->cookies['cookie_viddownloads']->value;
-            return json_decode($serialized_viddownloads_arr);
+            return (array)json_decode($serialized_viddownloads_arr);
         } else {
             return null;
         }

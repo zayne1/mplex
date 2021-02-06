@@ -179,10 +179,13 @@ class SiteController extends Controller
 
 	public function actionVideo()
 	{
-		$eventId = Yii::app()->request->cookies['cookie_userEvent']->value;
+		$eventId = null;
+
+		if (isset( Yii::app()->request->cookies['cookie_userEvent']->value ))
+			$eventId = Yii::app()->request->cookies['cookie_userEvent']->value;
 		$newFavVidId = Yii::app()->request->getParam('addFav', null);
 		$newRemVidId = Yii::app()->request->getParam('remFav', null);
-		$vidDownloadedList = Video::model()->getDownloadedVids();
+		$vidDownloadedList = (array)Video::model()->getDownloadedVids();
 		$favVidList = Video::model()->getFavVidsForEvent();
 
 		if(isset($newFavVidId)) {
@@ -199,7 +202,9 @@ class SiteController extends Controller
 		// print_r($vidList);die;
 
 		$this->updateSiteLoginCookie();
-		$this->updateUserEventCookie();
+		
+		if ($eventId)
+			$this->updateUserEventCookie();
 
 		$this->render('video', array(
                 'introText' => 'Watch Video',
